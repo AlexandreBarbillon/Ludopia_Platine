@@ -52,4 +52,9 @@ public class User {
         User otherUser = (User) obj;
         return otherUser.password.equals(this.password) && otherUser.username.equals(this.username);
     }
+
+    @Override
+    public int hashCode() {
+        return this.username.hashCode();
+    }
 }
