@@ -1,20 +1,30 @@
 package ludopia.objects.users;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A User is the account of somebody connected to Ludopia. For now, there is only the username and the password stored
  */
 @Entity
-public class User {
-    @Id
+public class User implements Serializable {
+    @Id @GeneratedValue
+    int id;
+    @Column
     String username;
     @Column
     String password;
-
+    @Column
+    String description;
+    @ElementCollection
+    Set<Integer> lists;
+    @ElementCollection
+    Set<Integer> associations;
+    @ElementCollection
+    Set<Integer> friends;
     /**
      * Construct the User object
      * @param username the username of the user
@@ -26,7 +36,9 @@ public class User {
     }
 
     public User(){
-
+        this.lists = new HashSet<>();
+        this.associations = new HashSet<>();
+        this.friends = new HashSet<>();
     }
 
     public String getUsername() {
@@ -45,16 +57,62 @@ public class User {
         this.password = password;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Set<Integer> getLists() {
+        return lists;
+    }
+
+    public void addList(int list) {
+        this.lists.add(list);
+    }
+
+    public void removeList(int list) {
+        this.lists.remove(list);
+    }
+
+    public Set<Integer> getAssociations() {
+        return associations;
+    }
+
+    public void addAssociation(int association) {
+        this.associations.add(association);
+    }
+
+    public void removeAssociation(int association) {
+        this.associations.remove(association);
+    }
+
+    public Set<Integer> getFriends() {
+        return friends;
+    }
+
+    public void addFriend(int friend) {
+        this.friends.add(friend);
+    }
+    public void removeFriend(int friend) {
+        this.friends.remove(friend);
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) return false;
         if (!obj.getClass().equals(this.getClass())) return false;
         User otherUser = (User) obj;
-        return otherUser.password.equals(this.password) && otherUser.username.equals(this.username);
-    }
-
-    @Override
-    public int hashCode() {
-        return this.username.hashCode();
+        return otherUser.id == this.id;
     }
 }
