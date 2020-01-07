@@ -1,12 +1,11 @@
 package ludopia.objects.users.repository;
 
-import ludopia.objects.users.User;
+import ludopia.objects.users.LudopiaUser;
 import org.springframework.data.repository.CrudRepository;
 
-import java.util.List;
 import java.util.Optional;
 
-public interface UserRepository extends CrudRepository<User, String> {
-    Optional<User> findByUsername(String username);
-    Optional<User> findById(int id);
+public interface UserRepository extends CrudRepository<LudopiaUser, String> {
+    Optional<LudopiaUser> findByUsername(String username);
+    Optional<LudopiaUser> findById(int id);
 }

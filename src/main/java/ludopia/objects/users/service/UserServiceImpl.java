@@ -1,6 +1,6 @@
 package ludopia.objects.users.service;
 
-import ludopia.objects.users.User;
+import ludopia.objects.users.LudopiaUser;
 import ludopia.objects.users.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
      * @return all the users
      */
     @Override
-    public Iterable<User> getAllUsers() {
+    public Iterable<LudopiaUser> getAllUsers() {
         return userRepo.findAll();
     }
 
@@ -32,24 +32,24 @@ public class UserServiceImpl implements UserService {
      * @return the user if found, null otherwise
      */
     @Override
-    public User getUserById(int userId) {
-        Optional<User> possibleUser = userRepo.findById(userId);
+    public LudopiaUser getUserById(int userId) {
+        Optional<LudopiaUser> possibleUser = userRepo.findById(userId);
         return possibleUser.orElse(null);
     }
 
     @Override
-    public User getUserByUsername(String username){
+    public LudopiaUser getUserByUsername(String username){
         return userRepo.findByUsername(username).orElse(null);
     }
 
     /**
      * Create a new user in database
-     * @param user the user to create
+     * @param ludopiaUser the user to create
      * @return the user created
      */
     @Override
-    public User createUser(User user) {
-        return userRepo.save(user);
+    public LudopiaUser createUser(LudopiaUser ludopiaUser) {
+        return userRepo.save(ludopiaUser);
     }
 
     /**
