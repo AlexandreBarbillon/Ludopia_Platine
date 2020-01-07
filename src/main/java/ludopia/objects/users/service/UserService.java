@@ -1,11 +1,11 @@
 package ludopia.objects.users.service;
 
-import ludopia.objects.users.User;
+import ludopia.objects.users.LudopiaUser;
 
 public interface UserService {
-    Iterable<User> getAllUsers();
-    User getUserById(int userId);
-    User getUserByUsername(String username);
-    User createUser(User user);
+    Iterable<LudopiaUser> getAllUsers();
+    LudopiaUser getUserById(int userId);
+    LudopiaUser getUserByUsername(String username);
+    LudopiaUser createUser(LudopiaUser ludopiaUser);
     void removeUser(String username);
 }
