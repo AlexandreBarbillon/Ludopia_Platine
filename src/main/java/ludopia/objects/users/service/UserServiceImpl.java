@@ -28,13 +28,18 @@ public class UserServiceImpl implements UserService {
 
     /**
      * Get one user by his username
-     * @param username the username of the searched user
+     * @param userId the username of the searched user
      * @return the user if found, null otherwise
      */
     @Override
-    public User getUser(String username) {
-        Optional<User> possibleUser = userRepo.findById(username);
+    public User getUserById(int userId) {
+        Optional<User> possibleUser = userRepo.findById(userId);
         return possibleUser.orElse(null);
+    }
+
+    @Override
+    public User getUserByUsername(String username){
+        return userRepo.findByUsername(username).orElse(null);
     }
 
     /**

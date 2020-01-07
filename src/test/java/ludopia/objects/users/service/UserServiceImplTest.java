@@ -15,29 +15,39 @@ import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
-@PropertySource("test.properties")
 @SpringBootTest
 public class UserServiceImplTest {
 
     @Autowired
     UserRepository userRepo;
+    UserServiceImpl userService;
+    @Before
+    public void before(){
+
+    }
 
     @BeforeEach
     public void beforeTest(){
+        userService = new UserServiceImpl(userRepo);
         userRepo.deleteAll();
     }
     @Test
     public void testTheUserCreation(){
         User paul = new User("paul","timoléon");
-        UserServiceImpl userService = new UserServiceImpl(userRepo);
         userService.createUser(paul);
-        User databasePaul = userService.getUser("paul");
+        User databasePaul = userService.getUserById(paul.getId());
         assertEquals(paul,databasePaul);
     }
     @Test
     public void testTheGetUserWithANonExistingUser(){
-        UserServiceImpl userService = new UserServiceImpl(userRepo);
-        User databasePaul = userService.getUser("paul");
+        User databasePaul = userService.getUserById(15);
         assertNull(databasePaul);
+    }
+    @Test
+    void findByUsernameTest(){
+        User paul = new User("paul","timoléon");
+        userService.createUser(paul);
+        User databasePaul = userService.getUserByUsername("paul");
+        assertEquals(paul,databasePaul);
     }
 }
