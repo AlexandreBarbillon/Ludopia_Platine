@@ -1,6 +1,8 @@
 package ludopia.objects.users;
 
 
+import ludopia.config.SecurityConfig;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -10,7 +12,7 @@ import java.util.Set;
  * A User is the account of somebody connected to Ludopia. For now, there is only the username and the password stored
  */
 @Entity
-public class User implements Serializable {
+public class LudopiaUser implements Serializable {
     @Id @GeneratedValue
     int id;
     @Column
@@ -30,12 +32,12 @@ public class User implements Serializable {
      * @param username the username of the user
      * @param password his password
      */
-    public User(String username, String password) {
+    public LudopiaUser(String username, String password) {
         this.username = username;
-        this.password = password;
+        this.password = SecurityConfig.getPasswordEncoder().encode(password);
     }
 
-    public User(){
+    public LudopiaUser(){
         this.lists = new HashSet<>();
         this.associations = new HashSet<>();
         this.friends = new HashSet<>();
@@ -112,7 +114,7 @@ public class User implements Serializable {
     public boolean equals(Object obj) {
         if (obj == null) return false;
         if (!obj.getClass().equals(this.getClass())) return false;
-        User otherUser = (User) obj;
-        return otherUser.id == this.id;
+        LudopiaUser otherLudopiaUser = (LudopiaUser) obj;
+        return otherLudopiaUser.id == this.id;
     }
 }
