@@ -1,10 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
+{{> layout/header}}
 <body>
-$END$
+{{> layout/navbar}}
+    <div id="intro">
+        <h1>Qui sommes-nous ?</h1>
+        <img  src="TODO" alt="Infos"/>
+        <p>
+            Nous sommes trois étudiants de Master E-Services à l'Université de Lille.
+            Dans le cadre de nos études, nous avons eu l'opportunité d'élaborer une application Web,
+            et c'est là qu'a été créé Ludopia !
+        </p>
+    </div>
+    <div id="etudiants">
+        <div class="etudiant">
+            <img  src="TODO" alt="Etudiant"/>
+            <p>Alexandre Barbillon</p>
+        </div>
+        <div class="etudiant">
+            <img  src="TODO" alt="Etudiant"/>
+            <p>Estelle Héripret</p>
+        </div>
+        <div class="etudiant">
+            <img  src="TODO" alt="Etudiant"/>
+            <p>Pierre Patte</p>
+        </div>
+
+    </div>
+    <div id="questions">
+        <h2>FAQ</h2>
+        <div class="question">
+            <h3>Comment supprimer son profil ?</h3>
+            <p>
+                Pour supprimer votre profil, il suffit d'aller sur votre compte, de cliquer
+                sur "Modifier mon profil", puis sur le bouton "Supprimer votre compte" en bas
+                de la page.
+            </p>
+        </div>
+    </div>
+
+
+
+{{> layout/footer}}
 </body>
 </html>
