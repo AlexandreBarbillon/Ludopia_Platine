@@ -1,0 +1,32 @@
+{{> layout/header}}
+<body>
+{{> layout/navbar}}
+
+
+    <h1>Jeux les mieux notés</h1>
+    <div id="best_rated">
+        <button class="previous"></button>
+        {{#gamesByRate}}
+        <div class="game-card">
+            <img  src="{{image_link}}" alt="Jeu"/>
+            <h4>{{name}} </h4>
+        </div>
+        {{/gamesByRate}}
+        <button class="next"></button>
+    </div>
+
+    <h1>Jeux les plus récents</h1>
+    <div id="latest">
+        <button class="previous"></button>
+        {{#gamesByDate}}
+        <div class="game-card">
+            <img  src="{{image_link}}" alt="Jeu"/>
+            <h4>{{name}} </h4>
+        </div>
+        {{/gamesByDate}}
+        <button class="next"></button>
+    </div>
+
+{{> layout/footer}}
+</body>
+</html>
