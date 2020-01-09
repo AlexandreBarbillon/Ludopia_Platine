@@ -13,6 +13,8 @@ public class Game {
     String description;
     @Column
     String image_link;
+    @Column
+    boolean isExtension;
     @ElementCollection
     List<Integer> extensionsId;
 
@@ -51,6 +53,10 @@ public class Game {
     public void setImage_link(String image_link) {
         this.image_link = image_link;
     }
+
+    public void setIsExtension(boolean isExtension) { this.isExtension = isExtension;};
+
+    public boolean isExtension() { return this.isExtension;}
 
     public List<Integer> getExtensionsId() {
         return extensionsId;
