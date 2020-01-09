@@ -1,12 +1,14 @@
 package ludopia.objects.games;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
 public class Game {
     @Id @GeneratedValue
-    long id;
+    int id;
     @Column
     String name;
     @Column
@@ -15,18 +17,32 @@ public class Game {
     String image_link;
     @Column
     boolean isExtension;
+    @Temporal(TemporalType.TIMESTAMP)
+    Date addDate;
     @ElementCollection
     List<Integer> extensionsId;
 
-    public Game(){
-
+    public Game() {
+        name = "";
+        description = "";
+        image_link = "";
+        extensionsId = new ArrayList<>();
+        addDate = new Date();
     }
 
-    public long getId() {
+    public Date getAddDate() {
+        return addDate;
+    }
+
+    public void setAddDate(Date addDate) {
+        this.addDate = addDate;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -64,5 +80,10 @@ public class Game {
 
     public void setExtensionsId(List<Integer> extensionsId) {
         this.extensionsId = extensionsId;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj.getClass() == this.getClass() && ((Game) obj).getId() == this.getId();
     }
 }
