@@ -86,4 +86,9 @@ public class Game {
     public boolean equals(Object obj) {
         return obj.getClass() == this.getClass() && ((Game) obj).getId() == this.getId();
     }
+
+    @Override
+    public String toString() {
+        return "["+this.getId()+"] "+this.getName();
+    }
 }
