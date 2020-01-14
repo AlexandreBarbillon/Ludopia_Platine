@@ -23,7 +23,7 @@ public class UserController {
     }
 
     @PostMapping("/registration")
-    private String registration(@ModelAttribute("userForm") LudopiaUser user, Model model) {
+    private String registration(@ModelAttribute("userForm") LudopiaUser user) {
         userService.createUser(user);
         return "redirect:/index";
     }

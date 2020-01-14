@@ -1,0 +1,27 @@
+{{> layout/header}}
+
+    <body>
+
+    {{> layout/navbar}}
+        <div class="container">
+            <h1>Bienvenue sur Ludopia</h1>
+
+            <form method="POST" modelAttribute="userForm">
+                <label>Nom</label>
+                <input type="text" path ="username" autofocus="true" placeholder="Nom" required/>
+
+                <br>
+                <label>Mot de passe</label>
+                <input type="password" path="password" placeholder="Mot de passe" required/>
+
+                <br>
+                <!--<label>Vérification du mot de passe</label>
+                <input type="password" placeholder="Vérification du mot de passe" required/>-->
+
+                <br>
+                <button type="submit">Valider</button>
+
+            </form>
+        </div>
+    </body>
+</html>
