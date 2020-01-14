@@ -34,7 +34,7 @@ public class LudopiaUser implements Serializable {
      */
     public LudopiaUser(String username, String password) {
         this.username = username;
-        this.password = SecurityConfig.getPasswordEncoder().encode(password);
+        this.setPassword(password);
     }
 
     public LudopiaUser(){
@@ -56,7 +56,7 @@ public class LudopiaUser implements Serializable {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = SecurityConfig.getPasswordEncoder().encode(password);
     }
 
     public int getId() {
@@ -116,5 +116,10 @@ public class LudopiaUser implements Serializable {
         if (!obj.getClass().equals(this.getClass())) return false;
         LudopiaUser otherLudopiaUser = (LudopiaUser) obj;
         return otherLudopiaUser.id == this.id;
+    }
+
+    @Override
+    public String toString() {
+        return this.username+" "+this.password;
     }
 }
