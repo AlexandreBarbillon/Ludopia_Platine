@@ -5,3 +5,7 @@
 .footer-copyright {
     background-color: #8db9bf;
 }
+
+#map{
+    height: 180px;
+}

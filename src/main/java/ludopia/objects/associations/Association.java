@@ -1,11 +1,9 @@
 package ludopia.objects.associations;
 
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
 public class Association {
     @Id @GeneratedValue
     long id;
