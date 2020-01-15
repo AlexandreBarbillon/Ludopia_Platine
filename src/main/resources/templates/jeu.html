@@ -1,0 +1,26 @@
+{{> layout/header}}
+<body>
+{{> layout/navbar}}
+
+<div id="game-description">
+{{#game}}
+    <img src="{{image_link}}" alt="{{name}}"/>
+    <h1>{{name}}</h1>
+    <p>{{description}}</p>
+    <p>{{addDate}}</p>
+
+    {{#isExtension}}
+    <p>Ce jeu est une extension !</p>
+    {{/isExtension}}
+
+    <p>TODO : extensions</p>
+    {{#extensionsId}}
+    <div><p>Chacune de ces lignes représente une extension</p><br/></div>
+    {{/extensionsId}}
+
+{{/game}}
+</div>
+
+{{> layout/footer}}
+</body>
+</html>
