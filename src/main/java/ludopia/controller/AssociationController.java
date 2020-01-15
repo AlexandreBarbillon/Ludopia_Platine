@@ -7,8 +7,12 @@ import ludopia.objects.games.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.logging.Logger;
 
 @Controller
 public class AssociationController {
@@ -26,6 +30,13 @@ public class AssociationController {
     public ModelAndView registerNewTrainer(Association asso) {
         ModelAndView mv = new ModelAndView("associationCreation");
         associationService.createAssociation(asso);
+        return mv;
+    }
+    @GetMapping("/association/{id}")
+    public ModelAndView displayAsso(@PathVariable int id){
+        ModelAndView mv = new ModelAndView("associationPage");
+        System.out.println(associationService.getAll());
+        mv.addObject("asso",associationService.getAssoById(id));
         return mv;
     }
 }

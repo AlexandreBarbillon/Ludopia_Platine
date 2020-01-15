@@ -4,6 +4,8 @@ import ludopia.objects.associations.Association;
 import ludopia.objects.associations.repository.AssociationRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * UserServiceImpl control the game creation/recover/update/deleting
  */
@@ -18,5 +20,15 @@ public class AssociationServiceImpl implements AssociationService {
     @Override
     public Association createAssociation(Association association) {
         return associationRepo.save(association);
+    }
+
+    @Override
+    public Association getAssoById(int id) {
+        return associationRepo.findById(id).orElse(null);
+    }
+
+    @Override
+    public Iterable<Association> getAll() {
+        return associationRepo.findAll();
     }
 }

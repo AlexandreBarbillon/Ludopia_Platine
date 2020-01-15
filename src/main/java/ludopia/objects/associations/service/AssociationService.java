@@ -7,4 +7,7 @@ import java.util.List;
 
 public interface AssociationService {
     Association createAssociation(Association association);
+    Association getAssoById(int id);
+
+    Iterable<Association> getAll();
 }

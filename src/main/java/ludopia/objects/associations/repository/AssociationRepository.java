@@ -8,5 +8,5 @@ import java.util.List;
 import java.util.Optional;
 
 public interface AssociationRepository extends CrudRepository<Association, String> {
-
+    Optional<Association> findById(int id);
 }
