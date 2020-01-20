@@ -1,0 +1,27 @@
+#footer {
+    background-color: #B4DFE5;
+}
+
+.footer-copyright {
+    background-color: #8db9bf;
+}
+
+.pictureGame {
+    height: 90%;
+}
+
+.carousel-indicators {
+    position : inherit !important;
+}
+
+.fa-angle-left, .fa-angle-right {
+    color: black;
+}
+
+.carousel-control-prev {
+    left: -10% !important;
+}
+
+.carousel-control-next {
+    right: -10% !important;
+}

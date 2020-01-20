@@ -2,7 +2,7 @@
 <body>
 {{> layout/navbar}}
 
-
+<div class="container">
     <h1>Jeux les mieux notés</h1>
     <div id="best_rated">
         <button class="previous"></button>
@@ -17,16 +17,53 @@
 
     <h1>Jeux les plus récents</h1>
     <div id="latest">
-        <button class="previous"></button>
-        {{#gamesByDate}}
-        <div class="game-card">
-            <img  src="{{image_link}}" alt="Jeu"/>
-            <h4>{{name}} </h4>
+        <div id="gamesSortByDate" class="carousel slide"  data-intervel="200" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row">
+                        {{#gamesByDate}}
+                        <div class="col-12 col-md align-items-center justify-content-center">
+                            <div class="pictureGame">
+                                <img class="d-block w-100" src="{{image_link}}" alt="Jeu"/>
+                            </div>
+                            <h4>{{name}}</h4>
+                        </div>
+                        {{/gamesByDate}}
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row">
+                        {{#gamesByDate}}
+                        <div class="col-12 col-md align-items-center justify-content-center">
+                            <div class="pictureGame">
+                                <img class="d-block w-100" src="{{image_link}}" alt="Jeu"/>
+                            </div>
+                            <h4>{{name}}test</h4>
+                        </div>
+                        {{/gamesByDate}}
+                    </div>
+                </div>
+            </div>
+
+            <a class="carousel-control-prev" href="#gamesSortByDate" role="button" data-slide="prev">
+                <span><i class="fa fa-angle-left" aria-hidden="true"></i></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#gamesSortByDate" role="button" data-slide="next">
+                <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                <span class="sr-only">Next</span>
+            </a>
+            <ol class="carousel-indicators">
+                <li data-target="#gamesSortByDate" data-slide-to="0" class="active bg-dark"></li>
+                <li data-target="#gamesSortByDate" data-slide-to="1" class="bg-dark"></li>
+            </ol>
+
         </div>
-        {{/gamesByDate}}
-        <button class="next"></button>
     </div>
+</div>
 
 {{> layout/footer}}
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 </html>
