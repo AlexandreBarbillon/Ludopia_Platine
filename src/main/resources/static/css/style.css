@@ -1,0 +1,50 @@
+#footer {
+    background-color: #B4DFE5;
+}
+
+.footer-copyright {
+    background-color: #8db9bf;
+}
+
+/* Index page */
+.pictureGame {
+    height: 90%;
+}
+
+.carousel-indicators {
+    position : inherit !important;
+}
+
+.fa-angle-left, .fa-angle-right {
+    color: black;
+    font-size: 3em;
+}
+
+.carousel-control-prev {
+    left: -14% !important;
+}
+
+.carousel-control-next {
+    right: -14% !important;
+}
+
+.title-home {
+    background-color: #B4DFE5;
+}
+
+#latest {
+    margin-top: 3%;
+    margin-bottom: 3%;
+    height: 250px;
+}
+
+.pictureGame > img {
+    max-height: 202px;
+    max-width: 198px;
+    margin-bottom: 4px;
+}
+
+.title-game {
+    font-weight: bold;
+    text-align: center;
+}
