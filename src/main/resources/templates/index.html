@@ -3,7 +3,7 @@
 {{> layout/navbar}}
 
 <div class="container">
-    <h1>Jeux les mieux notés</h1>
+    <h1 class="title-home">Jeux les mieux notés</h1>
     <div id="best_rated">
         <button class="previous">Précédent</button>
         {{#gamesByRate}}
@@ -15,32 +15,44 @@
         <button class="next">Suivant</button>
     </div>
 
-    <h1>Jeux les plus récents</h1>
+    <h1 class="title-home">Jeux les plus récents</h1>
     <div id="latest">
-        <div id="gamesSortByDate" class="carousel slide"  data-intervel="200" data-ride="carousel">
+        <div id="gamesSortByDate" class="carousel slide"  data-intervel="3000" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="row">
-                        {{#gamesByDate}}
+                        {{#gamesFirst}}
                         <div class="col-12 col-md align-items-center justify-content-center">
                             <div class="pictureGame">
                                 <img class="d-block w-100" src="{{image_link}}" alt="Jeu"/>
                             </div>
-                            <h4>{{name}}</h4>
+                            <span>{{name}}</span>
                         </div>
-                        {{/gamesByDate}}
+                        {{/gamesFirst}}
                     </div>
                 </div>
                 <div class="carousel-item">
                     <div class="row">
-                        {{#gamesByDate}}
+                        {{#gamesSecond}}
                         <div class="col-12 col-md align-items-center justify-content-center">
                             <div class="pictureGame">
                                 <img class="d-block w-100" src="{{image_link}}" alt="Jeu"/>
                             </div>
-                            <h4>{{name}}test</h4>
+                            <span>{{name}}</span>
                         </div>
-                        {{/gamesByDate}}
+                        {{/gamesSecond}}
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="row">
+                        {{#gamesThird}}
+                        <div class="col-12 col-md align-items-center justify-content-center">
+                            <div class="pictureGame">
+                                <img class="d-block w-100" src="{{image_link}}" alt="Jeu"/>
+                            </div>
+                            <span>{{name}}</span>
+                        </div>
+                        {{/gamesThird}}
                     </div>
                 </div>
             </div>
@@ -56,6 +68,7 @@
             <ol class="carousel-indicators">
                 <li data-target="#gamesSortByDate" data-slide-to="0" class="active bg-dark"></li>
                 <li data-target="#gamesSortByDate" data-slide-to="1" class="bg-dark"></li>
+                <li data-target="#gamesSortByDate" data-slide-to="2" class="bg-dark"></li>
             </ol>
 
         </div>
