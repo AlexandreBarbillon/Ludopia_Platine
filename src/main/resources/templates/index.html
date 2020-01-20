@@ -5,14 +5,14 @@
 <div class="container">
     <h1>Jeux les mieux notés</h1>
     <div id="best_rated">
-        <button class="previous"></button>
+        <button class="previous">Précédent</button>
         {{#gamesByRate}}
         <div class="game-card">
             <img  src="{{image_link}}" alt="Jeu"/>
             <h4>{{name}} </h4>
         </div>
         {{/gamesByRate}}
-        <button class="next"></button>
+        <button class="next">Suivant</button>
     </div>
 
     <h1>Jeux les plus récents</h1>
