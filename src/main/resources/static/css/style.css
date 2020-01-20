@@ -35,4 +35,15 @@
 #latest {
     margin-top: 3%;
     margin-bottom: 3%;
+    height: 250px;
+}
+
+.pictureGame > img {
+    max-height: 202px;
+    max-width: 198px;
+    margin-bottom: 4px;
+}
+
+.title-game {
+    font-weight: bold;
 }
