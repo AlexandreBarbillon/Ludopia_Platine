@@ -50,10 +50,24 @@ public class GameServiceImplTest {
         game2.setName("game2");
         gameService.createGame(game1);
         gameService.createGame(game2);
-        var gameList = gameService.getGamesSortByDate(2);
+        var gameList = gameService.getGamesSortByDate();
         assertNotNull(gameList);
         assertEquals(2,gameList.size());
         assertEquals(game2,gameList.get(0));
         assertEquals(game1,gameList.get(1));
+    }
+    @Test
+    public void testFindingLastGameSortByAddDate() throws InterruptedException {
+        Game game1 = new Game();
+        game1.setName("game1");
+        Thread.sleep(1000);
+        Game game2 = new Game();
+        game2.setName("game2");
+        gameService.createGame(game1);
+        gameService.createGame(game2);
+        var gameList = gameService.getGamesSortByDate(1);
+        assertNotNull(gameList);
+        assertEquals(1,gameList.size());
+        assertEquals(game2,gameList.get(0));
     }
 }
