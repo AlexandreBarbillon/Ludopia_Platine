@@ -1,14 +1,12 @@
 package ludopia.objects.associations;
 
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
 public class Association {
     @Id @GeneratedValue
-    long id;
+    int id;
     @Column
     String name;
     @Column
@@ -23,16 +21,17 @@ public class Association {
     List<Integer> members;
     @ElementCollection
     List<Integer> lists;
-
+    @Column
+    int admin;
     public Association(){
 
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -82,5 +81,10 @@ public class Association {
 
     public void setMembers(List<Integer> members) {
         this.members = members;
+    }
+
+    @Override
+    public String toString() {
+        return this.getName()+" id="+this.getId();
     }
 }

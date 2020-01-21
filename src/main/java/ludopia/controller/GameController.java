@@ -25,7 +25,7 @@ public class GameController {
     }
 
     @PostMapping("/addGame")
-    public ModelAndView registerNewTrainer(Game game) {
+    public ModelAndView addGame(Game game) {
         ModelAndView mv = new ModelAndView("gameCreation");
         gameService.createGame(game);
         System.out.println(gameService.getGamesSortByDate(3));
