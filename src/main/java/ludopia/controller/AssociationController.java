@@ -35,8 +35,11 @@ public class AssociationController {
     @GetMapping("/association/{id}")
     public ModelAndView displayAsso(@PathVariable int id){
         ModelAndView mv = new ModelAndView("associationPage");
-        System.out.println(associationService.getAll());
         mv.addObject("asso",associationService.getAssoById(id));
         return mv;
+    }
+    @GetMapping("/map")
+    public String displayAssoMap(){
+        return "assoMap";
     }
 }
