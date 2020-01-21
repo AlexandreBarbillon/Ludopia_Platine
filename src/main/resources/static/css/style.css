@@ -103,6 +103,10 @@
     color: black;
 }
 
+#map{
+    height: 600px;
+}
+
 /*Info page*/
 #etudiants {
     margin-top: 4px;

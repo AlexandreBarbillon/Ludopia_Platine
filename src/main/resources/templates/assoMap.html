@@ -1,0 +1,42 @@
+{{> layout/headerMap}}
+
+<body>
+{{> layout/navbar}}
+<div class="container">
+    <div id="map"></div>
+</div>
+</body>
+<script>
+    var marker;
+    var mymap;
+    function initMap() {
+        mymap = L.map('map').setView(new L.LatLng(46.71109, 1.7191036), 7);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+        }).addTo(mymap);
+        getAssos();
+    }
+
+    function generateMarkers(assoList){
+        assoList.forEach((element) =>{
+            let latLng = new L.LatLng(element["latitude"], element["longitude"]);
+            new L.marker(latLng).addTo(mymap)
+        });
+
+    }
+
+    function getAssos(){
+        let request = new XMLHttpRequest();
+        request.addEventListener("readystatechange", () =>{
+            if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
+              generateMarkers(JSON.parse(request.responseText));
+            }
+            });
+        request.open("GET","/api/assoList");
+        request.send();
+    }
+
+    window.addEventListener("load",initMap);
+</script>
+</html>
