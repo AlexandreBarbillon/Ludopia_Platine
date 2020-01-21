@@ -8,6 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.websocket.server.PathParam;
+import java.util.ArrayList;
+
 @Controller
 public class UserController {
 
@@ -24,5 +27,13 @@ public class UserController {
     public String submit(@ModelAttribute("userForm") LudopiaUser user) {
         userService.createUser(user);
         return "index";
+    }
+
+    @GetMapping("/profile/{user}")
+    public ModelAndView getProfile(@PathParam("user") String username) {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("profile");
+        mav.addObject("user", userService.getUserByUsername(username));
+        return mav;
     }
 }
