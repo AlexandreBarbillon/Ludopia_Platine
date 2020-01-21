@@ -16,5 +16,6 @@ public class InfoController {
         mav.setViewName("informations");
         return mav;
     }
+    
 
 }
