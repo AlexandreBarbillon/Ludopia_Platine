@@ -88,3 +88,28 @@
     font-weight: bold;
     text-align: center;
 }
+
+/* One Game page */
+.one-game-info {
+    background-color: #B4DFE5;
+}
+
+.game-image {
+    width: 277.5px;
+    background-color: white;
+}
+
+.game-description {
+    max-width: 80%;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+.game-stars {
+    margin-bottom: 0.5rem;
+}
+
+.fa-star {
+    color: #ffaf0f;
+}
+
