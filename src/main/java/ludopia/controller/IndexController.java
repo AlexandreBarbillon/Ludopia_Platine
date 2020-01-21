@@ -16,14 +16,7 @@ public class IndexController {
     private List<Game> second5Games;
     private List<Game> third5Games;
     private GameService gameService;
-
-    @GetMapping("/infos")
-    public ModelAndView infos() {
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("informations");
-        return mav;
-    }
-
+    
     @GetMapping("/")
     public ModelAndView index() {
         ModelAndView mav = new ModelAndView();
