@@ -11,6 +11,10 @@
     height: 90%;
 }
 
+.pictureGame:hover {
+    filter: brightness(1.25);
+}
+
 .carousel-indicators {
     position : inherit !important;
 }
@@ -47,4 +51,14 @@
 .title-game {
     font-weight: bold;
     text-align: center;
+}
+
+.title-game-link {
+    text-decoration: none;
+    color: black;
+}
+
+.title-game-link:visited, .title-game-link:hover {
+    text-decoration: underline #ffaf0f;
+    color: black;
 }
