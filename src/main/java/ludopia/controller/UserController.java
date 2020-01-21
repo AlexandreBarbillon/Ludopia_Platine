@@ -93,6 +93,7 @@ public class UserController {
         mav.addObject("associations", actual_assoc);
         mav.addObject("lists", actual_lists);
         System.out.println(mav.getModel().get("user"));
+        
         System.out.println(mav.getModel().get("friends") + " /// " + mav.getModel().get("associations") + " /// " + mav.getModel().get("lists   "));
         return mav;
     }
