@@ -6,7 +6,7 @@
 
     <div class="user">
         {{#user}}
-            <img src="TODO" alt="{{username}}"/>
+            <img src="TODO IMAGE USER" alt="{{username}}"/>
             <h1 class="title-home">{{username}}</h1>
             <p class="content">
                 {{description}}
@@ -18,7 +18,8 @@
             <div class="title-home" id="amis">
                 <h2>Ses amis</h2>
                 {{#friends}}
-                    <p>{{.}}</p>
+                    <img src="TODO IMAGE USER" alt="{{name}}"/>
+                    <p>{{username}}</p>
                 {{/friends}}
                 {{^friends}}
                     <p>Aucun ami. :(</p>
@@ -28,25 +29,23 @@
 
                 <h2>Ses associations</h2>
                 {{#associations}}
-                <p>{{.}}</p>
+                    <img src="{{logo_image_link}}" alt="{{name}}"/>
+                    <p>{{name}}</p>
                 {{/associations}}
                 {{^associations}}
-                <p>Aucune association.</p>
+                    <p>Aucune association.</p>
                 {{/associations}}
             </div>
             <div class="title-home" id="listes-jeux">
                 <h2>Ses listes de jeux</h2>
                 {{#lists}}
-                <p>{{.}}</p>
+                    <img src="TODO OBJECT LISTE JEUX" alt="TODO"/>
+                    <p>TODO</p>
                 {{/lists}}
                 {{^lists}}
-                <p>Aucun ami. :(</p>
+                    <p>Aucune liste</p>
                 {{/lists}}
             </div>
-
-
-
-
         {{/user}}
 
         {{^user}}

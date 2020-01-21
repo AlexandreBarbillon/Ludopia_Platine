@@ -33,7 +33,11 @@ public class UserController {
     public ModelAndView getProfile(@PathParam("user") String username) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("profile");
-        mav.addObject("user", userService.getUserByUsername(username));
+        LudopiaUser user = userService.getUserByUsername(username);
+        mav.addObject("user", user);
+        mav.addObject("friends", user.getFriends());
+        mav.addObject("associations", user.getAssociations());
+        mav.addObject("lists", user.getLists());
         return mav;
     }
 }
