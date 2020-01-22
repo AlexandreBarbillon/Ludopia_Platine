@@ -20,13 +20,13 @@ public class AssociationController {
     @Autowired
     AssociationService associationService;
 
-    @GetMapping("/addAsso")
+    @GetMapping("/association/create")
     public ModelAndView index() {
         ModelAndView mv = new ModelAndView("associationCreation");
         return mv;
     }
 
-    @PostMapping("/addAsso")
+    @PostMapping("/association/create")
     public ModelAndView registerNewTrainer(Association asso) {
         ModelAndView mv = new ModelAndView("associationCreation");
         associationService.createAssociation(asso);
@@ -35,8 +35,11 @@ public class AssociationController {
     @GetMapping("/association/{id}")
     public ModelAndView displayAsso(@PathVariable int id){
         ModelAndView mv = new ModelAndView("associationPage");
-        System.out.println(associationService.getAll());
         mv.addObject("asso",associationService.getAssoById(id));
         return mv;
+    }
+    @GetMapping("/association/map")
+    public String displayAssoMap(){
+        return "assoMap";
     }
 }
