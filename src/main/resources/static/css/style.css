@@ -42,7 +42,7 @@
 
 /* Index page */
 .pictureGame {
-    height: 90%;
+    height: 220px;
 }
 
 .pictureGame:hover {
@@ -79,7 +79,7 @@
 #latest {
     margin-top: 3%;
     margin-bottom: 3%;
-    height: 270px;
+    height: 320px;
 }
 
 .pictureGame > img {
@@ -96,6 +96,9 @@
 .title-game-link {
     text-decoration: none;
     color: black;
+    display: inline-block;
+    height: 52px;
+    width: 100%;
 }
 
 .title-game-link:visited, .title-game-link:hover {
