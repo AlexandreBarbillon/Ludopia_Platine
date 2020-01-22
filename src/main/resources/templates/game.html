@@ -3,8 +3,9 @@
 {{> layout/navbar}}
 
 <div class="container">
+    {{#oneGame}}
     <div class="mt-4 mb-4 pt-4 pb-4 overflow-auto one-game-info rounded-lg">
-        {{#oneGame}}
+
         <div class="float-left game-image mr-5 ml-5 p-3">
             <img class="img-fluid" src="{{image_link}}" alt="{{name}}"/>
         </div>
@@ -34,9 +35,15 @@
         {{#extensionsId}}
         <div><p>Chacune de ces lignes représente une extension</p><br/></div>
         {{/extensionsId}}
--->
-        {{/oneGame}}
+--></div>
+    <h4 class="title-game-second rounded-lg">Les associations qui possèdent le jeu</h4>
+
+    <div>
+        <img />
+        <p>Name</p>
     </div>
+    {{/oneGame}}
+
 </div>
 
 {{> layout/footer}}

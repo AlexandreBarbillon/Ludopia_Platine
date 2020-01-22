@@ -175,3 +175,9 @@
     color: #ffaf0f;
 }
 
+.title-game-second {
+    background-color: #e69900;
+    color: white;
+    font-weight: bold;
+    padding: 6px;
+}
