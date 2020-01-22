@@ -23,10 +23,14 @@
                     <div class="row">
                         {{#gamesFirst}}
                         <div class="col-12 col-md align-items-center justify-content-center">
-                            <div class="pictureGame">
-                                <img class="d-block" src="{{image_link}}" alt="Jeu"/>
-                            </div>
-                            <p class="title-game">{{name}}</p>
+                            <a href="/game/{{id}}">
+                                <div class="pictureGame">
+                                 <img class="d-block" src="{{image_link}}" alt="Jeu"/>
+                                </div>
+                            </a>
+                            <a class="title-game-link" href="/game/{{id}}">
+                                <p class="title-game">{{name}}</p>
+                            </a>
                         </div>
                         {{/gamesFirst}}
                     </div>
@@ -35,10 +39,14 @@
                     <div class="row">
                         {{#gamesSecond}}
                         <div class="col-12 col-md align-items-center justify-content-center">
-                            <div class="pictureGame">
-                                <img class="d-block" src="{{image_link}}" alt="Jeu"/>
-                            </div>
-                            <p class="title-game">{{name}}</p>
+                            <a href="/game/{{id}}">
+                                <div class="pictureGame">
+                                    <img class="d-block" src="{{image_link}}" alt="Jeu"/>
+                                </div>
+                            </a>
+                            <a class="title-game-link" href="/game/{{id}}">
+                                <p class="title-game">{{name}}</p>
+                            </a>
                         </div>
                         {{/gamesSecond}}
                     </div>
@@ -47,10 +55,15 @@
                     <div class="row">
                         {{#gamesThird}}
                         <div class="col-12 col-md align-items-center justify-content-center">
-                            <div class="pictureGame">
-                                <img class="d-block" src="{{image_link}}" alt="Jeu"/>
-                            </div>
-                            <p class="title-game">{{name}}</p>
+                            <a href="/game/{{id}}">
+                                <div class="pictureGame">
+                                    <img class="d-block" src="{{image_link}}" alt="Jeu"/>
+                                </div>
+                            </a>
+                            <a class="title-game-link" href="/game/{{id}}">
+                                <p class="title-game">{{name}}</p>
+                            </a>
+
                         </div>
                         {{/gamesThird}}
                     </div>

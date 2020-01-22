@@ -45,6 +45,10 @@
     height: 90%;
 }
 
+.pictureGame:hover {
+    filter: brightness(1.25);
+}
+
 .carousel-indicators {
     position : inherit !important;
 }
@@ -87,6 +91,64 @@
 .title-game {
     font-weight: bold;
     text-align: center;
+}
+
+.title-game-link {
+    text-decoration: none;
+    color: black;
+}
+
+.title-game-link:visited, .title-game-link:hover {
+    text-decoration: underline #ffaf0f;
+    color: black;
+}
+
+#map{
+    height: 600px;
+}
+
+/*Info page*/
+#etudiants {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    text-align: center;
+}
+
+#intro > img {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#intro > .content {
+    text-align: center;
+}
+
+#intro > .content > * {
+    text-align: justify;
+}
+
+.content > * {
+    display: inline-block;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+#etudiants > .content p {
+    font-weight: bold;
+}
+
+.question {
+    margin-left: 10px;
+}
+
+#question > h2 {
+    font-weight: bold;
+}
+
+.question > p {
+    border-left: 1px dotted;
+    margin-left: 10px;
+    padding-left: 10px;
 }
 
 /* One Game page */
