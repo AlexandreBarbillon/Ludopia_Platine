@@ -12,9 +12,7 @@ import java.util.List;
 
 @Controller
 public class IndexController {
-    List<Game> first5Games;
-    private List<Game> second5Games;
-    private List<Game> third5Games;
+
     private GameService gameService;
 
     @GetMapping("/")
@@ -22,9 +20,9 @@ public class IndexController {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("index");
         var games = gameService.getGamesSortByDate(15);
-        first5Games = new ArrayList<>();
-        second5Games = new ArrayList<>();
-        third5Games = new ArrayList<>();
+        var first5Games = new ArrayList<>();
+        var second5Games = new ArrayList<>();
+        var third5Games = new ArrayList<>();
         for (int i = 0; i < games.size()-10; i++) {
 
             first5Games.add(games.get(i));
@@ -36,9 +34,7 @@ public class IndexController {
             third5Games.add(games.get(i));
         }
 
-        System.out.println(first5Games.size());
         mav.addObject("gamesFirst", first5Games);
-
         mav.addObject("gamesSecond", second5Games);
         mav.addObject("gamesThird", third5Games);
 
