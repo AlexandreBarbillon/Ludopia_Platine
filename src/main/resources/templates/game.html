@@ -1,0 +1,51 @@
+{{> layout/header}}
+<body>
+{{> layout/navbar}}
+
+<div class="container">
+    {{#oneGame}}
+    <div class="mt-4 mb-4 pt-4 pb-4 overflow-auto one-game-info rounded-lg">
+
+        <div class="float-left game-image mr-5 ml-5 p-3">
+            <img class="img-fluid" src="{{image_link}}" alt="{{name}}"/>
+        </div>
+        <h2>{{name}}</h2>
+
+        <div class="game-stars">
+            {{#stars}}
+                <span>
+                    <i class="fas fa-star"></i>
+                </span>
+            {{/stars}}
+            {{#starsEmpty}}
+                <span>
+                    <i class="far fa-star"></i>
+                </span>
+            {{/starsEmpty}}
+        </div>
+
+        <p class="game-description">
+            {{description}}
+
+        <!--{{#isExtension}}
+        <p>Ce jeu est une extension !</p>
+        {{/isExtension}}
+
+        <p>TODO : extensions</p>
+        {{#extensionsId}}
+        <div><p>Chacune de ces lignes représente une extension</p><br/></div>
+        {{/extensionsId}}
+--></div>
+    <h4 class="title-game-second rounded-lg">Les associations qui possèdent le jeu</h4>
+
+    <div>
+        <img />
+        <p>Name</p>
+    </div>
+    {{/oneGame}}
+
+</div>
+
+{{> layout/footer}}
+</body>
+</html>
