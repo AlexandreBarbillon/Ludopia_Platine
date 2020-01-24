@@ -90,4 +90,9 @@ public class GameList implements Serializable {
     public void removeGameFromList(int gameId){
         this.gameList.remove(gameId);
     }
+
+    @Override
+    public String toString() {
+        return this.getGameList().toString();
+    }
 }

@@ -1,10 +1,12 @@
 package ludopia.controller;
 
+import ludopia.objects.associations.Association;
 import ludopia.objects.games.Game;
 import ludopia.objects.games.service.GameService;
 import ludopia.objects.users.LudopiaUser;
 import ludopia.objects.users.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,4 +53,5 @@ public class GameController {
         mv.addObject("starsEmpty", list2);
         return mv;
     }
+
 }

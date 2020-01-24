@@ -10,4 +10,5 @@ public interface AssociationService {
     Association getAssoById(int id);
 
     Iterable<Association> getAll();
+    List<Association> findAssoHavingTheGame(int id);
 }
