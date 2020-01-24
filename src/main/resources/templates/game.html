@@ -37,10 +37,13 @@
         {{/extensionsId}}
 --></div>
     <h4 class="title-game-second rounded-lg">Les associations qui possèdent le jeu</h4>
-
     <div>
-        <img />
-        <p>Name</p>
+        {{#associations}}
+        <div class="game-asso">
+            <img src="{{logo_img_link}}"/>
+            <p class="title-game-asso">{{name}}</p>
+        </div>
+        {{/associations}}
     </div>
     {{/oneGame}}
 
