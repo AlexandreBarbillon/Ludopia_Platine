@@ -1,6 +1,7 @@
 package ludopia.controller;
 
 import ludopia.objects.associations.Association;
+import ludopia.objects.associations.service.AssociationService;
 import ludopia.objects.games.Game;
 import ludopia.objects.games.service.GameService;
 import ludopia.objects.users.LudopiaUser;
@@ -23,6 +24,9 @@ public class GameController {
 
     @Autowired
     GameService gameService;
+
+    @Autowired
+    AssociationService assoService;
 
     @GetMapping("/addGame")
     public ModelAndView index() {
@@ -51,6 +55,9 @@ public class GameController {
         }
         mv.addObject("stars", list);
         mv.addObject("starsEmpty", list2);
+
+        System.out.println(assoService.findAssoHavingTheGame(id).size());
+        mv.addObject("assos", assoService.findAssoHavingTheGame(id));
         return mv;
     }
 
