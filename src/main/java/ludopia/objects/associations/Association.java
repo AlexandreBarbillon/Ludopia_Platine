@@ -1,5 +1,7 @@
 package ludopia.objects.associations;
 
+import ludopia.objects.list.GameList;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -19,6 +21,11 @@ public class Association {
     String logo_img_link;
     @ElementCollection
     List<Integer> members;
+
+
+
+    @Column
+    int possessedGamesList;
     @ElementCollection
     List<Integer> lists;
     @Column
@@ -83,6 +90,14 @@ public class Association {
         this.members = members;
     }
 
+
+    public int getPossessedGamesList() {
+        return possessedGamesList;
+    }
+
+    public void setPossessedGamesList(int possessedGamesList) {
+        this.possessedGamesList = possessedGamesList;
+    }
     @Override
     public String toString() {
         return this.getName()+" id="+this.getId();
