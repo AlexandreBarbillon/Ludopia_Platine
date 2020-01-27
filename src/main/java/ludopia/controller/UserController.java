@@ -40,39 +40,54 @@ public class UserController {
     public ModelAndView getProfile(@PathParam("user") String username) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("profile");
-        LudopiaUser user = userService.getUserByUsername(username);
+        //LudopiaUser user = userService.getUserByUsername(username);
+        LudopiaUser user = userService.getUserById(1000);
 
         /*TEMPORAIRE POUR TESTS*/
         /*_____________________________*/
+/*
 
-        /*
 
         LudopiaUser user = new LudopiaUser();
-        user.setId(1);
+        user.setId(1000);
         user.setUsername("herbert");
         user.setDescription("okamari no suzoki okamari no suzoki okamari no suzoki okamari no suzoki okamari no suzoki okamari no suzoki okamari no suzoki okamari no suzoki okamari no suzoki ");
 
+
         LudopiaUser otherUser = new LudopiaUser();
-        otherUser.setId(2);
+        otherUser.setId(2000);
         otherUser.setUsername("raymond");
 
         userService.createUser(otherUser);
 
-        user.addFriend(2);
+        user.addFriend(2000);
 
         Association assoc = new Association();
-        assoc.setId(10);
+        assoc.setId(5000);
         assoc.setName("Des jeux de folie !");
         assoc.setLogo_img_link("https://media.begeek.fr/2019/12/garfield-660x369.jpg");
 
         associationService.createAssociation(assoc);
 
-        user.addAssociation(10);
+        user.addAssociation(5000);
+
+        userService.createUser(user);
 
 
-         */
+*/
+
         /*_____________________________*/
 
+        Iterable<LudopiaUser> users = userService.getAllUsers();
+        for (LudopiaUser u : users) {
+            System.out.println("USER:" +u.getUsername()+"//"+u.getId());
+        }
+
+
+        Iterable<Association> assocs = associationService.getAll();
+        for (Association a : assocs) {
+            System.out.println("ASSOC:" +a.getName()+"//"+a.getId());
+        }
 
         List<LudopiaUser> actual_friends = new ArrayList<>();
         for (int f : user.getFriends()) {
@@ -84,7 +99,6 @@ public class UserController {
             actual_assoc.add(associationService.getAssoById(a));
         }
 
-        /*temporaire*/
         List<String> actual_lists = new ArrayList<>();
         actual_lists.add("Mes jeux préférés");
 
@@ -95,6 +109,8 @@ public class UserController {
         System.out.println(mav.getModel().get("user"));
         
         System.out.println(mav.getModel().get("friends") + " /// " + mav.getModel().get("associations") + " /// " + mav.getModel().get("lists   "));
+
+
         return mav;
     }
 }

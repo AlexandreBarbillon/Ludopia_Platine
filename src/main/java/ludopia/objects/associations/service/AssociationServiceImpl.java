@@ -31,4 +31,9 @@ public class AssociationServiceImpl implements AssociationService {
     public Iterable<Association> getAll() {
         return associationRepo.findAll();
     }
+
+    @Override
+    public void removeAssoc(int id) {
+        associationRepo.deleteById(id);
+    }
 }

@@ -7,5 +7,5 @@ public interface UserService {
     LudopiaUser getUserById(int userId);
     LudopiaUser getUserByUsername(String username);
     LudopiaUser createUser(LudopiaUser ludopiaUser);
-    void removeUser(String username);
+    void removeUser(int id);
 }

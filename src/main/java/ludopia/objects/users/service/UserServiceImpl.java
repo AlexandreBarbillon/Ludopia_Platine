@@ -54,10 +54,10 @@ public class UserServiceImpl implements UserService {
 
     /**
      * Remove the user found in database
-     * @param username the username of the user
+     * @param id the username of the user
      */
     @Override
-    public void removeUser(String username) {
-        userRepo.deleteById(username);
+    public void removeUser(int id) {
+        userRepo.deleteById(id);
     }
 }
