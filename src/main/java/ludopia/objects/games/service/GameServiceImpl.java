@@ -2,6 +2,8 @@ package ludopia.objects.games.service;
 
 import ludopia.objects.games.Game;
 import ludopia.objects.games.repository.GameRepository;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +23,11 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public List<Game> getGamesSortByDate(int amount) {
-        return gameRepo.findByOrderByAddDateDesc();
+        return gameRepo.findByOrderByAddDateDesc(PageRequest.of(0,amount));
+    }
+
+    public List<Game> getGamesSortByDate() {
+        return gameRepo.findByOrderByAddDateDesc(Pageable.unpaged());
     }
 
     @Override

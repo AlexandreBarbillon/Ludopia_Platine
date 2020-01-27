@@ -1,16 +1,22 @@
 package ludopia.controller;
 
+import ludopia.objects.associations.Association;
 import ludopia.objects.games.Game;
 import ludopia.objects.games.service.GameService;
 import ludopia.objects.users.LudopiaUser;
 import ludopia.objects.users.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class GameController {
@@ -25,10 +31,27 @@ public class GameController {
     }
 
     @PostMapping("/addGame")
-    public ModelAndView registerNewTrainer(Game game) {
+    public ModelAndView addGame(Game game) {
         ModelAndView mv = new ModelAndView("gameCreation");
         gameService.createGame(game);
-        System.out.println(gameService.getGamesSortByDate(3));
         return mv;
     }
+
+    @GetMapping("/game/{id}")
+    public ModelAndView displayGame(@PathVariable("id") int id) {
+        ModelAndView mv = new ModelAndView("game");
+        mv.addObject("oneGame", gameService.getGameById(id));
+        var list = new ArrayList<>();
+        var list2 = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            list.add("star");
+        }
+        for (int i = 4; i < 5; i++) {
+            list2.add("starEmpty");
+        }
+        mv.addObject("stars", list);
+        mv.addObject("starsEmpty", list2);
+        return mv;
+    }
+
 }
