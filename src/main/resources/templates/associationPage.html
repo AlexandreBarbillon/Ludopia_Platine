@@ -5,9 +5,15 @@
 {{> layout/navbar}}
 {{#asso}}
 <div class="container">
-    <h1>{{name}}</h1>
-    <div>{{description}}</div>
-    <div id="map"></div>
+    <div class="mt-4 mb-4 pt-4 pb-4 overflow-auto one-game-info rounded-lg">
+
+        <div class="float-left game-image mr-5 ml-5 p-3">
+            <img class="img-fluid" src="{{imageLink}}" alt="{{name}}"/>
+        </div>
+        <h2>{{name}}</h2>
+        <div>{{description}}</div>
+        <div id="map"></div>
+    </div>
 </div>
 </body>
 <script>

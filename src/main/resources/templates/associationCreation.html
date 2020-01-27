@@ -6,7 +6,7 @@
 <div class="container">
     <h1>Ajouter un jeu</h1>
 
-    <form method="POST" name="game" action="    /addAsso">
+    <form method="POST" name="game" action="/association/create">
         <label>Nom</label>
         <input type="text" name ="name" autofocus="true" placeholder="Nom" required/>
 
@@ -25,29 +25,6 @@
     </form>
 </div>
 </body>
-<script>
-    var marker;
-    var mymap;
-    function initMap() {
-        mymap = L.map('map').setView([51.505, -0.09], 13);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
-        }).addTo(mymap);
-        mymap.addEventListener("click", addMarker);
-    }
-    function addMarker(e) {
-        // Add marker to map at click location; add popup window
-        if (marker !== undefined) {
-            mymap.removeLayer(marker);
-        }
-        marker = new L.marker(e.latlng).addTo(mymap);
-        var longitude = document.getElementById("longitude");
-        var latitude = document.getElementById("latitude");
-        latitude.value = e.latlng.lat;
-        longitude.value = e.latlng.lng;
-    }
+<script src="/js/associationCreationScript.js"></script>
 
-    window.addEventListener("load",initMap);
-</script>
 </html>
