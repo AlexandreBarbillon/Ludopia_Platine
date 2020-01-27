@@ -14,23 +14,12 @@
 
             <button id="friend">S'abonner</button> <!-- Si ce user est dans les abonnements de l'user connecté, modifier en "Se désabonner" -->
             <button id="report">Signaler</button>
-
-            <div class="title-home" id="amis">
-                <h2>Ses amis</h2>
-                {{#friends}}
-                    <img src="TODO IMAGE USER" alt="{{username}}"/>
-                    <p>{{username}}</p>
-                {{/friends}}
-                {{^friends}}
-                    <p>Aucun ami. :(</p>
-                {{/friends}}
-            </div>
             <div id="associations">
 
                 <h2>Ses associations</h2>
                 {{#associations}}
-                    <img src="TODO" alt="TODO"/>
-                    <p>TODO</p>
+                    <img src="TODO" alt="{{.}}"/>
+                    <p>{{.}}</p>
                 {{/associations}}
                 {{^associations}}
                     <p>Aucune association.</p>

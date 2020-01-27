@@ -77,39 +77,26 @@ public class UserController {
 */
 
         /*_____________________________*/
-
-        Iterable<LudopiaUser> users = userService.getAllUsers();
-        for (LudopiaUser u : users) {
-            System.out.println("USER:" +u.getUsername()+"//"+u.getId());
-        }
-
-
-        Iterable<Association> assocs = associationService.getAll();
-        for (Association a : assocs) {
-            System.out.println("ASSOC:" +a.getName()+"//"+a.getId());
-        }
-
+/*
         List<LudopiaUser> actual_friends = new ArrayList<>();
         for (int f : user.getFriends()) {
-            actual_friends.add(userService.getUserById(f));
+            LudopiaUser theFriend = userService.getUserById(f);
+            actual_friends.add(theFriend);
         }
-
+*/
         List<Association> actual_assoc = new ArrayList<>();
         for (int a : user.getAssociations()) {
-            actual_assoc.add(associationService.getAssoById(a));
+            Association theAsso = associationService.getAssoById(a);
+            actual_assoc.add(theAsso);
         }
 
         List<String> actual_lists = new ArrayList<>();
         actual_lists.add("Mes jeux préférés");
 
         mav.addObject("user", user);
-        mav.addObject("friends", actual_friends);
+        //mav.addObject("friends", actual_friends);
         mav.addObject("associations", actual_assoc);
         mav.addObject("lists", actual_lists);
-        System.out.println(mav.getModel().get("user"));
-        
-        System.out.println(mav.getModel().get("friends") + " /// " + mav.getModel().get("associations") + " /// " + mav.getModel().get("lists   "));
-
 
         return mav;
     }
