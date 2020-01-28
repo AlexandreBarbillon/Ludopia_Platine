@@ -35,8 +35,7 @@ public class UserController {
 
     @GetMapping("/user/{userId}")
     public ModelAndView getProfile(@PathVariable("userId") int userId) {
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("user");
+        ModelAndView mav = new ModelAndView("user");
         LudopiaUser user = userService.getUserById(userId);
 
         /*TEMPORAIRE POUR TESTS*/
@@ -52,12 +51,6 @@ public class UserController {
 */
 
         /*_____________________________*/
-
-        Iterable<LudopiaUser> users = userService.getAllUsers();
-        System.out.println("USERS:");
-        for (LudopiaUser u : users ){
-            System.out.println(u.getId()+"//"+u.getUsername());
-        }
 
         List<String> actual_lists = new ArrayList<>();
         actual_lists.add("Mes jeux préférés");
