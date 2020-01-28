@@ -76,10 +76,14 @@ public class GameServiceImplTest {
         Game game1 = new Game();
         game1.setName("timoléon");
         Game game2 = new Game();
-        game1.setName("mystérium");
+        game2.setName("mystérium");
         gameService.createGame(game1);
-        var gameList = gameService.searchGame("timo");
+        gameService.createGame(game2);
+        List<Game> gamesInDB = gameService.getGamesSortByDate();
+        assertEquals(2,gamesInDB.size());
+        var gameList = gameService.searchGame("myst");
         assertEquals(1,gameList.size());
+        assertEquals(gameList.get(0),game2);
     }
 
     @Test
