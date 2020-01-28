@@ -1,7 +1,9 @@
-{{> layout/header}}
-<body>
-{{> layout/navbar}}
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{layout/header}"></head>
 
+<body>
+<div th:replace="~{layout/navbar}"></div>
 <div class="container">
     <div id="intro">
         <h1 class="title-home">Qui sommes-nous ?</h1>
@@ -46,6 +48,6 @@
 </div>
 
 
-{{> layout/footer}}
+<div th:replace="~{layout/footer}"></div>
 </body>
 </html>

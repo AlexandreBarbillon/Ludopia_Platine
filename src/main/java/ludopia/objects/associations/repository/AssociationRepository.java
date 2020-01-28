@@ -12,4 +12,5 @@ public interface AssociationRepository extends CrudRepository<Association, Integ
     Optional<Association> findById(int id);
     @Query("FROM Association as asso JOIN GameList as list ON asso.possessedGamesList = list.id WHERE :gameId MEMBER OF list.gameList")
     List<Association> findAssoHavingTheGame(int gameId);
+    List<Association> findAssociationsByAdmin(int userId);
 }
