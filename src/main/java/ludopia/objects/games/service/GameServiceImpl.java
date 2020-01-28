@@ -48,6 +48,11 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
+    public List<Game> searchGame(String search) {
+        return gameRepo.findGamesByNameContaining(search);
+    }
+
+    @Override
     public List<Game> unwrapGameList(int listId) {
         GameList gameList = listService.getListById(listId);
         List<Integer> gameIdList = gameList.getGameList();

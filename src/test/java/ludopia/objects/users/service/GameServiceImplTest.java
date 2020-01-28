@@ -70,4 +70,24 @@ public class GameServiceImplTest {
         assertEquals(1,gameList.size());
         assertEquals(game2,gameList.get(0));
     }
+
+    @Test
+    public void testFindingByTitle(){
+        Game game1 = new Game();
+        game1.setName("timoléon");
+        Game game2 = new Game();
+        game1.setName("mystérium");
+        gameService.createGame(game1);
+        var gameList = gameService.searchGame("timo");
+        assertEquals(1,gameList.size());
+    }
+
+    @Test
+    public void NotFindingAnythingByTitle(){
+        Game game1 = new Game();
+        game1.setName("timoléon");
+        gameService.createGame(game1);
+        var gameList = gameService.searchGame("mystere");
+        assertEquals(0,gameList.size());
+    }
 }
