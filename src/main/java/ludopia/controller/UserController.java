@@ -46,48 +46,13 @@ public class UserController {
         ModelAndView mav = new ModelAndView("user");
         LudopiaUser user = userService.getUserById(userId);
 
-        /*TEMPORAIRE POUR TESTS*/
-        /*_____________________________*/
-/*
-        LudopiaUser user = new LudopiaUser();
-        user.setUsername("herbert");
-        String password = "oui";
-        user.setPassword(password);
-        user.setDescription("okamari no suzoki okamari no suzoki okamari no suzoki okamari no suzoki okamari no suzoki okamari no suzoki okamari no suzoki okamari no suzoki okamari no suzoki ");
-
-
-
-        userService.createUser(user,password);
-*/
-        /*_____________________________*/
 
         List<GameList> lists = new ArrayList<>();
-        /*
+
         for (int i : user.getLists()) {
-            actual_lists.add(listService.getListById(i));
+            lists.add(listService.getListById(i));
         }
-        */
-
-
-
-        GameList testList = new GameList(31, OwnerType.USER, "Mes jeux",  "Je les aime mes jeux");
-        try {
-            testList.addGameToList(10);
-        } catch (GameAlreadyInListException e) {
-            e.printStackTrace();
-        }
-        GameList testList2 = new GameList(31, OwnerType.USER, "Mes jeux préférés",  "Je les aime encore plus mes jeux");
-        try {
-            testList2.addGameToList(11);
-        } catch (GameAlreadyInListException e) {
-            e.printStackTrace();
-        }
-
-
-
-        lists.add(testList);
-        lists.add(testList2);
-
+        
         mav.addObject("user", user);
         mav.addObject("lists", lists);
 
