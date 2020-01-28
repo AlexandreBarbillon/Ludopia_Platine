@@ -24,6 +24,8 @@ public class GameList implements Serializable {
     int idOwner;
     @Column @NonNull
     OwnerType ownerType;
+
+
     @Column @NonNull
     String title;
     @Column @NonNull
@@ -74,9 +76,20 @@ public class GameList implements Serializable {
         this.description = description;
     }
 
+    @NonNull
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(@NonNull String title) {
+        this.title = title;
+    }
+
     public List<Integer> getGameList() {
         return gameList;
     }
+
+
 
     public void addGameToList(int gameId) throws GameAlreadyInListException {
         if(this.gameList.contains(gameId)){

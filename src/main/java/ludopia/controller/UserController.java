@@ -2,6 +2,11 @@ package ludopia.controller;
 
 import ludopia.objects.associations.Association;
 import ludopia.objects.associations.service.AssociationService;
+import ludopia.objects.games.Game;
+import ludopia.objects.list.GameList;
+import ludopia.objects.list.OwnerType;
+import ludopia.objects.list.exceptions.GameAlreadyInListException;
+import ludopia.objects.list.service.ListService;
 import ludopia.objects.users.LudopiaUser;
 import ludopia.objects.users.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +25,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ListService listService;
 
     @GetMapping("/user/create")
     public String registration(Model model) {
@@ -47,16 +55,41 @@ public class UserController {
         user.setPassword(password);
         user.setDescription("okamari no suzoki okamari no suzoki okamari no suzoki okamari no suzoki okamari no suzoki okamari no suzoki okamari no suzoki okamari no suzoki okamari no suzoki ");
 
+
+
         userService.createUser(user,password);
 */
-
         /*_____________________________*/
 
-        List<String> actual_lists = new ArrayList<>();
-        actual_lists.add("Mes jeux préférés");
+        List<GameList> lists = new ArrayList<>();
+        /*
+        for (int i : user.getLists()) {
+            actual_lists.add(listService.getListById(i));
+        }
+        */
+
+
+
+        GameList testList = new GameList(31, OwnerType.USER, "Mes jeux",  "Je les aime mes jeux");
+        try {
+            testList.addGameToList(10);
+        } catch (GameAlreadyInListException e) {
+            e.printStackTrace();
+        }
+        GameList testList2 = new GameList(31, OwnerType.USER, "Mes jeux préférés",  "Je les aime encore plus mes jeux");
+        try {
+            testList2.addGameToList(11);
+        } catch (GameAlreadyInListException e) {
+            e.printStackTrace();
+        }
+
+
+
+        lists.add(testList);
+        lists.add(testList2);
 
         mav.addObject("user", user);
-        mav.addObject("lists", actual_lists);
+        mav.addObject("lists", lists);
 
         return mav;
     }

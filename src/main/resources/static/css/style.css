@@ -3,8 +3,18 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+html, body {
+	height: 100%;
+	margin: 0; padding: 0;
+}
+body {
+	display : table;
+	width: 100%;
+}
 #footer {
     background-color: #B4DFE5;
+    display : table-row;
+    height: 100px;
 }
 
 .footer-copyright {
@@ -220,8 +230,14 @@ body {
     margin-right:auto;
 }
 
-
 #user-listes-jeux {
     margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#user-listes-jeux > div {
+    display: inline-block;
+    padding: 10px;
+    text-align: center;
 }
 
