@@ -26,4 +26,5 @@ public interface GameService {
      * @return the game if finded, null otherwise
      */
     Game getGameById(int id);
+    List<Game> unwrapGameList(int listId);
 }
