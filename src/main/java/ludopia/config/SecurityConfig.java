@@ -1,5 +1,6 @@
 package ludopia.config;
 
+import ludopia.objects.users.CredentialUser;
 import ludopia.objects.users.service.UserService;
 import ludopia.objects.users.LudopiaUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/", "/registration","/addGame","/css/**", "/js/**", "/webfonts/**","/images/**", "/profile/**").permitAll()
-                .anyRequest().authenticated()
+                .antMatchers("/association/create","game/create").authenticated()
                 .and()
                 .formLogin()
                 .and()
@@ -49,9 +49,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new UserDetailsService() {
             @Override
             public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-                LudopiaUser ludopiaUser = userService.getUserByUsername(username);
-                if(ludopiaUser != null){
-                    return User.builder().username(ludopiaUser.getUsername()).password(ludopiaUser.getPassword()).authorities("ROLE_USER").build();
+                CredentialUser credUser = userService.getAuthentificationUserByUsername(username);
+                if(credUser != null){
+                    return credUser;
                 }
                 throw new BadCredentialsException("No such user");
             }

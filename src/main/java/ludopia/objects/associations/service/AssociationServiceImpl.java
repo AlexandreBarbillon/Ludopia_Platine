@@ -2,6 +2,11 @@ package ludopia.objects.associations.service;
 
 import ludopia.objects.associations.Association;
 import ludopia.objects.associations.repository.AssociationRepository;
+import ludopia.objects.list.GameList;
+import ludopia.objects.list.OwnerType;
+import ludopia.objects.list.repository.ListRepository;
+import ludopia.objects.list.service.ListService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,13 +17,17 @@ import java.util.List;
 @Service
 public class AssociationServiceImpl implements AssociationService {
     private AssociationRepository associationRepo;
-
-    public AssociationServiceImpl(AssociationRepository associationRepo) {
+    private ListService listService;
+    public AssociationServiceImpl(AssociationRepository associationRepo, ListService listService) {
         this.associationRepo = associationRepo;
+        this.listService = listService;
     }
 
     @Override
     public Association createAssociation(Association association) {
+        GameList assoList = new GameList(association.getId(), OwnerType.ASSO, "Les jeux en stock", "");
+        assoList = listService.createList(assoList);
+        association.setPossessedGamesList(assoList.getId());
         return associationRepo.save(association);
     }
 
@@ -33,7 +42,7 @@ public class AssociationServiceImpl implements AssociationService {
     }
 
     @Override
-    public void removeAssoc(int id) {
-        associationRepo.deleteById(id);
+    public List<Association> findAssoHavingTheGame(int id) {
+        return associationRepo.findAssoHavingTheGame(id);
     }
 }

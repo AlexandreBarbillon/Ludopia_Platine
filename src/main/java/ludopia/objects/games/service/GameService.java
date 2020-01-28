@@ -8,11 +8,11 @@ import java.util.Optional;
 public interface GameService {
     /**
      * Recover games sorted by add date
-     * @param amount the number or result to recover (not effective yet)
+     * @param amount the number or result to recover
      * @return a list of Game sort by add date
      */
     List<Game> getGamesSortByDate(int amount);
-
+    List<Game> getGamesSortByDate();
     /**
      * Add a game to database
      * @param game the game to be added

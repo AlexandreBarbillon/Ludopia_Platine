@@ -10,5 +10,5 @@ public interface AssociationService {
     Association getAssoById(int id);
 
     Iterable<Association> getAll();
-    void removeAssoc(int id);
+    List<Association> findAssoHavingTheGame(int id);
 }

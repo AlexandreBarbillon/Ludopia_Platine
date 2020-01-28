@@ -3,21 +3,13 @@
 {{> layout/navbar}}
 
 <div class="container">
-    <h1 class="title-home">Jeux les mieux notés</h1>
+    <!--<h1 class="title-home">Jeux les mieux notés</h1>
     <div id="best_rated">
-        <button class="previous">Précédent</button>
-        {{#gamesByRate}}
-        <div class="game-card">
-            <img  src="{{image_link}}" alt="Jeu"/>
-            <h4>{{name}} </h4>
-        </div>
-        {{/gamesByRate}}
-        <button class="next">Suivant</button>
-    </div>
+    </div>-->
 
     <h1 class="title-home">Jeux les plus récents</h1>
     <div id="latest">
-        <div id="gamesSortByDate" class="carousel slide"  data-interval="3000" data-ride="carousel">
+        <div id="gamesSortByDate" class="carousel slide">  <!--data-interval="3000" data-ride="carousel"-->
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="row">
