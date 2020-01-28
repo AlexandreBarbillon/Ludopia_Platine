@@ -1,17 +1,13 @@
 package ludopia.objects.list;
 
 
-import ludopia.config.SecurityConfig;
-import ludopia.objects.list.OwnerType;
 import ludopia.objects.list.exceptions.GameAlreadyInListException;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * A User is the account of somebody connected to Ludopia. For now, there is only the username and the password stored

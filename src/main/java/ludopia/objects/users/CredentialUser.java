@@ -1,6 +1,5 @@
 package ludopia.objects.users;
 
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
@@ -10,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 @Entity
 public class CredentialUser extends User {

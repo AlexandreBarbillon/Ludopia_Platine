@@ -1,7 +1,6 @@
 package ludopia.objects.associations.repository;
 
 import ludopia.objects.associations.Association;
-import ludopia.objects.games.Game;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 

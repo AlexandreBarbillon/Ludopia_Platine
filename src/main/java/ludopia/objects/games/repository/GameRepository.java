@@ -1,6 +1,5 @@
 package ludopia.objects.games.repository;
 
-import ludopia.objects.associations.Association;
 import ludopia.objects.games.Game;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
