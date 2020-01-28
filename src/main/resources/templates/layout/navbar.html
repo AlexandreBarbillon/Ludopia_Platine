@@ -10,6 +10,8 @@
             <input class="form-control" type="search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Rechercher</button>
         </form>
+
+        <span th:text="${{user.name}}"></span>
         <a th:href="@{/login}">
             <button class="btn btn-light" type="button">Se connecter</button>
         </a>
