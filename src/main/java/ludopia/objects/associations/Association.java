@@ -1,37 +1,35 @@
 package ludopia.objects.associations;
 
-import ludopia.objects.list.GameList;
+import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class Association {
-    @Id @GeneratedValue
+    @Id @GeneratedValue @NonNull
     int id;
-    @Column
+    @Column @NonNull
     String name;
     @Column
     String description;
-    @Column
+    @Column @NonNull
     double latitude;
-    @Column
+    @Column @NonNull
     double longitude;
     @Column
-    String logo_img_link;
+    String imageLink;
     @ElementCollection
     List<Integer> members;
-
-
-
-    @Column
+    @Column @NonNull
     int possessedGamesList;
     @ElementCollection
     List<Integer> lists;
-    @Column
+    @Column @NonNull
     int admin;
-    public Association(){
 
+    public Association(){
+        possessedGamesList = -1;
     }
 
     public int getId() {
@@ -41,6 +39,15 @@ public class Association {
     public void setId(int id) {
         this.id = id;
     }
+
+    public int getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(int admin) {
+        this.admin = admin;
+    }
+
 
     public String getName() {
         return name;
@@ -74,12 +81,12 @@ public class Association {
         this.longitude = longitude;
     }
 
-    public String getLogo_img_link() {
-        return logo_img_link;
+    public String getImageLink() {
+        return imageLink;
     }
 
-    public void setLogo_img_link(String logo_img_link) {
-        this.logo_img_link = logo_img_link;
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
     }
 
     public List<Integer> getMembers() {

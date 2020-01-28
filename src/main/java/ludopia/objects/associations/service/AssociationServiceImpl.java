@@ -6,7 +6,12 @@ import ludopia.objects.list.GameList;
 import ludopia.objects.list.OwnerType;
 import ludopia.objects.list.repository.ListRepository;
 import ludopia.objects.list.service.ListService;
+import ludopia.objects.users.CredentialUser;
+import ludopia.objects.users.LudopiaUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,10 +30,17 @@ public class AssociationServiceImpl implements AssociationService {
 
     @Override
     public Association createAssociation(Association association) {
-        GameList assoList = new GameList(association.getId(), OwnerType.ASSO, "Les jeux en stock", "");
-        assoList = listService.createList(assoList);
-        association.setPossessedGamesList(assoList.getId());
-        return associationRepo.save(association);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object user = authentication.getPrincipal();
+        if(user instanceof CredentialUser){
+            CredentialUser credentialUser = (CredentialUser) user;
+            association.setAdmin(credentialUser.getUserId());
+            GameList assoList = new GameList(association.getId(), OwnerType.ASSO, "Les jeux en stock", "");
+            assoList = listService.createList(assoList);
+            association.setPossessedGamesList(assoList.getId());
+            return associationRepo.save(association);
+        }
+        return null;
     }
 
     @Override
@@ -42,7 +54,12 @@ public class AssociationServiceImpl implements AssociationService {
     }
 
     @Override
-    public List<Association> findAssoHavingTheGame(int id) {
-        return associationRepo.findAssoHavingTheGame(id);
+    public List<Association> findAssoHavingTheGame(int gameId) {
+        return associationRepo.findAssoHavingTheGame(gameId);
+    }
+
+    @Override
+    public List<Association> findAssoFromUser(int userId) {
+        return associationRepo.findAssociationsByAdmin(userId);
     }
 }
