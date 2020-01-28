@@ -1,20 +1,30 @@
-{{> layout/headerMap}}
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{layout/headerMap}"></head>
 
 <body>
+<div th:replace="~{layout/navbar}"></div>
 
-{{> layout/navbar}}
-{{#asso}}
 <div class="container">
-    <h1>{{name}}</h1>
-    <div>{{description}}</div>
-    <div id="map"></div>
+    <div class="mt-4 mb-4 pt-4 pb-4 overflow-auto one-game-info rounded-lg">
+
+        <div class="float-left game-image mr-5 ml-5 p-3">
+            <img class="img-fluid" th:src="${{asso.imageLink}}" th:alt="${{asso.name}}"/>
+        </div>
+        <h1 th:text="${{asso.name}}"></h1>
+        <div th:text="${{asso.description}}"></div>
+        <div id="map"></div>
+    </div>
+    <div id="gameInAsso">
+    </div>
 </div>
+<div th:replace="~{layout/footer}"></div>
 </body>
-<script>
+<script th:inline="javascript">
     var marker;
     var mymap;
     function initMap() {
-        var latLng = L.latLng("{{latitude}}", "{{longitude}}");
+        var latLng = L.latLng([[${{asso.latitude}}]], [[${{asso.longitude}}]]);
         mymap = L.map('map').setView(latLng, 13);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
@@ -25,5 +35,4 @@
 
     window.addEventListener("load",initMap);
 </script>
-{{/asso}}
 </html>

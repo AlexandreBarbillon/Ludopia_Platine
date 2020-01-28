@@ -12,5 +12,6 @@ import java.util.Optional;
 public interface AssociationRepository extends CrudRepository<Association, String> {
     Optional<Association> findById(int id);
     @Query("FROM Association as asso JOIN GameList as list ON asso.possessedGamesList = list.id WHERE :gameId MEMBER OF list.gameList")
-    List<Association> findAssoHavingTheGame(@Param("gameId") int gameId);
+    List<Association> findAssoHavingTheGame(int gameId);
+    List<Association> findAssociationsByAdmin(int userId);
 }
