@@ -12,5 +12,6 @@ import java.util.Optional;
 public interface GameRepository extends CrudRepository<Game, String> {
     Optional<Game> findById(int id);
     List<Game>  findByOrderByAddDateDesc(Pageable pageable);
-
+    @Query("FROM Game WHERE name LIKE %:search%")
+    List<Game> searchGames(String search);
 }

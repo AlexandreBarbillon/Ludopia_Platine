@@ -3,17 +3,14 @@ package ludopia.objects.games.service;
 import ludopia.objects.games.Game;
 import ludopia.objects.games.repository.GameRepository;
 import ludopia.objects.list.GameList;
-import ludopia.objects.list.repository.ListRepository;
 import ludopia.objects.list.service.ListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * UserServiceImpl control the game creation/recover/update/deleting
@@ -45,6 +42,11 @@ public class GameServiceImpl implements GameService {
     @Override
     public Game getGameById(int id) {
         return gameRepo.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<Game> searchGame(String search) {
+        return gameRepo.searchGames("%"+search+"%");
     }
 
     @Override

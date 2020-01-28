@@ -24,13 +24,13 @@ public class GameController {
     @Autowired
     GameService gameService;
 
-    @GetMapping("/addGame")
+    @GetMapping("/game/create")
     public ModelAndView index() {
         ModelAndView mv = new ModelAndView("gameCreation");
         return mv;
     }
 
-    @PostMapping("/addGame")
+    @PostMapping("/game/create")
     public ModelAndView addGame(Game game) {
         ModelAndView mv = new ModelAndView("gameCreation");
         gameService.createGame(game);
