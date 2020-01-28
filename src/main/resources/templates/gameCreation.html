@@ -1,8 +1,9 @@
-{{> layout/header}}
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{layout/header}"></head>
 
 <body>
-
-{{> layout/navbar}}
+<div th:replace="~{layout/navbar}"></div>
 <div class="container">
     <h1>Ajouter un jeu</h1>
 
@@ -24,5 +25,6 @@
 
     </form>
 </div>
+<div th:replace="~{layout/footer}"></div>
 </body>
 </html>

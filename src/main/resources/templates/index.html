@@ -1,95 +1,83 @@
-{{> layout/header}}
-<body>
-{{> layout/navbar}}
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+    <head th:replace="~{layout/header}"></head>
 
-<div class="container">
-    <h1 class="title-home">Jeux les mieux notés</h1>
-    <div id="best_rated">
-        <button class="previous">Précédent</button>
-        {{#gamesByRate}}
-        <div class="game-card">
-            <img  src="{{image_link}}" alt="Jeu"/>
-            <h4>{{name}} </h4>
-        </div>
-        {{/gamesByRate}}
-        <button class="next">Suivant</button>
-    </div>
+    <body>
+        <div th:replace="~{layout/navbar}"></div>
 
-    <h1 class="title-home">Jeux les plus récents</h1>
-    <div id="latest">
-        <div id="gamesSortByDate" class="carousel slide"  data-interval="3000" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="row">
-                        {{#gamesFirst}}
-                        <div class="col-12 col-md align-items-center justify-content-center">
-                            <a href="/game/{{id}}">
-                                <div class="pictureGame">
-                                 <img class="d-block" src="{{image_link}}" alt="Jeu"/>
-                                </div>
-                            </a>
-                            <a class="title-game-link" href="/game/{{id}}">
-                                <p class="title-game">{{name}}</p>
-                            </a>
-                        </div>
-                        {{/gamesFirst}}
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="row">
-                        {{#gamesSecond}}
-                        <div class="col-12 col-md align-items-center justify-content-center">
-                            <a href="/game/{{id}}">
-                                <div class="pictureGame">
-                                    <img class="d-block" src="{{image_link}}" alt="Jeu"/>
-                                </div>
-                            </a>
-                            <a class="title-game-link" href="/game/{{id}}">
-                                <p class="title-game">{{name}}</p>
-                            </a>
-                        </div>
-                        {{/gamesSecond}}
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="row">
-                        {{#gamesThird}}
-                        <div class="col-12 col-md align-items-center justify-content-center">
-                            <a href="/game/{{id}}">
-                                <div class="pictureGame">
-                                    <img class="d-block" src="{{image_link}}" alt="Jeu"/>
-                                </div>
-                            </a>
-                            <a class="title-game-link" href="/game/{{id}}">
-                                <p class="title-game">{{name}}</p>
-                            </a>
+        <div class="container">
+            <!--<h1 class="title-home">Jeux les mieux notés</h1>
+            <div id="best_rated">
+            </div>-->
 
+            <h1 class="title-home">Jeux les plus récents</h1>
+            <div id="latest">
+                <div id="gamesSortByDate" class="carousel slide">  <!--data-interval="3000" data-ride="carousel"-->
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row" >
+                                <div th:each="game : ${gamesFirst}" class="col-12 col-md align-items-center justify-content-center">
+                                    <a th:href="@{/game/} + ${{game.id}}">
+                                        <div class="pictureGame">
+                                         <img class="d-block" th:src="${{game.image_link}}" alt="Jeu"/>
+                                        </div>
+                                    </a>
+                                    <a class="title-game-link" th:href="@{/game/}+ ${{game.id}}">
+                                        <p class="title-game" th:text="${{game.name}}"></p>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                        {{/gamesThird}}
+                        <div class="carousel-item">
+                            <div class="row">
+                                <div th:each="game : ${gamesSecond}" class="col-12 col-md align-items-center justify-content-center">
+                                    <a th:href="@{/game/} + ${{game.id}}">
+                                        <div class="pictureGame">
+                                            <img class="d-block" th:src="${{game.image_link}}" alt="Jeu"/>
+                                        </div>
+                                    </a>
+                                    <a class="title-game-link" th:href="@{/game/} + ${{game.id}}">
+                                        <p class="title-game" th:text="${{game.name}}"></p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="row">
+                                <div th:each="game : ${gamesThird}" class="col-12 col-md align-items-center justify-content-center">
+                                    <a th:href="@{/game/} + ${{game.id}}">
+                                        <div class="pictureGame">
+                                            <img class="d-block" th:src="${{game.image_link}}" alt="Jeu"/>
+                                        </div>
+                                    </a>
+                                    <a class="title-game-link" th:href="@{/game/} + ${{game.id}}">
+                                        <p class="title-game" th:text="${{game.name}}"></p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
+                    <a class="carousel-control-prev" href="#gamesSortByDate" role="button" data-slide="prev">
+                        <span><i class="fa fa-angle-left" aria-hidden="true"></i></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#gamesSortByDate" role="button" data-slide="next">
+                        <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                    <ol class="carousel-indicators">
+                        <li data-target="#gamesSortByDate" data-slide-to="0" class="active bg-dark"></li>
+                        <li data-target="#gamesSortByDate" data-slide-to="1" class="bg-dark"></li>
+                        <li data-target="#gamesSortByDate" data-slide-to="2" class="bg-dark"></li>
+                    </ol>
+
                 </div>
             </div>
-
-            <a class="carousel-control-prev" href="#gamesSortByDate" role="button" data-slide="prev">
-                <span><i class="fa fa-angle-left" aria-hidden="true"></i></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#gamesSortByDate" role="button" data-slide="next">
-                <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
-                <span class="sr-only">Next</span>
-            </a>
-            <ol class="carousel-indicators">
-                <li data-target="#gamesSortByDate" data-slide-to="0" class="active bg-dark"></li>
-                <li data-target="#gamesSortByDate" data-slide-to="1" class="bg-dark"></li>
-                <li data-target="#gamesSortByDate" data-slide-to="2" class="bg-dark"></li>
-            </ol>
-
         </div>
-    </div>
-</div>
 
-{{> layout/footer}}
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-</body>
+    <div th:replace="~{layout/footer}"></div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </body>
 </html>

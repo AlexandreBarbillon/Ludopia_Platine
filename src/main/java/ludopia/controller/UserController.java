@@ -22,7 +22,7 @@ public class UserController {
 
     @PostMapping("/registration")
     public String submit(@ModelAttribute("userForm") LudopiaUser user) {
-        userService.createUser(user);
+        userService.createUser(user,user.getPassword());
         return "index";
     }
 }
