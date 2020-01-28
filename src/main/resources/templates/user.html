@@ -1,0 +1,43 @@
+{{> layout/header}}
+<body>
+{{> layout/navbar}}
+
+<div class="container">
+
+    <div id="user">
+        {{#user}}
+        <div id="user-main">
+            <img id="user-image" src="/images/infos/sample_etu.jpg" alt="{{username}}"/>
+            <div>
+                <h1 id="user-username" class="title-home">{{username}}</h1>
+                <p id="user-description" class="content">
+                    {{description}}
+                </p>
+            </div>
+        </div>
+
+
+        <div class="title-home" id="user-listes-jeux">
+            <h2>Ses listes de jeux</h2>
+            {{#lists}}
+                <img src="TODO OBJECT LISTE JEUX" alt="TODO"/>
+                <p>TODO</p>
+            {{/lists}}
+            {{^lists}}
+                <p>Aucune liste</p>
+            {{/lists}}
+        </div>
+        {{/user}}
+
+        {{^user}}
+            <p>Aucun utilisateur trouvé.</p>
+        {{/user}}
+    </div>
+
+</div>
+
+{{> layout/footer}}
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>

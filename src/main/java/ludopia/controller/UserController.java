@@ -21,81 +21,48 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private AssociationService associationService;
-
-    @GetMapping("/registration")
+    @GetMapping("/user/create")
     public String registration(Model model) {
         model.addAttribute("userForm", new LudopiaUser());
         return "registration";
     }
 
-    @PostMapping("/registration")
+    @PostMapping("/user/create")
     public String submit(@ModelAttribute("userForm") LudopiaUser user) {
         userService.createUser(user,user.getPassword());
         return "index";
     }
 
-    @GetMapping("/profile/{user}")
-    public ModelAndView getProfile(@PathParam("user") String username) {
+    @GetMapping("/user/{userId}")
+    public ModelAndView getProfile(@PathVariable("userId") int userId) {
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("profile");
-        //LudopiaUser user = userService.getUserByUsername(username);
-        LudopiaUser user = userService.getUserById(1000);
+        mav.setViewName("user");
+        LudopiaUser user = userService.getUserById(userId);
 
         /*TEMPORAIRE POUR TESTS*/
         /*_____________________________*/
 /*
-
-
         LudopiaUser user = new LudopiaUser();
-        user.setId(1000);
         user.setUsername("herbert");
+        String password = "oui";
+        user.setPassword(password);
         user.setDescription("okamari no suzoki okamari no suzoki okamari no suzoki okamari no suzoki okamari no suzoki okamari no suzoki okamari no suzoki okamari no suzoki okamari no suzoki ");
 
-
-        LudopiaUser otherUser = new LudopiaUser();
-        otherUser.setId(2000);
-        otherUser.setUsername("raymond");
-
-        userService.createUser(otherUser);
-
-        user.addFriend(2000);
-
-        Association assoc = new Association();
-        assoc.setId(5000);
-        assoc.setName("Des jeux de folie !");
-        assoc.setLogo_img_link("https://media.begeek.fr/2019/12/garfield-660x369.jpg");
-
-        associationService.createAssociation(assoc);
-
-        user.addAssociation(5000);
-
-        userService.createUser(user);
-
-
+        userService.createUser(user,password);
 */
 
         /*_____________________________*/
-/*
-        List<LudopiaUser> actual_friends = new ArrayList<>();
-        for (int f : user.getFriends()) {
-            LudopiaUser theFriend = userService.getUserById(f);
-            actual_friends.add(theFriend);
-        }
-*/
-        List<Association> actual_assoc = new ArrayList<>();
-        for (int a : user.getAssociations()) {
-            Association theAsso = associationService.getAssoById(a);
-            actual_assoc.add(theAsso);
+
+        Iterable<LudopiaUser> users = userService.getAllUsers();
+        System.out.println("USERS:");
+        for (LudopiaUser u : users ){
+            System.out.println(u.getId()+"//"+u.getUsername());
         }
 
         List<String> actual_lists = new ArrayList<>();
         actual_lists.add("Mes jeux préférés");
 
         mav.addObject("user", user);
-        //mav.addObject("friends", actual_friends);
-        mav.addObject("associations", actual_assoc);
         mav.addObject("lists", actual_lists);
 
         return mav;

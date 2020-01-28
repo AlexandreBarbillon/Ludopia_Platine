@@ -189,3 +189,39 @@ body {
     font-weight: bold;
     padding: 6px;
 }
+
+
+/*One user page*/
+:root {
+  --user-image-width: 200px;
+  --user-image-height: 200px;
+}
+
+#user {
+
+}
+
+#user-main {
+    display: inline-block;
+}
+#user-main > div {
+    margin-left: 210px;
+}
+
+#user-image {
+    float: left;
+    width: var(--user-image-width);
+    height: var(--user-image-height);
+}
+
+
+#user-description {
+    margin-left:auto;
+    margin-right:auto;
+}
+
+
+#user-listes-jeux {
+    margin-top: 10px;
+}
+
