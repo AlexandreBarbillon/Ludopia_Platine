@@ -236,8 +236,12 @@ body {
 }
 
 #user-listes-jeux > div {
-    display: inline-block;
-    padding: 10px;
-    text-align: center;
+     display: inline-block;
+     padding: 10px;
+     text-align: center;
+ }
+
+#user-listes-jeux > button {
+    border-radius: 20% / 50%;
 }
 

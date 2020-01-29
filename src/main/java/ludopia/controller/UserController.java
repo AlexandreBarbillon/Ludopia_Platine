@@ -43,8 +43,16 @@ public class UserController {
 
     @GetMapping("/user/{userId}")
     public ModelAndView getProfile(@PathVariable("userId") int userId) {
-        ModelAndView mav = new ModelAndView("user");
+        ModelAndView mav;
+
+        if (userService.getCurrentUser() != null
+                && userService.getCurrentUser().getId() == userId) {
+            mav = new ModelAndView("loggedUser");
+        } else {
+            mav = new ModelAndView("user");
+        }
         LudopiaUser user = userService.getUserById(userId);
+
 
         for (LudopiaUser u : userService.getAllUsers()) {
             System.out.println(u.getId()+"//"+u.getUsername());
