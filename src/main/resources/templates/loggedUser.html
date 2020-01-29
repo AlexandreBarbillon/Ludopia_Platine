@@ -8,13 +8,13 @@
 
     <div id="user" th:if="${user} != null">
         <div id="user-main">
-            <img id="user-image" src="/images/infos/sample_etu.jpg" th:alt="${{user.username}}"/>
+            <img id="user-image" th:src="${user.imageLink != ''} ? (${user.imageLink} ? ${user.imageLink} : false)  : '/images/infos/sample_etu.jpg'" th:alt="${{user.username}}"/>
             <div>
                 <h1 id="user-username" class="title-home" th:text="${{user.username}}"></h1>
                 <p id="user-description" class="content" th:text="${{user.description}}"></p>
             </div>
         </div>
-        <a id="editUser" th:href="@{/user/edit}">
+        <a class="button-sous-image" th:href="@{/user/edit}">
             <button class="btn btn-primary btn-custom" type="button">Modifier mon profil</button>
         </a>
 

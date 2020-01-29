@@ -76,7 +76,7 @@ public class UserController {
     public String submitModif(@ModelAttribute("userEditForm") LudopiaUser user) {
         LudopiaUser loggedUser = userService.getCurrentUser();
         loggedUser.setDescription(user.getDescription());
-
+        loggedUser.setImageLink(user.getImageLink());
         userService.updateUser(loggedUser);
         return "loggedUser";
     }

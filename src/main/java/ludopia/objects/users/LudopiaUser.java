@@ -27,6 +27,9 @@ public class LudopiaUser implements Serializable {
     private Set<Integer> associations;
     @ElementCollection
     private Set<Integer> friends;
+    @Column
+    private String imageLink;
+
     /**
      * Construct the User object
      * @param username the username of the user
@@ -38,6 +41,7 @@ public class LudopiaUser implements Serializable {
     }
 
     public LudopiaUser(){
+        this.imageLink = "/images/infos/sample_etu.jpg";
         this.lists = new HashSet<>();
         this.associations = new HashSet<>();
         this.friends = new HashSet<>();
@@ -101,6 +105,14 @@ public class LudopiaUser implements Serializable {
 
     public Set<Integer> getFriends() {
         return friends;
+    }
+
+    public String getImageLink() {
+        return imageLink;
+    }
+
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
     }
 
     public void addFriend(int friend) {

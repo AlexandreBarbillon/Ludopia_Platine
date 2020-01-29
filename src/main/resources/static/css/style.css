@@ -207,7 +207,7 @@ body {
   --user-image-height: 200px;
 }
 
-#editUser {
+.button-sous-image {
     margin-top: 10px;
     display: block;
 }
@@ -244,5 +244,11 @@ body {
 
 #user-listes-jeux button {
     border-radius: 20% / 50%;
+}
+
+#annuler {
+    margin-top: 10px;
+    background-color: rgb(100,0,0) !important;
+    border-color: rgb(100,0,0) !important;
 }
 
