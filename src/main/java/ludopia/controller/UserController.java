@@ -53,11 +53,6 @@ public class UserController {
         }
         LudopiaUser user = userService.getUserById(userId);
 
-
-        for (LudopiaUser u : userService.getAllUsers()) {
-            System.out.println(u.getId()+"//"+u.getUsername());
-        }
-
         List<GameList> lists = new ArrayList<>();
         if (user!=null) {
             for (int i : user.getLists()) {
