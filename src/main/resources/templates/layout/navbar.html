@@ -6,17 +6,38 @@
         <a th:href="@{/association/map}">
         <button class="btn btn-secondary" type="button">Associations</button>
         </a>
-        <form class="form-inline">
-            <input class="form-control" type="search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Rechercher</button>
+        <form class="form-inline" action="/search" method="GET" >
+            <input class="form-control" type="search" name="searchString" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit" >Rechercher</button>
         </form>
-        <a th:href="@{/login}">
-            <button class="btn btn-light" type="button">Se connecter</button>
-        </a>
 
         <a th:href="@{/user/create}">
             <button class="btn btn-primary btn-custom" type="button">S'inscrire</button>
         </a>
+
+        <div sec:authorize="!isAnonymous()">
+            <a th:href="@{/user/} + ${{user.id}}">
+
+                <span th:text="${{user.username}}"></span>
+            </a>
+            <a th:href="@{/logout}">
+                <button class="btn btn-light" type="button">Se déconnecter</button>
+            </a>
+        </div>
+
+
+
+        <div sec:authorize="isAnonymous()">
+            <a th:href="@{/login}">
+                <button class="btn btn-light" type="button">Se connecter</button>
+            </a>
+
+            <a th:href="@{/registration}">
+                <button class="btn btn-primary btn-custom" type="button">S'inscrire</button>
+            </a>
+        </div>
+
+
 
     </div>
 </nav>

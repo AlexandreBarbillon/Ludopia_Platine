@@ -3,7 +3,6 @@ package ludopia.objects.games.service;
 import ludopia.objects.games.Game;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface GameService {
     /**
@@ -26,5 +25,7 @@ public interface GameService {
      * @return the game if finded, null otherwise
      */
     Game getGameById(int id);
+
+    List<Game> searchGame(String search);
     List<Game> unwrapGameList(int listId);
 }

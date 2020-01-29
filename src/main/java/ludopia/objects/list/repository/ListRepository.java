@@ -2,7 +2,6 @@ package ludopia.objects.list.repository;
 
 import ludopia.objects.list.GameList;
 import ludopia.objects.list.OwnerType;
-import ludopia.objects.users.LudopiaUser;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
