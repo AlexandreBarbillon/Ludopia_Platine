@@ -4,14 +4,10 @@ import ludopia.objects.associations.Association;
 import ludopia.objects.associations.repository.AssociationRepository;
 import ludopia.objects.list.GameList;
 import ludopia.objects.list.OwnerType;
-import ludopia.objects.list.repository.ListRepository;
 import ludopia.objects.list.service.ListService;
 import ludopia.objects.users.CredentialUser;
-import ludopia.objects.users.LudopiaUser;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

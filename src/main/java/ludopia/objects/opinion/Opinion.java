@@ -11,19 +11,15 @@ import javax.persistence.Id;
  */
 public class Opinion {
     @Id @GeneratedValue
-    int id;
+    private int id;
     @Column
-    int game_id;
+    private int gameId;
     @Column
-    int user_id;
+    private int userId;
     @Column
-    int note;
+    private int note;
     @Column
-    String opinion;
-
-    public Opinion(){
-
-    }
+    private String message;
 
     public long getId() {
         return id;
@@ -33,20 +29,20 @@ public class Opinion {
         this.id = id;
     }
 
-    public long getGame_id() {
-        return game_id;
+    public long getGameId() {
+        return gameId;
     }
 
-    public void setGame_id(int game_id) {
-        this.game_id = game_id;
+    public void setGameId(int gameId) {
+        this.gameId = gameId;
     }
 
-    public long getUser_id() {
-        return user_id;
+    public long getUserId() {
+        return userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public int getNote() {
@@ -57,11 +53,11 @@ public class Opinion {
         this.note = note;
     }
 
-    public String getOpinion() {
-        return opinion;
+    public String getMessage() {
+        return message;
     }
 
-    public void setOpinion(String opinion) {
-        this.opinion = opinion;
+    public void setMessage(String message) {
+        this.message = message;
     }
 }
