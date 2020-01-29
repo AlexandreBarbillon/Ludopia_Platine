@@ -207,8 +207,9 @@ body {
   --user-image-height: 200px;
 }
 
-#user {
-
+#editUser {
+    margin-top: 10px;
+    display: block;
 }
 
 #user-main {
@@ -241,7 +242,7 @@ body {
      text-align: center;
  }
 
-#user-listes-jeux > button {
+#user-listes-jeux button {
     border-radius: 20% / 50%;
 }
 

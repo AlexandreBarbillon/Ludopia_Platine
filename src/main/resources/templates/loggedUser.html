@@ -14,6 +14,9 @@
                 <p id="user-description" class="content" th:text="${{user.description}}"></p>
             </div>
         </div>
+        <a id="editUser" th:href="@{/user/edit}">
+            <button class="btn btn-primary btn-custom" type="button">Modifier mon profil</button>
+        </a>
 
 
         <div class="title-home" id="user-listes-jeux">
@@ -21,7 +24,7 @@
             <div th:each="list : ${lists}">
                 <p th:if="${list} != null" th:text="${{list.title}}"></p>
             </div>
-            <button>Ajouter une liste</button>
+            <button action="">Ajouter une liste</button>
         </div>
     </div>
     <div th:unless="${user} != null">

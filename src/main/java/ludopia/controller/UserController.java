@@ -65,4 +65,19 @@ public class UserController {
 
         return mav;
     }
+
+    @GetMapping("/user/edit")
+    public String updateUser(Model model) {
+        model.addAttribute("userEditForm", userService.getCurrentUser());
+        return "userEdition";
+    }
+
+    @PostMapping("/user/edit")
+    public String submitModif(@ModelAttribute("userEditForm") LudopiaUser user) {
+        LudopiaUser loggedUser = userService.getCurrentUser();
+        loggedUser.setDescription(user.getDescription());
+
+        userService.updateUser(loggedUser);
+        return "loggedUser";
+    }
 }

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{layout/header}"></head>
+
+<body>
+<div th:replace="~{layout/navbar}"></div>
+
+<div class="container">
+
+    <div class="container">
+
+
+        <form method="POST" name="userEditForm" action="/user/edit" id="userEditForm">
+            <div id="user" th:if="${userEditForm} != null">
+                <div id="user-main">
+                    <img id="user-image" src="/images/infos/sample_etu.jpg" th:alt="${{userEditForm.username}}"/>
+                    <div>
+                        <h1 id="user-username" class="title-home" th:text="${{userEditForm.username}}"></h1>
+                        <textarea name="description" form="userEditForm" id="user-description" class="content" th:text="${{userEditForm.description}}"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div th:unless="${userEditForm} != null">
+                <p>Cet utilisateur n'existe pas.</p>
+            </div>
+            <button id="editUser" class="btn btn-primary btn-custom" type="submit">Enregistrer les modifications</button>
+        </form>
+
+    </div>
+
+</div>
+
+<div th:replace="~{layout/footer}"></div>
+</body>
+</html>

@@ -11,4 +11,5 @@ public interface UserService {
     CredentialUser getAuthentificationUserByUsername(String username);
     void removeUser(int id);
     LudopiaUser getCurrentUser();
+    void updateUser(LudopiaUser user);
 }
