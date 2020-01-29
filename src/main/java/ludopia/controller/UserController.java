@@ -46,11 +46,15 @@ public class UserController {
         ModelAndView mav = new ModelAndView("user");
         LudopiaUser user = userService.getUserById(userId);
 
+        for (LudopiaUser u : userService.getAllUsers()) {
+            System.out.println(u.getId()+"//"+u.getUsername());
+        }
 
         List<GameList> lists = new ArrayList<>();
-
-        for (int i : user.getLists()) {
-            lists.add(listService.getListById(i));
+        if (user!=null) {
+            for (int i : user.getLists()) {
+                lists.add(listService.getListById(i));
+            }
         }
         
         mav.addObject("user", user);

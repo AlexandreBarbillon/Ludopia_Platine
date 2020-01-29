@@ -6,7 +6,7 @@
 
     <div class="container">
 
-        <div id="user">
+        <div id="user" th:if="${user} != null">
             <div id="user-main">
                 <img id="user-image" src="/images/infos/sample_etu.jpg" th:alt="${{user.username}}"/>
                 <div>
@@ -22,6 +22,9 @@
                     <p th:if="${list} != null" th:text="${{list.title}}"></p>
                 </div>
             </div>
+        </div>
+        <div th:unless="${user} != null">
+            <p>Aucun utilisateur trouvé.</p>
         </div>
 
     </div>
