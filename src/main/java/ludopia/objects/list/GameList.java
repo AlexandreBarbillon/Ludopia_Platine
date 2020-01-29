@@ -15,20 +15,20 @@ import java.util.List;
 @Entity
 public class GameList implements Serializable {
     @Id @GeneratedValue @NonNull
-    int id;
+    private int id;
     @Column @NonNull
-    int idOwner;
+    private int idOwner;
     @Column @NonNull
-    OwnerType ownerType;
+    private OwnerType ownerType;
     @Column @NonNull
-    String title;
+    private String title;
     @Column @NonNull
-    String description;
+    private String description;
     @ElementCollection @NonNull
-    List<Integer> gameList;
+    private List<Integer> games;
 
     public GameList(){
-        this.gameList = new ArrayList<>();
+        this.games = new ArrayList<>();
     }
     public GameList(int idOwner, OwnerType ownerType, String title, String description){
         this();
@@ -36,6 +36,14 @@ public class GameList implements Serializable {
         this.ownerType = ownerType;
         this.title = title;
         this.description = description;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public int getId() {
@@ -70,25 +78,25 @@ public class GameList implements Serializable {
         this.description = description;
     }
 
-    public List<Integer> getGameList() {
-        return gameList;
+    public List<Integer> getGames() {
+        return games;
     }
 
     public void addGameToList(int gameId) throws GameAlreadyInListException {
-        if(this.gameList.contains(gameId)){
+        if(this.games.contains(gameId)){
             throw new GameAlreadyInListException();
         }
         else{
-            this.gameList.add(gameId);
+            this.games.add(gameId);
         }
     }
 
     public void removeGameFromList(int gameId){
-        this.gameList.remove(gameId);
+        this.games.remove(gameId);
     }
 
     @Override
     public String toString() {
-        return this.getGameList().toString();
+        return this.getGames().toString();
     }
 }

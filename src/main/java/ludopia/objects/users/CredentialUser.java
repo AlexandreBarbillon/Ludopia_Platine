@@ -31,7 +31,7 @@ public class CredentialUser extends User {
 
     public CredentialUser(){
         this("user","user", new ArrayList<>(),0);
-    };
+    }
 
     public int getUserId() {
         return userId;

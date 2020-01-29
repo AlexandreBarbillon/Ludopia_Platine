@@ -14,19 +14,19 @@ import java.util.Set;
 @Entity
 public class LudopiaUser implements Serializable {
     @Id @GeneratedValue
-    int id;
+    private int id;
     @Column
-    String username;
+    private String username;
     @Column
-    String password;
+    private String password;
     @Column
-    String description;
+    private String description;
     @ElementCollection
-    Set<Integer> lists;
+    private Set<Integer> lists;
     @ElementCollection
-    Set<Integer> associations;
+    private Set<Integer> associations;
     @ElementCollection
-    Set<Integer> friends;
+    private Set<Integer> friends;
     /**
      * Construct the User object
      * @param username the username of the user

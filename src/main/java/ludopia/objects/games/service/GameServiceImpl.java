@@ -52,7 +52,7 @@ public class GameServiceImpl implements GameService {
     @Override
     public List<Game> unwrapGameList(int listId) {
         GameList gameList = listService.getListById(listId);
-        List<Integer> gameIdList = gameList.getGameList();
+        List<Integer> gameIdList = gameList.getGames();
         ArrayList<Game> result = new ArrayList<>();
         for (Integer gameId:gameIdList) {
             Game game = getGameById(gameId);

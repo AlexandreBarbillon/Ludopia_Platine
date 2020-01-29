@@ -19,8 +19,7 @@ public class GameController {
 
     @GetMapping("/game/create")
     public ModelAndView index() {
-        ModelAndView mv = new ModelAndView("gameCreation");
-        return mv;
+        return new ModelAndView("gameCreation");
     }
 
     @PostMapping("/game/create")
