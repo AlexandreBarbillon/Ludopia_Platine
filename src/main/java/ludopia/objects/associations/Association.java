@@ -1,5 +1,6 @@
 package ludopia.objects.associations;
 
+import ludopia.objects.games.Game;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
@@ -108,5 +109,11 @@ public class Association {
     @Override
     public String toString() {
         return this.getName()+" id="+this.getId();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        else return obj.getClass() == this.getClass() && ((Association) obj).getId() == this.getId();
     }
 }

@@ -33,7 +33,9 @@ public class AssociationController {
     public ModelAndView displayAsso(@PathVariable int id){
         ModelAndView mv = new ModelAndView("associationPage");
         Association asso = associationService.getAssoById(id);
-        gameService.unwrapGameList(asso.getPossessedGamesList());
+        if (asso!= null) {
+            gameService.unwrapGameList(asso.getPossessedGamesList());
+        }
         mv.addObject("asso",asso);
         mv.addObject("gameList",asso);
         return mv;
