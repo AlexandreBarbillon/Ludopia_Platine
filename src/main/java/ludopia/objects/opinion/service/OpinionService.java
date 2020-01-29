@@ -9,5 +9,6 @@ import java.util.List;
 public interface OpinionService {
     List<Opinion> getAllOpinionFromUser(int userId);
     List<Opinion> getAllOpinionFromGame(int gameId);
-    List<Opinion> createOpinion(int userId, int gameId, int note, String message);
+    Opinion createOpinion(int userId, int gameId, int note, String message);
+    boolean IsUserAlreadyHaveAnOpinionOnGame(int userId, int gameId);
 }

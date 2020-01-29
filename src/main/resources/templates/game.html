@@ -45,7 +45,25 @@
         <img />
         <p>Name</p>
     </div>
-
+    <div sec:authorize="!isAnonymous()" id="newOpinion">
+        <form method="POST" th:action="@{/opinion/create/}+${{oneGame.id}}">
+            <label>note</label>
+            <input type="number" name="note"/>
+            <label>avis</label>
+            <input name="message"/>
+            <input type="submit" name="submit"/>
+        </form>
+    </div>
+    <div id="opinionList">
+        <div th:each="opinion : ${opinions}">
+            <p>
+                <label>nom : </label>
+                <span th:text="${{opinion.userId}}"></span>
+                <label>avis : </label>
+                <span th:text="${{opinion.message}}"></span>
+            </p>
+        </div>
+    </div>
 </div>
 
 <div th:replace="~{layout/footer}"></div>
