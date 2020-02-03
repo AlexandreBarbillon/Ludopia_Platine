@@ -31,6 +31,6 @@ public interface GameRepository extends CrudRepository<Game, String> {
      * @param search la chaîne a rechercher dans les noms
      * @return une liste de jeux répondant à la recherche
      */
-    @Query("FROM Game WHERE name LIKE %:search%")
+    @Query("FROM Game WHERE UPPER(name) LIKE UPPER(:search)")
     List<Game> searchGames(String search);
 }

@@ -46,7 +46,7 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public List<Game> searchGame(String search) {
-        return gameRepo.searchGames("%"+search+"%");
+        return gameRepo.searchGames("%"+search.toUpperCase()+"%");
     }
 
     @Override
