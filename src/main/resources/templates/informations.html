@@ -1,7 +1,9 @@
-{{> layout/header}}
-<body>
-{{> layout/navbar}}
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{layout/header}"></head>
 
+<body>
+<div th:replace="~{layout/navbar}"></div>
 <div class="container">
     <div id="intro">
         <h1 class="title-home">Qui sommes-nous ?</h1>
@@ -32,20 +34,9 @@
         </div>
 
     </div>
-    <div id="questions">
-        <h2 class="title-home">FAQ</h2>
-        <div class="question">
-            <h3>Comment supprimer son profil ?</h3>
-            <p>
-                Pour supprimer votre profil, il suffit d'aller sur votre compte, de cliquer
-                sur "Modifier mon profil", puis sur le bouton "Supprimer votre compte" en bas
-                de la page.
-            </p>
-        </div>
-    </div>
 </div>
 
 
-{{> layout/footer}}
+<div th:replace="~{layout/footer}"></div>
 </body>
 </html>

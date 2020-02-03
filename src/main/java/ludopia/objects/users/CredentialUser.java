@@ -1,6 +1,5 @@
 package ludopia.objects.users;
 
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
@@ -10,8 +9,14 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import java.util.Collections;
 
+/**
+ * Les informations de connexion d'un utilisateur, il contient :
+ *  un identifiant utilisateur
+ *  un nom d'utilisateur
+ *  un mot de passe
+ */
 @Entity
 public class CredentialUser extends User {
     @Id
@@ -23,8 +28,8 @@ public class CredentialUser extends User {
     private String password;
     @ElementCollection
     private Collection<SimpleGrantedAuthority> authorities;
-    public CredentialUser(String username, String password, Collection<SimpleGrantedAuthority> authorities, int userId) {
-        super(username, password, authorities);
+    public CredentialUser(String username, String password, int userId) {
+        super(username, password, Collections.singleton(new SimpleGrantedAuthority("ROLE_USER")));
         this.userId = userId;
         this.username = username;
         this.password = password;
@@ -32,8 +37,8 @@ public class CredentialUser extends User {
     }
 
     public CredentialUser(){
-        this("user","user", new ArrayList<>(),0);
-    };
+        this("user","user",0);
+    }
 
     public int getUserId() {
         return userId;
