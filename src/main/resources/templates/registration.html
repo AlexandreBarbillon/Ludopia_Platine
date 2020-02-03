@@ -9,7 +9,10 @@
             <h1 class="h1Form">Bienvenue sur Ludopia !</h1>
 
 
-            <form method="POST" name="userForm" action="/registration" class="formRegistration">
+            <form method="POST" name="userForm" action="/user/create" class="formRegistration">
+                <div id="alert-box" th:if="${userForm.username != null}">
+                    <p>Cet utilisateur existe déjà</p>
+                </div>
                 <div class="form-group">
                     <label for="inputUsernameRegist">Nom d'utilisateur</label>
                     <input type="text" id ="inputUsernameRegist" name="username" autofocus="true" placeholder="Nom d'utilisateur" class="form-control" required/>
