@@ -12,32 +12,61 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
+/**
+ * Controller des Associations, il s'occupe d'afficher toutes les pages relatives aux associations
+ */
 public class AssociationController {
 
-    @Autowired
+    private final
     AssociationService associationService;
-    @Autowired
+    private final
     GameService gameService;
-    @GetMapping("/association/create")
-    public ModelAndView index() {
-        return new ModelAndView("associationCreation");
+
+    public AssociationController(AssociationService associationService, GameService gameService) {
+        this.associationService = associationService;
+        this.gameService = gameService;
     }
 
-    @PostMapping("/association/create")
-    public ModelAndView registerNewTrainer(Association asso) {
-        ModelAndView mv = new ModelAndView("associationCreation");
-        associationService.createAssociation(asso);
-        return mv;
+    /**
+     * Affichage du formulaire de création d'une association
+     * @return un ModelAndView
+     */
+    @GetMapping("/association/create")
+    public ModelAndView displayAssoCreationPage() {
+        return new ModelAndView("associationCreation");
     }
+    /**
+     * Réception du formulaire
+     * @return un ModelAndView
+     */
+    @PostMapping("/association/create")
+    public String createNewAssociation(Association asso) {
+        ModelAndView mv = new ModelAndView("associationCreation");
+        Association createdAsso = associationService.createAssociation(asso);
+        return "redirect:/association/"+createdAsso.getId();
+    }
+
+    /**
+     * Affichage de la page d'un jeu
+     * @param id l'id d'une association
+     * @return un ModelAndView
+     */
     @GetMapping("/association/{id}")
     public ModelAndView displayAsso(@PathVariable int id){
         ModelAndView mv = new ModelAndView("associationPage");
         Association asso = associationService.getAssoById(id);
-        gameService.unwrapGameList(asso.getPossessedGamesList());
+        if (asso!= null) {
+            gameService.unwrapGameList(asso.getPossessedGamesList());
+        }
         mv.addObject("asso",asso);
         mv.addObject("gameList",asso);
         return mv;
     }
+
+    /**
+     * L'affichage de la carte des associations
+     * @return un String avec le nom du layout a afficher
+     */
     @GetMapping("/association/map")
     public String displayAssoMap(){
         return "assoMap";

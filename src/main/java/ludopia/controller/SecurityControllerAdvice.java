@@ -12,7 +12,7 @@ public class SecurityControllerAdvice {
     @Autowired
     private UserService userService;
 
-    @ModelAttribute("user")
+    @ModelAttribute("loggedUser")
     Object getCurrentUser() {
         var auth = SecurityContextHolder.getContext().getAuthentication();
         var principal = auth.getPrincipal();

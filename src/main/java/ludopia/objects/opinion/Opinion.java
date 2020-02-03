@@ -7,7 +7,12 @@ import javax.persistence.Id;
 
 @Entity
 /**
- * An opinion is what somebody think about a game
+ * Un opinion contient :
+ *  un identifiant,
+ *  l'identifiant du jeu sur lequel l'avis est donnée
+ *  l'identifiant de l'utilisateur qui donne son avis
+ *  la note du jeu
+ *  un commentaire
  */
 public class Opinion {
     @Id @GeneratedValue
@@ -20,6 +25,17 @@ public class Opinion {
     private int note;
     @Column
     private String message;
+
+    public Opinion(){
+
+    }
+
+    public Opinion( int userId, int gameId, int note, String message) {
+        this.gameId = gameId;
+        this.userId = userId;
+        this.note = note;
+        this.message = message;
+    }
 
     public long getId() {
         return id;
@@ -37,7 +53,7 @@ public class Opinion {
         this.gameId = gameId;
     }
 
-    public long getUserId() {
+    public int getUserId() {
         return userId;
     }
 

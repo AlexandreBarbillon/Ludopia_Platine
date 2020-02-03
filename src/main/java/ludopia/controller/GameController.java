@@ -2,6 +2,10 @@ package ludopia.controller;
 
 import ludopia.objects.games.Game;
 import ludopia.objects.games.service.GameService;
+import ludopia.objects.opinion.Opinion;
+import ludopia.objects.opinion.service.OpinionService;
+import ludopia.objects.users.LudopiaUser;
+import ludopia.objects.users.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,28 +14,54 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class GameController {
 
-    @Autowired
-    GameService gameService;
+    private GameService gameService;
+    private OpinionService opinionService;
+    private UserService userService;
+    public GameController(GameService gameService, OpinionService opinionService, UserService userService) {
+        this.gameService = gameService;
+        this.opinionService = opinionService;
+        this.userService = userService;
+    }
 
+    /**
+     * Affiche le formulaire de création d'un jeu
+     * @return un ModelAndView
+     */
     @GetMapping("/game/create")
-    public ModelAndView index() {
+    public ModelAndView gameCreationForm() {
         return new ModelAndView("gameCreation");
     }
 
+    /**
+     * Récupère le résultat du formulaire de création d'un jeu puis redirige vers la page du jeu créé
+     * @param game le jeu a crée
+     * @return la redirection vers la page du jeu créé
+     */
     @PostMapping("/game/create")
-    public ModelAndView addGame(Game game) {
-        ModelAndView mv = new ModelAndView("gameCreation");
-        gameService.createGame(game);
-        return mv;
+    public String addGame(Game game) {
+        Game newGame = gameService.createGame(game);
+        return "redirect:/game/"+newGame.getId();
     }
 
+    /**
+     * Affichage de la page d'un jeu
+     * @param id id du jeu a afficher
+     * @return un modelAndView contenant les données du jeu et la liste des avis sur le jeu
+     */
     @GetMapping("/game/{id}")
     public ModelAndView displayGame(@PathVariable("id") int id) {
         ModelAndView mv = new ModelAndView("game");
+        List<Opinion> opinions = opinionService.getAllOpinionFromGame(id);
+        List<OpinionUser> opinionUsers = new ArrayList<>();
+        for (Opinion opinion: opinions) {
+            opinionUsers.add(new OpinionUser(opinion));
+        }
+        mv.addObject("opinions", opinionUsers);
         mv.addObject("oneGame", gameService.getGameById(id));
         var list = new ArrayList<>();
         var list2 = new ArrayList<>();
@@ -46,4 +76,30 @@ public class GameController {
         return mv;
     }
 
+    /**
+     * Objet privé permettant de relier l'opinion (qui contient le message et la note d'un user ainsi que son ID) au nom de l'utilisateur qui a donné l'avis.
+     */
+    private class OpinionUser{
+        String username;
+        int note;
+        String message;
+
+        OpinionUser(Opinion opinion){
+            this.note = opinion.getNote();
+            this.message = opinion.getMessage();
+            this.username = userService.getUserById(opinion.getUserId()).getUsername();
+        }
+
+        public String getUsername() {
+            return username;
+        }
+
+        public int getNote() {
+            return note;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+    }
 }
