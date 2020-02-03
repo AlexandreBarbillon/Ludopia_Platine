@@ -1,8 +1,6 @@
 package ludopia.objects.associations.service;
 
 import ludopia.objects.associations.Association;
-import ludopia.objects.games.Game;
-
 import java.util.List;
 
 public interface AssociationService {

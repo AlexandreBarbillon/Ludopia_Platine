@@ -6,9 +6,9 @@
         <a th:href="@{/association/map}">
         <button class="btn btn-secondary" type="button">Associations</button>
         </a>
-        <form class="form-inline">
-            <input class="form-control" type="search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Rechercher</button>
+        <form class="form-inline" action="/search" method="GET" >
+            <input class="form-control" type="search" name="searchString" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit" >Rechercher</button>
         </form>
 
 

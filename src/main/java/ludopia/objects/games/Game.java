@@ -14,7 +14,7 @@ public class Game {
     @Column
     String description;
     @Column
-    String image_link;
+    String imageLink;
     @Column
     boolean isExtension;
     @Temporal(TemporalType.TIMESTAMP)
@@ -25,7 +25,7 @@ public class Game {
     public Game() {
         name = "";
         description = "";
-        image_link = "";
+        imageLink = "";
         extensionsId = new ArrayList<>();
         addDate = new Date();
     }
@@ -62,15 +62,15 @@ public class Game {
         this.description = description;
     }
 
-    public String getImage_link() {
-        return image_link;
+    public String getImageLink() {
+        return imageLink;
     }
 
-    public void setImage_link(String image_link) {
-        this.image_link = image_link;
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
     }
 
-    public void setIsExtension(boolean isExtension) { this.isExtension = isExtension;};
+    public void setIsExtension(boolean isExtension) { this.isExtension = isExtension;}
 
     public boolean isExtension() { return this.isExtension;}
 
