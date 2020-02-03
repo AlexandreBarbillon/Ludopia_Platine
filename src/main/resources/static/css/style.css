@@ -200,6 +200,34 @@ body {
     padding: 6px;
 }
 
+/* Form page registration */
+.formRegistration {
+    width: 50%;
+    margin-left: 25%;
+    margin-bottom: 2%;
+    padding: 15px;
+    background-color: #d8ebed;
+}
+
+.h1Form, .form-submit {
+    text-align: center;
+}
+
+.form-submit {
+    text-align: center;
+}
+
+.linkForm {
+    display: block;
+}
+
+.linkForm, .linkForm:visited {
+    color: black;
+}
+
+.linkForm:hover {
+    color: #ffaf0f;
+}
 
 /*One user page*/
 :root {
