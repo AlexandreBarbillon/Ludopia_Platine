@@ -8,7 +8,7 @@
 
         <div id="user" th:if="${user} != null">
             <div id="user-main">
-                <img id="user-image" th:src="${user.imageLink} ? ${user.imageLink} : '/images/infos/sample_etu.jpg'" th:alt="${{user.username}}"/>
+                <img id="user-image" th:src="${user.imageLink != ''} ? (${user.imageLink} ? ${user.imageLink} : false)  : '/images/infos/sample_etu.jpg'" th:alt="${{user.username}}"/>
                 <div>
                     <h1 id="user-username" class="title-home" th:text="${{user.username}}"></h1>
                     <p id="user-description" class="content" th:text="${{user.description}}"></p>

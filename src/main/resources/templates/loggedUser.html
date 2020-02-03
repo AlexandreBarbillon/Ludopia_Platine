@@ -4,34 +4,34 @@
 <body>
 <div th:replace="~{layout/navbar}"></div>
 
-<div class="container">
+    <div class="container">
 
-    <div id="user" th:if="${user} != null">
-        <div id="user-main">
-            <img id="user-image" th:src="${user.imageLink != ''} ? (${user.imageLink} ? ${user.imageLink} : false)  : '/images/infos/sample_etu.jpg'" th:alt="${{user.username}}"/>
-            <div>
-                <h1 id="user-username" class="title-home" th:text="${{user.username}}"></h1>
-                <p id="user-description" class="content" th:text="${{user.description}}"></p>
+        <div id="user" th:if="${user} != null">
+            <div id="user-main">
+                <img id="user-image" th:src="${user.imageLink != ''} ? (${user.imageLink} ? ${user.imageLink} : false)  : '/images/infos/sample_etu.jpg'" th:alt="${{user.username}}"/>
+                <div>
+                    <h1 id="user-username" class="title-home" th:text="${{user.username}}"></h1>
+                    <p id="user-description" class="content" th:text="${{user.description}}"></p>
+                </div>
+            </div>
+            <a class="button-sous-image" th:href="@{/user/edit}">
+                <button class="btn btn-primary btn-custom" type="button">Modifier mon profil</button>
+            </a>
+
+
+            <div class="title-home" id="user-listes-jeux">
+                <h2>Vos listes de jeux</h2>
+                <div th:each="list : ${lists}">
+                    <p th:if="${list} != null" th:text="${{list.title}}"></p>
+                </div>
+                <button action="">Ajouter une liste</button>
             </div>
         </div>
-        <a class="button-sous-image" th:href="@{/user/edit}">
-            <button class="btn btn-primary btn-custom" type="button">Modifier mon profil</button>
-        </a>
-
-
-        <div class="title-home" id="user-listes-jeux">
-            <h2>Vos listes de jeux</h2>
-            <div th:each="list : ${lists}">
-                <p th:if="${list} != null" th:text="${{list.title}}"></p>
-            </div>
-            <button action="">Ajouter une liste</button>
+        <div th:unless="${user} != null">
+            <p>Aucun utilisateur trouvé.</p>
         </div>
-    </div>
-    <div th:unless="${user} != null">
-        <p>Aucun utilisateur trouvé.</p>
-    </div>
 
-</div>
+    </div>
 
 <div th:replace="~{layout/footer}"></div>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

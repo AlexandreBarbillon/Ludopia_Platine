@@ -38,7 +38,7 @@ public class UserController {
     @PostMapping("/user/create")
     public String submit(@ModelAttribute("userForm") LudopiaUser user) {
         userService.createUser(user,user.getPassword());
-        return "index";
+        return "redirect:/";
     }
 
     @GetMapping("/user/{userId}")
@@ -78,6 +78,6 @@ public class UserController {
         loggedUser.setDescription(user.getDescription());
         loggedUser.setImageLink(user.getImageLink());
         userService.updateUser(loggedUser);
-        return "loggedUser";
+        return "redirect:/user/" + loggedUser.getId();
     }
 }
