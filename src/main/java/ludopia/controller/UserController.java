@@ -26,8 +26,13 @@ import java.util.Set;
 @Controller
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+    private final ListService listService;
+
+    public UserController(UserService userService, ListService listService) {
+        this.userService = userService;
+        this.listService = listService;
+    }
 
     /**
      * Affiche le formulaire de création d'utilisateur

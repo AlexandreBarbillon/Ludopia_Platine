@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
             return null;
         }
         LudopiaUser savedUser = userRepo.save(ludopiaUser);
-        CredentialUser user = new CredentialUser(ludopiaUser.getUsername(),password, Collections.singleton(new SimpleGrantedAuthority("ROLE_USER")), savedUser.getId());
+        CredentialUser user = new CredentialUser(ludopiaUser.getUsername(),password, savedUser.getId());
         credUserRepo.save(user);
         return savedUser;
     }
