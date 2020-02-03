@@ -9,7 +9,7 @@
         <div th:each="game : ${searchResult}" class="col-12 col-md align-items-center justify-content-center">
             <a th:href="@{/game/} + ${{game.id}}">
                 <div class="pictureGame">
-                    <img class="d-block" th:src="${{game.image_link}}" alt="Jeu"/>
+                    <img class="d-block" th:src="${{game.imageLink}}" alt="Jeu"/>
                 </div>
             </a>
             <a class="title-game-link" th:href="@{/game/} + ${{game.id}}">

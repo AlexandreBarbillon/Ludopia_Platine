@@ -6,46 +6,68 @@
 <div th:replace="~{layout/navbar}"></div>
 
 <div class="container">
+    <div id="jeu" th:if="${oneGame} != null">
+        <div class="mt-4 mb-4 pt-4 pb-4 overflow-auto one-game-info rounded-lg">
 
-    <div class="mt-4 mb-4 pt-4 pb-4 overflow-auto one-game-info rounded-lg">
+            <div class="float-left game-image mr-5 ml-5 p-3">
+                <img class="img-fluid" th:src="${{oneGame.imageLink}}" th:alt="${{oneGame.name}}"/>
+            </div>
+            <h2 th:text="${{oneGame.name}}"></h2>
 
-        <div class="float-left game-image mr-5 ml-5 p-3">
-            <img class="img-fluid" th:src="${{oneGame.image_link}}" alt=""/>
+            <div class="game-stars">
+
+                    <span th:each="star : ${stars}">
+                        <i class="fas fa-star"></i>
+                    </span>
+
+                    <span th:each="star : ${starsEmpty}">
+                        <i class="far fa-star"></i>
+                    </span>
+
+            </div>
+
+            <p class="game-description" th:text="${{oneGame.description}}">
+
+            </p>
+
+            <!--{{#isExtension}}
+            <p>Ce jeu est une extension !</p>
+            {{/isExtension}}
+
+            <p>TODO : extensions</p>
+            {{#extensionsId}}
+            <div><p>Chacune de ces lignes représente une extension</p><br/></div>
+            {{/extensionsId}}
+    --></div>
+        <h4 class="title-game-second rounded-lg">Les associations qui possèdent le jeu</h4>
+
+        <div>
+            <img />
+            <p></p>
         </div>
-        <h2 th:text="${{oneGame.name}}"></h2>
-
-        <div class="game-stars">
-
-                <span th:each="star : ${stars}">
-                    <i class="fas fa-star"></i>
-                </span>
-
-                <span th:each="star : ${starsEmpty}">
-                    <i class="far fa-star"></i>
-                </span>
-
-        </div>
-
-        <p class="game-description" th:text="${{oneGame.description}}">
-
-        </p>
-
-        <!--{{#isExtension}}
-        <p>Ce jeu est une extension !</p>
-        {{/isExtension}}
-
-        <p>TODO : extensions</p>
-        {{#extensionsId}}
-        <div><p>Chacune de ces lignes représente une extension</p><br/></div>
-        {{/extensionsId}}
---></div>
-    <h4 class="title-game-second rounded-lg">Les associations qui possèdent le jeu</h4>
-
-    <div>
-        <img />
-        <p>Name</p>
+        <div sec:authorize="!isAnonymous()" id="newOpinion">
+        <form method="POST" th:action="@{/opinion/create/}+${{oneGame.id}}">
+            <label>note</label>
+            <input type="number" name="note"/>
+            <label>avis</label>
+            <input name="message"/>
+            <input type="submit" name="submit"/>
+        </form>
     </div>
-
+    <div id="opinionList">
+        <div th:each="opinion : ${opinions}">
+            <div>
+                <p><label>nom : </label>
+                <span th:text="${{opinion.username}}"></span></p>
+                <p><label>avis : </label>
+                <span th:text="${{opinion.message}}"></span></p>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div th:unless="${oneGame} != null">
+        <p>Ce jeu n'existe pas.</p>
+    </div>
 </div>
 
 <div th:replace="~{layout/footer}"></div>
