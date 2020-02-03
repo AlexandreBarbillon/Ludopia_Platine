@@ -31,8 +31,12 @@ public class UserController {
 
     @GetMapping("/user/create")
     public String registration(Model model) {
-        model.addAttribute("userForm", new LudopiaUser());
-        return "registration";
+        if (userService.getCurrentUser() != null) {
+            return "redirect:/logout";
+        } else {
+            model.addAttribute("userForm", new LudopiaUser());
+            return "registration";
+        }
     }
 
     @PostMapping("/user/create")
