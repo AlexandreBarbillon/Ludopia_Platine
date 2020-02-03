@@ -1,7 +1,5 @@
 package ludopia.objects.users.service;
 
-import ludopia.objects.games.Game;
-import ludopia.objects.games.service.GameServiceImpl;
 import ludopia.objects.list.GameList;
 import ludopia.objects.list.OwnerType;
 import ludopia.objects.list.exceptions.GameAlreadyInListException;
@@ -37,10 +35,10 @@ public class ListServiceImplTest {
     @Transactional
     public void testTheListAddition() throws GameAlreadyInListException {
         GameList gameList = listService.createList(new GameList(1, OwnerType.USER, "my list", "it is my list"));
-        assertTrue(gameList.getGameList().isEmpty());
+        assertTrue(gameList.getGames().isEmpty());
         listService.addGameToList(gameList.getId(), 5);
         GameList recoveredGameList = listService.getListById(gameList.getId());
-        assertEquals(1,recoveredGameList.getGameList().size());
-        assertEquals(Integer.valueOf(5),recoveredGameList.getGameList().get(0));
+        assertEquals(1,recoveredGameList.getGames().size());
+        assertEquals(Integer.valueOf(5),recoveredGameList.getGames().get(0));
     }
 }

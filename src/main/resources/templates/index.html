@@ -20,7 +20,7 @@
                                 <div th:each="game : ${gamesFirst}" class="col-12 col-md align-items-center justify-content-center">
                                     <a th:href="@{/game/} + ${{game.id}}">
                                         <div class="pictureGame">
-                                         <img class="d-block" th:src="${{game.image_link}}" th:alt="${{game.name}}"/>
+                                         <img class="d-block" th:src="${{game.imageLink}}" th:alt="${{game.name}}"/>
                                         </div>
                                     </a>
                                     <a class="title-game-link" th:href="@{/game/}+ ${{game.id}}">
@@ -34,7 +34,7 @@
                                 <div th:each="game : ${gamesSecond}" class="col-12 col-md align-items-center justify-content-center">
                                     <a th:href="@{/game/} + ${{game.id}}">
                                         <div class="pictureGame">
-                                            <img class="d-block" th:src="${{game.image_link}}" th:alt="${{game.name}}"/>
+                                            <img class="d-block" th:src="${{game.imageLink}}" th:alt="${{game.name}}"/>
                                         </div>
                                     </a>
                                     <a class="title-game-link" th:href="@{/game/} + ${{game.id}}">
@@ -48,7 +48,7 @@
                                 <div th:each="game : ${gamesThird}" class="col-12 col-md align-items-center justify-content-center">
                                     <a th:href="@{/game/} + ${{game.id}}">
                                         <div class="pictureGame">
-                                            <img class="d-block" th:src="${{game.image_link}}" th:alt="${{game.name}}"/>
+                                            <img class="d-block" th:src="${{game.imageLink}}" th:alt="${{game.name}}"/>
                                         </div>
                                     </a>
                                     <a class="title-game-link" th:href="@{/game/} + ${{game.id}}">

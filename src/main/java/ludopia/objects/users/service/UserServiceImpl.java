@@ -4,9 +4,7 @@ import ludopia.objects.users.CredentialUser;
 import ludopia.objects.users.LudopiaUser;
 import ludopia.objects.users.repository.CredentialUserRepository;
 import ludopia.objects.users.repository.UserRepository;
-import org.springframework.context.annotation.Role;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -58,8 +56,11 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public LudopiaUser createUser(LudopiaUser ludopiaUser, String password) {
+        if (getUserByUsername(ludopiaUser.getUsername()) != null) {
+            return null;
+        }
         LudopiaUser savedUser = userRepo.save(ludopiaUser);
-        CredentialUser user = new CredentialUser(ludopiaUser.getUsername(),password, Collections.singleton(new SimpleGrantedAuthority("ROLE_USER")), savedUser.getId());
+        CredentialUser user = new CredentialUser(ludopiaUser.getUsername(),password, savedUser.getId());
         credUserRepo.save(user);
         return savedUser;
     }
@@ -72,11 +73,11 @@ public class UserServiceImpl implements UserService {
 
     /**
      * Remove the user found in database
-     * @param username the username of the user
+     * @param id the username of the user
      */
     @Override
-    public void removeUser(String username) {
-        userRepo.deleteById(username);
+    public void removeUser(int id) {
+        userRepo.deleteById(id);
     }
 
     @Override
@@ -90,5 +91,10 @@ public class UserServiceImpl implements UserService {
         else{
             return null;
         }
+    }
+
+    @Override
+    public void updateUser(LudopiaUser user) {
+        userRepo.save(user);
     }
 }

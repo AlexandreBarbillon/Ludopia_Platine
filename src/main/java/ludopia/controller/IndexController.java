@@ -1,6 +1,5 @@
 package ludopia.controller;
 
-import ludopia.objects.games.Game;
 import ludopia.objects.games.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,13 +7,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
-import java.util.List;
 
+
+/**
+ * Controller servant a afficher la page d'index
+ */
 @Controller
 public class IndexController {
+    private final GameService gameService;
 
-    private GameService gameService;
+    public IndexController(GameService gameService) {
+        this.gameService = gameService;
+    }
 
+    /**
+     * Permet d'afficher l'index ainsi que les jeux affichés
+     * @return un modelAndView;
+     */
     @GetMapping("/")
     public ModelAndView index() {
         ModelAndView mav = new ModelAndView();
@@ -40,10 +49,5 @@ public class IndexController {
 
 
         return mav;
-    }
-
-    @Autowired
-    public void setGameService(GameService gameService) {
-        this.gameService = gameService;
     }
 }

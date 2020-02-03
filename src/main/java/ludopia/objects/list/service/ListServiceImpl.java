@@ -4,13 +4,7 @@ import ludopia.objects.list.GameList;
 import ludopia.objects.list.OwnerType;
 import ludopia.objects.list.exceptions.GameAlreadyInListException;
 import ludopia.objects.list.repository.ListRepository;
-import ludopia.objects.users.LudopiaUser;
-import ludopia.objects.users.repository.UserRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 /**
  * UserServiceImpl control the user creation/recover/update/deleting
