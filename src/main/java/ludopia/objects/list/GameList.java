@@ -10,7 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A User is the account of somebody connected to Ludopia. For now, there is only the username and the password stored
+ * Une liste de jeux contient :
+ *  un id
+ *  l'id du propriétaire de la liste
+ *  le type du propriétaire (si c'est une asso ou un utilisateur)
+ *  le titre d'une liste
+ *  la description de la liste
+ *  la liste des identifiants des jeux contenu dans la liste
  */
 @Entity
 public class GameList implements Serializable {

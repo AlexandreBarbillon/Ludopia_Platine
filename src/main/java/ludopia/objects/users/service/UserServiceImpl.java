@@ -56,10 +56,16 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public LudopiaUser createUser(LudopiaUser ludopiaUser, String password) {
-        LudopiaUser savedUser = userRepo.save(ludopiaUser);
-        CredentialUser user = new CredentialUser(ludopiaUser.getUsername(),password, Collections.singleton(new SimpleGrantedAuthority("ROLE_USER")), savedUser.getId());
-        credUserRepo.save(user);
-        return savedUser;
+        LudopiaUser potentialUser = getUserByUsername(ludopiaUser.getUsername());
+        if(potentialUser != null){
+            LudopiaUser savedUser = userRepo.save(ludopiaUser);
+            CredentialUser user = new CredentialUser(ludopiaUser.getUsername(),password, savedUser.getId());
+            credUserRepo.save(user);
+            return savedUser;
+        }
+        else{
+            return null;
+        }
     }
 
     @Override

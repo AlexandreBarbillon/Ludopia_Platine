@@ -28,18 +28,31 @@ public class GameController {
         this.userService = userService;
     }
 
+    /**
+     * Affiche le formulaire de création d'un jeu
+     * @return un ModelAndView
+     */
     @GetMapping("/game/create")
-    public ModelAndView index() {
+    public ModelAndView gameCreationForm() {
         return new ModelAndView("gameCreation");
     }
 
+    /**
+     * Récupère le résultat du formulaire de création d'un jeu puis redirige vers la page du jeu créé
+     * @param game le jeu a crée
+     * @return la redirection vers la page du jeu créé
+     */
     @PostMapping("/game/create")
-    public ModelAndView addGame(Game game) {
-        ModelAndView mv = new ModelAndView("gameCreation");
-        gameService.createGame(game);
-        return mv;
+    public String addGame(Game game) {
+        Game newGame = gameService.createGame(game);
+        return "redirect:/game/"+newGame.getId();
     }
 
+    /**
+     * Affichage de la page d'un jeu
+     * @param id id du jeu a afficher
+     * @return un modelAndView contenant les données du jeu et la liste des avis sur le jeu
+     */
     @GetMapping("/game/{id}")
     public ModelAndView displayGame(@PathVariable("id") int id) {
         ModelAndView mv = new ModelAndView("game");
@@ -62,6 +75,10 @@ public class GameController {
         mv.addObject("starsEmpty", list2);
         return mv;
     }
+
+    /**
+     * Objet privé permettant de relier l'opinion (qui contient le message et la note d'un user ainsi que son ID) au nom de l'utilisateur qui a donné l'avis.
+     */
     private class OpinionUser{
         String username;
         int note;
