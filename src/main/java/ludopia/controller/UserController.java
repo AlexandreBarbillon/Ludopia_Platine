@@ -41,8 +41,12 @@ public class UserController {
 
     @PostMapping("/user/create")
     public String submit(@ModelAttribute("userForm") LudopiaUser user) {
-        userService.createUser(user,user.getPassword());
-        return "redirect:/";
+        LudopiaUser savedUser = userService.createUser(user,user.getPassword());
+        if (savedUser == null) {
+            return "registration";
+        } else {
+            return "redirect:/";
+        }
     }
 
     @GetMapping("/user/{userId}")

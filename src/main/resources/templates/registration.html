@@ -6,9 +6,12 @@
 <div th:replace="~{layout/navbar}"></div>
 
         <div class="container">
-            <h1>Bienvenue sur Ludopia</h1>
+            <h1 class="title">Bienvenue sur Ludopia</h1>
 
             <form method="POST" name="userForm" action="/user/create">
+                <div id="alert-box" th:if="${userForm.username != null}">
+                    <p>Cet utilisateur existe déjà</p>
+                </div>
                 <label>Nom</label>
                 <input type="text" name="username" autofocus="true" placeholder="Nom" required/>
 
