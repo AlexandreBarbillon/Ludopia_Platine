@@ -26,6 +26,11 @@ public interface GameService {
      */
     Game getGameById(int id);
 
+    /**
+     * Search a game by a substring
+     * @param search the substring of a game
+     * @return the list of game found with the key word
+     */
     List<Game> searchGame(String search);
 
     /**
@@ -34,4 +39,6 @@ public interface GameService {
      * @return la liste des objet Game correspondant aux id contenu de la liste
      */
     List<Game> unwrapGameList(int listId);
+
+    int getAverageNoteFromGame(int gameId);
 }
