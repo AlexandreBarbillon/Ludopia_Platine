@@ -48,7 +48,7 @@ public class Opinion {
         this.gameId = gameId;
     }
 
-    public long getUserId() {
+    public int getUserId() {
         return userId;
     }
 
