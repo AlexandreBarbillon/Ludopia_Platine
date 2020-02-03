@@ -5,6 +5,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Un objet game contient :
+ *  un identifiant,
+ *  un nom,
+ *  une description,
+ *  un lien vers une image représentant le jeu
+ *  si il s'agit d'une extension (non utilisé)
+ *  la date de création du jeu
+ *  la liste des extensions de ce jeu (non utilisé)
+ */
 @Entity
 public class Game {
     @Id @GeneratedValue

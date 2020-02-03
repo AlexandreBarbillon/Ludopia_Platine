@@ -20,15 +20,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Contrôle ce qui est relatif à l'utilisateur
+ */
 @Controller
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private ListService listService;
-
+    /**
+     * Affiche le formulaire de création d'utilisateur
+     * @param model
+     * @return la page d'enregistrement
+     */
     @GetMapping("/user/create")
     public String registration(Model model) {
         if (userService.getCurrentUser() != null) {

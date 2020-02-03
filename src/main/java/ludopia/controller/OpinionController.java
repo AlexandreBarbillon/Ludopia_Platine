@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * Controller servant a afficher tout ce qui est relatif aux opinions
+ */
 @Controller
 public class OpinionController {
     private UserService userService;
@@ -20,6 +23,13 @@ public class OpinionController {
         this.opinionService = opinionService;
     }
 
+    /**
+     * Permet de créer un opinion
+     * @param gameId l'id du jeu
+     * @param note la note donnée
+     * @param message le message écrit
+     * @return une redirection vers la page du jeu
+     */
     @PostMapping("/opinion/create/{gameId}")
     public String addOpinion(@PathVariable int gameId, int note, String message){
         LudopiaUser potentialUser = userService.getCurrentUser();
@@ -27,7 +37,7 @@ public class OpinionController {
             int userId = potentialUser.getId();
             Opinion opinion = opinionService.createOpinion(userId,gameId,note,message);
             if(opinion != null){
-                return "opinionRegistered";
+                return "redirect:/game/"+gameId;
             }
             else{
                 return "opinionUnregistered";

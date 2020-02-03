@@ -9,6 +9,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
+/**
+ * Permet tout ce qui est relatif a la recherche de jeux
+ */
 @Controller
 public class SearchController {
     private GameService gameService;
@@ -17,6 +20,11 @@ public class SearchController {
         this.gameService = gameService;
     }
 
+    /**
+     * Affiche les résultats de la recherche de jeux
+     * @param searchString le nom du jeu a rechercher
+     * @return un modelAndView contenant les jeux récupérés
+     */
     @GetMapping("/search")
     public ModelAndView displaySearchResult(@RequestParam String searchString){
         List<Game> games;
