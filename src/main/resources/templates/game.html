@@ -56,12 +56,12 @@
     </div>
     <div id="opinionList">
         <div th:each="opinion : ${opinions}">
-            <p>
-                <label>nom : </label>
-                <span th:text="${{opinion.userId}}"></span>
-                <label>avis : </label>
-                <span th:text="${{opinion.message}}"></span>
-            </p>
+            <div>
+                <p><label>nom : </label>
+                <span th:text="${{opinion.username}}"></span></p>
+                <p><label>avis : </label>
+                <span th:text="${{opinion.message}}"></span></p>
+            </div>
         </div>
     </div>
 </div>
