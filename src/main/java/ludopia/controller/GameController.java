@@ -2,6 +2,8 @@ package ludopia.controller;
 
 import ludopia.objects.games.Game;
 import ludopia.objects.games.service.GameService;
+import ludopia.objects.opinion.Opinion;
+import ludopia.objects.opinion.service.OpinionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,8 +16,13 @@ import java.util.ArrayList;
 @Controller
 public class GameController {
 
-    @Autowired
-    GameService gameService;
+    private GameService gameService;
+    private OpinionService opinionService;
+
+    public GameController(GameService gameService, OpinionService opinionService) {
+        this.gameService = gameService;
+        this.opinionService = opinionService;
+    }
 
     @GetMapping("/game/create")
     public ModelAndView index() {
@@ -32,6 +39,7 @@ public class GameController {
     @GetMapping("/game/{id}")
     public ModelAndView displayGame(@PathVariable("id") int id) {
         ModelAndView mv = new ModelAndView("game");
+        mv.addObject("opinions",opinionService.getAllOpinionFromGame(id));
         mv.addObject("oneGame", gameService.getGameById(id));
         var list = new ArrayList<>();
         var list2 = new ArrayList<>();

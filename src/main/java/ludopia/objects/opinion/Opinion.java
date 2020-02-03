@@ -21,6 +21,17 @@ public class Opinion {
     @Column
     private String message;
 
+    public Opinion(){
+
+    }
+
+    public Opinion( int userId, int gameId, int note, String message) {
+        this.gameId = gameId;
+        this.userId = userId;
+        this.note = note;
+        this.message = message;
+    }
+
     public long getId() {
         return id;
     }
