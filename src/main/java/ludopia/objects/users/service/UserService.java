@@ -9,6 +9,7 @@ public interface UserService {
     LudopiaUser getUserByUsername(String username);
     LudopiaUser createUser(LudopiaUser ludopiaUser, String password);
     CredentialUser getAuthentificationUserByUsername(String username);
-    void removeUser(String username);
+    void removeUser(int id);
     LudopiaUser getCurrentUser();
+    void updateUser(LudopiaUser user);
 }

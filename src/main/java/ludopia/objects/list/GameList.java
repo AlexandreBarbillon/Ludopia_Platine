@@ -82,6 +82,8 @@ public class GameList implements Serializable {
         return games;
     }
 
+
+
     public void addGameToList(int gameId) throws GameAlreadyInListException {
         if(this.games.contains(gameId)){
             throw new GameAlreadyInListException();
