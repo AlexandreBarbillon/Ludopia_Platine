@@ -111,10 +111,6 @@ body {
     color: black;
 }
 
-#map{
-    height: 600px;
-}
-
 /*Info page*/
 #etudiants {
     margin-top: 4px;
@@ -217,4 +213,43 @@ body {
 
 .linkForm:hover {
     color: #ffaf0f;
+}
+
+/* List Assos */
+#map{
+    height: 600px;
+    width: 60%;
+    display: inline-block;
+}
+
+#sidebarAsso {
+    display: inline-block;
+    position: absolute;
+    margin-left: 10px;
+    height: 550px;
+}
+
+.assoContenu {
+    margin: 3px;
+}
+
+#buttonAsso {
+    display: inline-block;
+    position: relative;
+    margin-left: 10px;
+    bottom: 10px;
+}
+
+.imgAssoList {
+    width: 120px;
+}
+
+.textAssoList, .textAssoList:visited {
+    margin-left: 10px;
+    color: Black;
+    font-size: 20px;
+}
+
+.textAssoList:hover {
+    color: black;
 }
