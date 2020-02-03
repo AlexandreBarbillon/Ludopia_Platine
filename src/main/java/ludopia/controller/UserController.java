@@ -68,8 +68,12 @@ public class UserController {
 
     @GetMapping("/user/edit")
     public String updateUser(Model model) {
-        model.addAttribute("userEditForm", userService.getCurrentUser());
-        return "userEdition";
+        if (userService.getCurrentUser() == null) {
+            return "redirect:/login";
+        } else {
+            model.addAttribute("userEditForm", userService.getCurrentUser());
+            return "userEdition";
+        }
     }
 
     @PostMapping("/user/edit")

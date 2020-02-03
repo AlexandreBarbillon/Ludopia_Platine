@@ -214,9 +214,13 @@ body {
 
 #user-main {
     display: inline-block;
+    width: -moz-available;
 }
 #user-main > div {
     margin-left: 210px;
+}
+#user-main > div > h1 {
+    width: 100%;
 }
 
 #user-image {
@@ -244,6 +248,11 @@ body {
 
 #user-listes-jeux button {
     border-radius: 20% / 50%;
+    margin: 10px;
+}
+
+#user-listes-jeux p {
+    margin: 10px;
 }
 
 #annuler {
@@ -251,4 +260,3 @@ body {
     background-color: rgb(100,0,0) !important;
     border-color: rgb(100,0,0) !important;
 }
-

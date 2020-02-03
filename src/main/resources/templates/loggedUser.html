@@ -24,7 +24,7 @@
                 <div th:each="list : ${lists}">
                     <p th:if="${list} != null" th:text="${{list.title}}"></p>
                 </div>
-                <button action="">Ajouter une liste</button>
+                <button class="btn btn-primary btn-custom" action="">Ajouter une liste</button>
             </div>
         </div>
         <div th:unless="${user} != null">

@@ -21,6 +21,7 @@
                 <div th:each="list : ${lists}">
                     <p th:if="${list} != null" th:text="${{list.title}}"></p>
                 </div>
+                <p th:if="${#lists.isEmpty(list)}">Cet utilisateur ne possède aucune liste de jeu.</p>
             </div>
         </div>
         <div th:unless="${user} != null">
