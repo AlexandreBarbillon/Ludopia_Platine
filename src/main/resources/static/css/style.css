@@ -172,6 +172,7 @@ body {
 /* One Game page */
 .one-game-info {
     background-color: #B4DFE5;
+    height: 400px;
 }
 
 .game-image {
@@ -312,4 +313,20 @@ body {
     border-radius: 2%;
     padding: 10px;
     margin-bottom: 0px;
+}
+
+
+.otherInfos {
+    position: relative;
+    top: 200px;
+    left: -330px;
+}
+
+#selectAsso {
+    display: inline-block;
+    width: auto;
+}
+
+#submitAsso {
+    display: inline-block;
 }

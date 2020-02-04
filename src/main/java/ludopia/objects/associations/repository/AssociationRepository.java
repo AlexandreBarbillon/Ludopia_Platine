@@ -25,7 +25,7 @@ public interface AssociationRepository extends CrudRepository<Association, Integ
      * @return une liste des associations comprenant ce jeu
      */
     @Query("FROM Association as asso JOIN GameList as list ON asso.possessedGamesList = list.id WHERE :gameId MEMBER OF list.games")
-    List<Association> findAssoHavingTheGame(int gameId);
+    List<Association> findAssoHavingTheGame(@Param("gameId") int gameId);
 
     /**
      * Récupère les associations dont l'utilisateur donnée en paramètre est l'administrateur

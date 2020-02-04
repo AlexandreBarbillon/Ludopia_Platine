@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{layout/header}"></head>
 
 <body>
@@ -26,50 +27,59 @@
 
             </div>
 
-            <p class="game-description" th:text="${{oneGame.description}}">
+            <p class="game-description" th:text="${{oneGame.description}}"></p>
 
-            </p>
+            <div sec:authorize="!isAnonymous()" class="otherInfos float-left">
+                <form method="post">
+                    <div class="form-group">
+                        <select th:each="assoUser : ${assosUser}" class="form-control" id="selectAsso">
+                            <option selected >Ajouter à une association</option>
+                            <option value="${{assoUser.name}}" th:text="${{assoUser.name}}"></option>
+                        </select>
 
-            <!--{{#isExtension}}
-            <p>Ce jeu est une extension !</p>
-            {{/isExtension}}
-
-            <p>TODO : extensions</p>
-            {{#extensionsId}}
-            <div><p>Chacune de ces lignes représente une extension</p><br/></div>
-            {{/extensionsId}}
-    --></div>
-        <h4 class="title-game-second rounded-lg">Les associations qui possèdent le jeu</h4>
-
-        <div>
-            <img />
-            <p></p>
-        </div>
-        <div sec:authorize="!isAnonymous()" id="newOpinion">
-        <form method="POST" th:action="@{/opinion/create/}+${{oneGame.id}}">
-            <label>note</label>
-            <input type="number" name="note"/>
-            <label>avis</label>
-            <input name="message"/>
-            <input type="submit" name="submit"/>
-        </form>
-    </div>
-    <div id="opinionList">
-        <div th:each="opinion : ${opinions}">
-            <div>
-                <p><label>nom : </label>
-                <span th:text="${{opinion.username}}"></span></p>
-                <p><label>avis : </label>
-                <span th:text="${{opinion.message}}"></span></p>
+                        <button type="submit" name="addGameAsso" id="submitAsso" class="btn">
+                            <i class="fas fa-check-square fa-2x"></i>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
-    </div>
-    </div>
-    <div th:unless="${oneGame} != null">
-        <p>Ce jeu n'existe pas.</p>
+
+        <h4 class="title-game-second rounded-lg">Les associations qui possèdent le jeu</h4>
+        <div>
+            <div class="game-asso" th:each="asso : ${assos}">
+                <img th:src="${{asso.logo_img_link}}"/>
+                <p class="title-game-asso" th:text="${{asso.name}}"></p>
+            </div>
+            <div sec:authorize="!isAnonymous()" id="newOpinion">
+                <form method="POST" th:action="@{/opinion/create/}+${{oneGame.id}}">
+                    <label>note</label>
+                    <input type="number" name="note"/>
+                    <label>avis</label>
+                    <input name="message"/>
+                    <input type="submit" name="submit"/>
+                </form>
+            </div>
+            <div id="opinionList">
+                <div th:each="opinion : ${opinions}">
+                    <div>
+                        <p><label>nom : </label>
+                        <span th:text="${{opinion.username}}"></span></p>
+                        <p><label>avis : </label>
+                        <span th:text="${{opinion.message}}"></span></p>
+                    </div>
+                </div>
+            </div>
+         </div>
+        <div th:unless="${oneGame} != null">
+            <p>Ce jeu n'existe pas.</p>
+        </div>
     </div>
 </div>
 
 <div th:replace="~{layout/footer}"></div>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 </html>
