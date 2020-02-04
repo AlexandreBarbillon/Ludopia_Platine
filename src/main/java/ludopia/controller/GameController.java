@@ -63,7 +63,9 @@ public class GameController {
             opinionUsers.add(new OpinionUser(opinion));
             sum+=opinion.getNote();
         }
-        int avg = sum/opinions.size();
+        int avg;
+        if (opinions.size() != 0) avg = sum/opinions.size();
+        else avg = 0;
         mv.addObject("opinions", opinionUsers);
         mv.addObject("oneGame", gameService.getGameById(id));
         var list = new ArrayList<>();
