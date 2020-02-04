@@ -301,6 +301,14 @@ body {
     margin-bottom: 0px;
 }
 
+/* Association page */
+.formAsso {
+    width: 50%;
+    margin-left: 25%;
+    margin-bottom: 2%;
+    padding: 15px;
+}
+
 
 /* List Assos */
 #map{

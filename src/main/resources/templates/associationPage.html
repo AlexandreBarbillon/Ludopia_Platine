@@ -16,7 +16,13 @@
             <div th:text="${{asso.description}}"></div>
             <div id="map"></div>
         </div>
-        <div id="gameInAsso">
+        <div th:each="game : ${gameList}" id="gameInAsso">
+            <div class="inline-block">
+                <div class="pictureGame">
+                    <img class="" src="${{game.imageLink}}" alt="${{game.name}}"/>
+                </div>
+                <span th:text="${{game.name}}"></span>
+            </div>
         </div>
     </div>
     <div th:unless="${asso} != null">
