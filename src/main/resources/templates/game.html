@@ -55,12 +55,16 @@
         </form>
     </div>
     <div id="opinionList">
-        <div th:each="opinion : ${opinions}">
+        <h2 class="title-home">Opinions :</h2>
+        <div class="opinion" th:each="opinion : ${opinions}">
             <div>
-                <p><label>nom : </label>
-                <span th:text="${{opinion.username}}"></span></p>
-                <p><label>avis : </label>
-                <span th:text="${{opinion.message}}"></span></p>
+
+                <a th:href="@{/user/} + ${{opinion.userId}}">
+                    <img width="50px" height="50px" th:src="${opinion.avatarLink != ''} ? (${opinion.avatarLink} ? ${opinion.avatarLink} : false)  : '/images/infos/sample_etu.jpg'" alt="Avatar"/>
+                    <p th:text="${{opinion.username}}"></p>
+                </a>
+                <br/>
+                <p th:text="${{opinion.message}}"></p>
             </div>
         </div>
     </div>

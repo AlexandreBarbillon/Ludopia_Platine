@@ -80,14 +80,26 @@ public class GameController {
      * Objet privé permettant de relier l'opinion (qui contient le message et la note d'un user ainsi que son ID) au nom de l'utilisateur qui a donné l'avis.
      */
     private class OpinionUser{
+        int userId;
         String username;
+        String avatarLink;
         int note;
         String message;
 
         OpinionUser(Opinion opinion){
+            this.userId = opinion.getUserId();
             this.note = opinion.getNote();
             this.message = opinion.getMessage();
             this.username = userService.getUserById(opinion.getUserId()).getUsername();
+            this.avatarLink = userService.getUserById(opinion.getUserId()).getImageLink();
+        }
+
+        public int getUserId() {
+            return userId;
+        }
+
+        public String getAvatarLink() {
+            return avatarLink;
         }
 
         public String getUsername() {
