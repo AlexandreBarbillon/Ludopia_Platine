@@ -34,9 +34,9 @@ public interface GameService {
     List<Game> searchGame(String search);
 
     /**
-     * go search a list by its id and transform all the games inside into Game
-     * @param listId the id of the list
-     * @return a list of Game
+     * Prend l'id d'une GameList puis permet de créer une liste de Game à partir de son contenu
+     * @param listId l'ID d'une liste
+     * @return la liste des objet Game correspondant aux id contenu de la liste
      */
     List<Game> unwrapGameList(int listId);
 

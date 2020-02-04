@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{layout/header}"></head>
+
+<body>
+<div th:replace="~{layout/navbar}"></div>
+
+<div class="container">
+
+    <div class="container">
+
+
+        <form method="POST" name="userEditForm" action="/user/edit" id="userEditForm">
+            <div id="user" th:if="${userEditForm} != null">
+                <div id="user-main">
+                    <img id="user-image" th:src="${userEditForm.imageLink != ''} ? (${userEditForm.imageLink} ? ${userEditForm.imageLink} : false)  : '/images/infos/sample_etu.jpg'" th:alt="${{userEditForm.username}}"/>
+                    <div>
+                        <div>
+                            <h1 id="user-username" class="title-home" th:text="${{userEditForm.username}}"></h1>
+                            <p>Changez votre description</p>
+                            <textarea rows="4" cols="100" name="description" form="userEditForm" id="user-description" class="content" th:text="${{userEditForm.description}}"></textarea>
+                        </div>
+
+                        <div>
+                            <p>Changez votre avatar</p>
+                            <input id="newLink" type="text" name="imageLink" placeholder="Lien vers l'image"/>
+                            <p>
+                                <button type="button" id="apercu" class="btn btn-primary btn-custom button-sous-image">Aperçu</button>
+                                Note : si aucun lien n'est donné, l'avatar sera celui désigné par défaut
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div th:unless="${userEditForm} != null">
+                <p>Cet utilisateur n'existe pas.</p>
+            </div>
+            <button  class="btn btn-primary btn-custom button-sous-image" type="submit">Enregistrer les modifications</button >
+        </form>
+        <a th:href="@{'/user/' + ${userEditForm.id}}">
+            <button id="annuler" class="btn btn-primary btn-custom" type="button">Annuler</button>
+        </a>
+
+    </div>
+
+</div>
+
+<div th:replace="~{layout/footer}"></div>
+</body>
+
+<script>
+    var button_apercu = document.getElementById("apercu");
+    button_apercu.onclick = function () {
+        var avatar = document.getElementById("user-image");
+        var link = document.getElementById("newLink").value;
+        if (link=="") link = "/images/infos/sample_etu.jpg";
+        avatar.setAttribute("src",link);
+    }
+</script>
+
+</html>

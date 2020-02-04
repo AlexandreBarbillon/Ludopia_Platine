@@ -1,31 +1,53 @@
 package ludopia.objects.associations;
 
+import ludopia.objects.games.Game;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * Une association possède :
+ *  un identifiant,
+ *  un nom,
+ *  une description,
+ *  une position(latitude,longitude),
+ *  un lien vers un avatar,
+ *  une liste de membre (non utilisé)
+ *  une liste principale des jeux qu'ils possèdent
+ *  la liste des listes de jeux (non utilisé)
+ *  l'id du créateur de l'association
+ */
 @Entity
 public class Association {
     @Id @GeneratedValue @NonNull
     int id;
     @Column @NonNull
+    private
     String name;
     @Column
+    private
     String description;
     @Column @NonNull
+    private
     double latitude;
     @Column @NonNull
+    private
     double longitude;
     @Column
+    private
     String imageLink;
     @ElementCollection
+    private
     List<Integer> members;
     @Column @NonNull
+    private
     int possessedGamesList;
     @ElementCollection
+    private
     List<Integer> lists;
     @Column @NonNull
+    private
     int admin;
 
     public Association(){
@@ -108,5 +130,11 @@ public class Association {
     @Override
     public String toString() {
         return this.getName()+" id="+this.getId();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        else return obj.getClass() == this.getClass() && ((Association) obj).getId() == this.getId();
     }
 }
