@@ -58,17 +58,20 @@ public class GameController {
         ModelAndView mv = new ModelAndView("game");
         List<Opinion> opinions = opinionService.getAllOpinionFromGame(id);
         List<OpinionUser> opinionUsers = new ArrayList<>();
+        int sum = 0;
         for (Opinion opinion: opinions) {
             opinionUsers.add(new OpinionUser(opinion));
+            sum+=opinion.getNote();
         }
+        int avg = sum/opinions.size();
         mv.addObject("opinions", opinionUsers);
         mv.addObject("oneGame", gameService.getGameById(id));
         var list = new ArrayList<>();
         var list2 = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < avg; i++) {
             list.add("star");
         }
-        for (int i = 4; i < 5; i++) {
+        for (int i = avg; i < 5; i++) {
             list2.add("starEmpty");
         }
         mv.addObject("stars", list);
