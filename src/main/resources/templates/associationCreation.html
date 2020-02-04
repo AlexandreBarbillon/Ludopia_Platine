@@ -5,26 +5,33 @@
 <body>
 <div th:replace="~{layout/navbar}"></div>
 <div class="container">
-    <h1>Créer une association</h1>
+    <h1 class="h1Form">Créer une association</h1>
 
-    <form method="POST" name="game" action="/association/create">
-        <label>Nom</label>
-        <input type="text" name ="name" autofocus="true" placeholder="Nom" required/>
-        <label>Avatar</label>
-        <input type="text" name = "imageLink" placeholder="ImageLink" required/>
-        <br>
-        <label>description</label>
-        <input type="text" name="description" placeholder="Description" required/>
-
-        <br>
-        <label>Location</label>
-        <input id="longitude" type="hidden" name="longitude" required/>
-        <input id="latitude" type="hidden" name="latitude" required/>
-        <div id="map"></div>
-        <br>
-        <button type="submit">Valider</button>
-
+    <form method="POST" name="game" action="/association/create" class="formAsso">
+        <div class="form-group">
+            <label for="formNameAsso">Nom</label>
+            <input type="text" id="formNameAsso" name ="name" autofocus="true" placeholder="Nom" class="form-control" required/>
+        </div>
+        <div class="form-group">
+            <label for="formLogoAsso">Lien vers le logo</label>
+            <input type="text" id="formLogoAsso" name ="imageLink" placeholder="Logo" class="form-control" required/>
+        </div>
+        <div class="form-group">
+            <label for="formDescAsso">Description</label>
+            <textarea id="formDescAsso" name="description" class="form-control" rows="3" required>
+            </textarea>
+        </div>
+        <div class="form-group">
+            <label>Localisation</label>
+            <input id="longitude" type="hidden" name="longitude" required/>
+            <input id="latitude" type="hidden" name="latitude" required/>
+            <div id="map"></div>
+        </div>
+        <div class="form-submit">
+            <button type="submit" class="btn btn-primary btn-custom">Valider</button>
+        </div>
     </form>
+
 </div>
 <div th:replace="~{layout/footer}"></div>
 </body>
