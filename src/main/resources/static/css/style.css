@@ -364,3 +364,29 @@ body {
 .opinion a > * {
     display: inline-block;
 }
+
+#newOpinion {
+    margin-bottom: 10px;
+}
+
+#newOpinion form > div {
+  display: grid;
+  grid-template-columns: 50px 400px;
+}
+
+#newOpinion label {
+    grid-column: 1;
+    margin-bottom: 10px;
+}
+
+#newOpinion input {
+    grid-column: 2;
+    margin-bottom: 10px;
+}
+
+#newOpinion textarea {
+    grid-column: 2;
+    margin-bottom: 10px;
+}
+
+

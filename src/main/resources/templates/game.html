@@ -48,11 +48,13 @@
         <div sec:authorize="!isAnonymous()" id="newOpinion">
             <h2 class="title-home">Soumettre votre avis :</h2>
             <form method="POST" th:action="@{/opinion/create/}+${{oneGame.id}}">
-                <label>Note :</label>
-                <input type="number" name="note"/>
-                <label>Avis</label>
-                <input name="message"/>
-                <input type="submit" name="submit"/>
+                <div>
+                    <label>Note</label>
+                    <input type="number" name="note"/>
+                    <label>Avis</label>
+                    <input name="message"/>
+                </div>
+                <button class="btn btn-primary btn-custom" type="submit" name="submit">Laisser un avis</button>
             </form>
         </div>
     <div id="opinionList">
