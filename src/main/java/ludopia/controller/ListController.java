@@ -31,7 +31,8 @@ public class ListController {
     }
 
     @PostMapping("/list/addToAsso")
-    public String addGameToAsso(int assoId, int gameId){
+    public String addGameToAsso(Integer assoId, Integer gameId){
+        System.out.println("asso : "+assoId+" | "+"game : "+gameId);
         LudopiaUser user = userService.getCurrentUser();
         Association asso = assoService.getAssoById(assoId);
         Game game = gameService.getGameById(gameId);

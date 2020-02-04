@@ -30,11 +30,12 @@
             <p class="game-description" th:text="${{oneGame.description}}"></p>
 
             <div sec:authorize="!isAnonymous()" class="otherInfos float-left">
-                <form method="post">
+                <form method="post" action="/list/addToAsso">
                     <div class="form-group">
-                        <select th:each="assoUser : ${assosUser}" class="form-control" id="selectAsso">
-                            <option selected >Ajouter à une association</option>
-                            <option value="${{assoUser.name}}" th:text="${{assoUser.name}}"></option>
+                        <input type="hidden" name="gameId" th:value="${{oneGame.id}}">
+                        <select class="form-control" name="assoId">
+                            <option selected>Ajouter à une association</option>
+                            <option th:each="assoUser : ${assosUser}" th:value="${{assoUser.id}}" th:text="${{assoUser.name}}"></option>
                         </select>
 
                         <button type="submit" name="addGameAsso" id="submitAsso" class="btn">
@@ -48,7 +49,7 @@
         <h4 class="title-game-second rounded-lg">Les associations qui possèdent le jeu</h4>
         <div>
             <div class="game-asso" th:each="asso : ${assos}">
-                <img th:src="${{asso.logo_img_link}}"/>
+                <img th:src="${{asso.imageLink}}" style="max-width: 200px; max-height:200px"/>
                 <p class="title-game-asso" th:text="${{asso.name}}"></p>
             </div>
             <div sec:authorize="!isAnonymous()" id="newOpinion">
