@@ -6,15 +6,17 @@
 <div th:replace="~{layout/navbar}"></div>
     <div class="container">
         <a href="/game/create"><button class="button">Ajouter un jeu</button></a>
-        <div th:each="game : ${searchResult}" class="col-12 col-md align-items-center justify-content-center">
-            <a th:href="@{/game/} + ${{game.id}}">
-                <div class="pictureGame">
-                    <img class="d-block" th:src="${{game.imageLink}}" alt="Jeu"/>
+        <div th:each="game : ${searchResult}" class="card">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img th:src="${{game.imageLink}}" style="width:200px" class="card-img">
                 </div>
-            </a>
-            <a class="title-game-link" th:href="@{/game/} + ${{game.id}}">
-                <p class="title-game" th:text="${{game.name}}"></p>
-            </a>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${{game.name}}"></h5>
+                        <p class="card-text"th:text="${{game.description}}"></p>
+                    </div>
+                </div>
         </div>
     </div>
 </div>
