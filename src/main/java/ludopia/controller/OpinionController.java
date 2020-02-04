@@ -33,7 +33,7 @@ public class OpinionController {
     @PostMapping("/opinion/create/{gameId}")
     public String addOpinion(@PathVariable int gameId, int note, String message){
         LudopiaUser potentialUser = userService.getCurrentUser();
-        if (potentialUser != null && note > 0 && note < 5){
+        if (potentialUser != null && note > 0 && note <= 5){
             int userId = potentialUser.getId();
             Opinion opinion = opinionService.createOpinion(userId,gameId,note,message);
             if(opinion != null){

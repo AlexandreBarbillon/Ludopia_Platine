@@ -52,32 +52,36 @@
                 <img th:src="${{asso.imageLink}}" style="max-width: 200px; max-height:200px"/>
                 <p class="title-game-asso" th:text="${{asso.name}}"></p>
             </div>
-            <div sec:authorize="!isAnonymous()" id="newOpinion">
-                <form method="POST" th:action="@{/opinion/create/}+${{oneGame.id}}">
-                    <label>note</label>
-                    <input type="number" name="note"/>
-                    <label>avis</label>
-                    <input name="message"/>
-                    <input type="submit" name="submit"/>
-                </form>
-            </div>
-            <div id="opinionList">
-                <div th:each="opinion : ${opinions}">
-                    <div>
-                        <p><label>nom : </label>
-                        <span th:text="${{opinion.username}}"></span></p>
-                        <p><label>avis : </label>
-                        <span th:text="${{opinion.message}}"></span></p>
-                    </div>
-                </div>
+        </div>
+        <div sec:authorize="!isAnonymous()" id="newOpinion">
+            <h2 class="title-home">Soumettre votre avis :</h2>
+            <form method="POST" th:action="@{/opinion/create/}+${{oneGame.id}}">
+                <label>Note :</label>
+                <input type="number" name="note"/>
+                <label>Avis</label>
+                <input name="message"/>
+                <input type="submit" name="submit"/>
+            </form>
+        </div>
+        <div id="opinionList">
+        <h2 class="title-home">Avis :</h2>
+        <div class="opinion" th:each="opinion : ${opinions}">
+            <div>
+
+                <a th:href="@{/user/} + ${{opinion.userId}}">
+                    <img width="50px" height="50px" th:src="${opinion.avatarLink != ''} ? (${opinion.avatarLink} ? ${opinion.avatarLink} : false)  : '/images/infos/sample_etu.jpg'" alt="Avatar"/>
+                    <p th:text="${{opinion.username}}"></p>
+                </a>
+                <br/>
+                <p th:text="${{opinion.message}}"></p>
             </div>
          </div>
         <div th:unless="${oneGame} != null">
             <p>Ce jeu n'existe pas.</p>
         </div>
     </div>
+    </div>
 </div>
-
 <div th:replace="~{layout/footer}"></div>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

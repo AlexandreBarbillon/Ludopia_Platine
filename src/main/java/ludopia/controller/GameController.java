@@ -65,17 +65,22 @@ public class GameController {
         ModelAndView mv = new ModelAndView("game");
         List<Opinion> opinions = opinionService.getAllOpinionFromGame(id);
         List<OpinionUser> opinionUsers = new ArrayList<>();
+        int sum = 0;
         for (Opinion opinion: opinions) {
             opinionUsers.add(new OpinionUser(opinion));
+            sum+=opinion.getNote();
         }
+        int avg;
+        if (opinions.size() != 0) avg = sum/opinions.size();
+        else avg = 0;
         mv.addObject("opinions", opinionUsers);
         mv.addObject("oneGame", gameService.getGameById(id));
         var list = new ArrayList<>();
         var list2 = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < avg; i++) {
             list.add("star");
         }
-        for (int i = 4; i < 5; i++) {
+        for (int i = avg; i < 5; i++) {
             list2.add("starEmpty");
         }
         mv.addObject("stars", list);
@@ -96,14 +101,26 @@ public class GameController {
      * Objet privé permettant de relier l'opinion (qui contient le message et la note d'un user ainsi que son ID) au nom de l'utilisateur qui a donné l'avis.
      */
     private class OpinionUser{
+        int userId;
         String username;
+        String avatarLink;
         int note;
         String message;
 
         OpinionUser(Opinion opinion){
+            this.userId = opinion.getUserId();
             this.note = opinion.getNote();
             this.message = opinion.getMessage();
             this.username = userService.getUserById(opinion.getUserId()).getUsername();
+            this.avatarLink = userService.getUserById(opinion.getUserId()).getImageLink();
+        }
+
+        public int getUserId() {
+            return userId;
+        }
+
+        public String getAvatarLink() {
+            return avatarLink;
         }
 
         public String getUsername() {
