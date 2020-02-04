@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html>
-    <head>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+    <head th:fragment="headerMap">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Ludopia</title>
@@ -14,5 +14,6 @@
         <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
                 integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
                 crossorigin=""></script>
-        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" th:href="@{/css/style.css}" />
+        <link rel="stylesheet" th:href="@{/css/all.css}" />
     </head>

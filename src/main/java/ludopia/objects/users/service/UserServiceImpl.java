@@ -1,9 +1,15 @@
 package ludopia.objects.users.service;
 
+import ludopia.objects.users.CredentialUser;
 import ludopia.objects.users.LudopiaUser;
+import ludopia.objects.users.repository.CredentialUserRepository;
 import ludopia.objects.users.repository.UserRepository;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.Optional;
 
 /**
@@ -12,9 +18,10 @@ import java.util.Optional;
 @Service
 public class UserServiceImpl implements UserService {
     private UserRepository userRepo;
-
-    public UserServiceImpl(UserRepository userRepo) {
+    private CredentialUserRepository credUserRepo;
+    public UserServiceImpl(UserRepository userRepo, CredentialUserRepository credUserRepo) {
         this.userRepo = userRepo;
+        this.credUserRepo = credUserRepo;
     }
 
     /**
@@ -48,16 +55,46 @@ public class UserServiceImpl implements UserService {
      * @return the user created
      */
     @Override
-    public LudopiaUser createUser(LudopiaUser ludopiaUser) {
-        return userRepo.save(ludopiaUser);
+    public LudopiaUser createUser(LudopiaUser ludopiaUser, String password) {
+        if (getUserByUsername(ludopiaUser.getUsername()) != null) {
+            return null;
+        }
+        LudopiaUser savedUser = userRepo.save(ludopiaUser);
+        CredentialUser user = new CredentialUser(ludopiaUser.getUsername(),password, savedUser.getId());
+        credUserRepo.save(user);
+        return savedUser;
     }
+
+    @Override
+    public CredentialUser getAuthentificationUserByUsername(String username) {
+        return credUserRepo.findByUsername(username).orElse(null);
+    }
+
 
     /**
      * Remove the user found in database
-     * @param username the username of the user
+     * @param id the username of the user
      */
     @Override
-    public void removeUser(String username) {
-        userRepo.deleteById(username);
+    public void removeUser(int id) {
+        userRepo.deleteById(id);
+    }
+
+    @Override
+    public LudopiaUser getCurrentUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object user = authentication.getPrincipal();
+        if(user instanceof CredentialUser){
+            CredentialUser credUser = (CredentialUser) user;
+            return getUserById(credUser.getUserId());
+        }
+        else{
+            return null;
+        }
+    }
+
+    @Override
+    public void updateUser(LudopiaUser user) {
+        userRepo.save(user);
     }
 }

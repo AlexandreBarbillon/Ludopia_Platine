@@ -5,6 +5,16 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Un objet game contient :
+ *  un identifiant,
+ *  un nom,
+ *  une description,
+ *  un lien vers une image représentant le jeu
+ *  si il s'agit d'une extension (non utilisé)
+ *  la date de création du jeu
+ *  la liste des extensions de ce jeu (non utilisé)
+ */
 @Entity
 public class Game {
     @Id @GeneratedValue
@@ -14,7 +24,7 @@ public class Game {
     @Column
     String description;
     @Column
-    String image_link;
+    String imageLink;
     @Column
     boolean isExtension;
     @Temporal(TemporalType.TIMESTAMP)
@@ -25,7 +35,7 @@ public class Game {
     public Game() {
         name = "";
         description = "";
-        image_link = "";
+        imageLink = "";
         extensionsId = new ArrayList<>();
         addDate = new Date();
     }
@@ -62,15 +72,15 @@ public class Game {
         this.description = description;
     }
 
-    public String getImage_link() {
-        return image_link;
+    public String getImageLink() {
+        return imageLink;
     }
 
-    public void setImage_link(String image_link) {
-        this.image_link = image_link;
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
     }
 
-    public void setIsExtension(boolean isExtension) { this.isExtension = isExtension;};
+    public void setIsExtension(boolean isExtension) { this.isExtension = isExtension;}
 
     public boolean isExtension() { return this.isExtension;}
 
@@ -84,7 +94,8 @@ public class Game {
 
     @Override
     public boolean equals(Object obj) {
-        return obj.getClass() == this.getClass() && ((Game) obj).getId() == this.getId();
+        if (obj == null) return false;
+        else return obj.getClass() == this.getClass() && ((Game) obj).getId() == this.getId();
     }
 
     @Override

@@ -1,30 +1,57 @@
 package ludopia.objects.associations;
 
+import ludopia.objects.games.Game;
+import org.springframework.lang.NonNull;
+
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * Une association possède :
+ *  un identifiant,
+ *  un nom,
+ *  une description,
+ *  une position(latitude,longitude),
+ *  un lien vers un avatar,
+ *  une liste de membre (non utilisé)
+ *  une liste principale des jeux qu'ils possèdent
+ *  la liste des listes de jeux (non utilisé)
+ *  l'id du créateur de l'association
+ */
 @Entity
 public class Association {
-    @Id @GeneratedValue
+    @Id @GeneratedValue @NonNull
     int id;
-    @Column
+    @Column @NonNull
+    private
     String name;
     @Column
+    private
     String description;
-    @Column
+    @Column @NonNull
+    private
     double latitude;
-    @Column
+    @Column @NonNull
+    private
     double longitude;
     @Column
-    String logo_img_link;
+    private
+    String imageLink;
     @ElementCollection
+    private
     List<Integer> members;
+    @Column @NonNull
+    private
+    int possessedGamesList;
     @ElementCollection
+    private
     List<Integer> lists;
-    @Column
+    @Column @NonNull
+    private
     int admin;
-    public Association(){
 
+    public Association(){
+        possessedGamesList = -1;
     }
 
     public int getId() {
@@ -34,6 +61,15 @@ public class Association {
     public void setId(int id) {
         this.id = id;
     }
+
+    public int getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(int admin) {
+        this.admin = admin;
+    }
+
 
     public String getName() {
         return name;
@@ -67,12 +103,12 @@ public class Association {
         this.longitude = longitude;
     }
 
-    public String getLogo_img_link() {
-        return logo_img_link;
+    public String getImageLink() {
+        return imageLink;
     }
 
-    public void setLogo_img_link(String logo_img_link) {
-        this.logo_img_link = logo_img_link;
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
     }
 
     public List<Integer> getMembers() {
@@ -83,8 +119,22 @@ public class Association {
         this.members = members;
     }
 
+
+    public int getPossessedGamesList() {
+        return possessedGamesList;
+    }
+
+    public void setPossessedGamesList(int possessedGamesList) {
+        this.possessedGamesList = possessedGamesList;
+    }
     @Override
     public String toString() {
         return this.getName()+" id="+this.getId();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        else return obj.getClass() == this.getClass() && ((Association) obj).getId() == this.getId();
     }
 }

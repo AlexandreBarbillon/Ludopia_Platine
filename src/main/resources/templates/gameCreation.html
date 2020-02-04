@@ -1,22 +1,23 @@
-{{> layout/header}}
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{layout/header}"></head>
 
 <body>
-
-{{> layout/navbar}}
+<div th:replace="~{layout/navbar}"></div>
 <div class="container">
     <h1>Ajouter un jeu</h1>
 
-    <form method="POST" name="game" action="/addGame">
+    <form method="POST" name="game" action="/game/create">
         <label>Nom</label>
         <input type="text" name ="name" autofocus="true" placeholder="Nom" required/>
 
         <br>
-        <label>Mot de passe</label>
+        <label>Description du jeu</label>
         <input type="text" name="description" placeholder="Description" required/>
 
         <br>
         <label>Game Picture</label>
-        <input type="text" name="image_link" placeholder="Lien vers l'image" required/>
+        <input type="text" name="imageLink" placeholder="Lien vers l'image" required/>
         <!--<label>Vérification du mot de passe</label>
         <input type="password" placeholder="Vérification du mot de passe" required/>-->
         <br>
@@ -24,5 +25,6 @@
 
     </form>
 </div>
+<div th:replace="~{layout/footer}"></div>
 </body>
 </html>

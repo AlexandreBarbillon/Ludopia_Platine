@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{layout/headerMap}"></head>
+
+<body>
+<div th:replace="~{layout/navbar}"></div>
+<div class="container">
+    <div class="assoContenu">
+    <div id="map"></div>
+    <div id="sidebarAsso">
+        <div id="list">
+        </div>
+    </div>
+        <div id="buttonAsso">
+            <a th:href="@{/association/create}">
+                <button class="btn btn-primary btn-custom">Ajouter mon association</button>
+            </a>
+        </div>
+
+    </div>
+</div>
+<div th:replace="~{layout/footer}"></div>
+</body>
+<script src="/js/associationMapScript.js"></script>
+</html>

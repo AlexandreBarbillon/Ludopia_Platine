@@ -1,6 +1,8 @@
 package ludopia.objects.users.service;
 
+import ludopia.objects.users.CredentialUser;
 import ludopia.objects.users.LudopiaUser;
+import ludopia.objects.users.repository.CredentialUserRepository;
 import ludopia.objects.users.repository.UserRepository;
 import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,6 +17,8 @@ public class UserServiceImplTest {
 
     @Autowired
     UserRepository userRepo;
+    @Autowired
+    CredentialUserRepository credUserRepo;
     UserServiceImpl userService;
     @Before
     public void before(){
@@ -23,13 +27,13 @@ public class UserServiceImplTest {
 
     @BeforeEach
     public void beforeTest(){
-        userService = new UserServiceImpl(userRepo);
+        userService = new UserServiceImpl(userRepo,credUserRepo);
         userRepo.deleteAll();
     }
     @Test
     public void testTheUserCreation(){
         LudopiaUser paul = new LudopiaUser("paul","timoléon");
-        userService.createUser(paul);
+        userService.createUser(paul,paul.getPassword());
         LudopiaUser databasePaul = userService.getUserById(paul.getId());
         assertEquals(paul,databasePaul);
     }
@@ -41,7 +45,7 @@ public class UserServiceImplTest {
     @Test
     void findByUsernameTest(){
         LudopiaUser paul = new LudopiaUser("paul","timoléon");
-        userService.createUser(paul);
+        userService.createUser(paul,paul.getPassword());
         LudopiaUser databasePaul = userService.getUserByUsername("paul");
         assertEquals(paul,databasePaul);
     }

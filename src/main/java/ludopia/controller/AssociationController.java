@@ -9,34 +9,71 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Controller
+/**
+ * Controller des Associations, il s'occupe d'afficher toutes les pages relatives aux associations
+ */
 public class AssociationController {
 
-    @Autowired
+    private final
     AssociationService associationService;
+    private final
+    GameService gameService;
 
-    @GetMapping("/addAsso")
-    public ModelAndView index() {
-        ModelAndView mv = new ModelAndView("associationCreation");
-        return mv;
+    public AssociationController(AssociationService associationService, GameService gameService) {
+        this.associationService = associationService;
+        this.gameService = gameService;
     }
 
-    @PostMapping("/addAsso")
-    public ModelAndView registerNewTrainer(Association asso) {
-        ModelAndView mv = new ModelAndView("associationCreation");
-        associationService.createAssociation(asso);
-        return mv;
+    /**
+     * Affichage du formulaire de création d'une association
+     * @return un ModelAndView
+     */
+    @GetMapping("/association/create")
+    public ModelAndView displayAssoCreationPage() {
+        return new ModelAndView("associationCreation");
     }
+    /**
+     * Réception du formulaire
+     * @return un ModelAndView
+     */
+    @PostMapping("/association/create")
+    public String createNewAssociation(Association asso) {
+        ModelAndView mv = new ModelAndView("associationCreation");
+        Association createdAsso = associationService.createAssociation(asso);
+        return "redirect:/association/"+createdAsso.getId();
+    }
+
+    /**
+     * Affichage de la page d'une association
+     * @param id l'id d'une association
+     * @return un ModelAndView
+     */
     @GetMapping("/association/{id}")
     public ModelAndView displayAsso(@PathVariable int id){
         ModelAndView mv = new ModelAndView("associationPage");
-        System.out.println(associationService.getAll());
-        mv.addObject("asso",associationService.getAssoById(id));
+        Association asso = associationService.getAssoById(id);
+        List<Game> gameList = new ArrayList<>();
+        if (asso!= null) {
+            gameList = gameService.unwrapGameList(asso.getPossessedGamesList());
+        }
+        mv.addObject("asso",asso);
+        mv.addObject("gameList",gameList);
         return mv;
+    }
+
+    /**
+     * L'affichage de la carte des associations
+     * @return un String avec le nom du layout à afficher
+     */
+    @GetMapping("/association/map")
+    public String displayAssoMap(){
+        return "assoMap";
     }
 }

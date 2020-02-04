@@ -1,15 +1,13 @@
 package ludopia.config;
 
+import ludopia.objects.users.CredentialUser;
 import ludopia.objects.users.service.UserService;
-import ludopia.objects.users.LudopiaUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -22,10 +20,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/", "/registration","/addGame","/css/**", "/js/**").permitAll()
-                .anyRequest().authenticated()
+                .antMatchers("/association/create","game/create").authenticated()
                 .and()
                 .formLogin()
+                .and()
+                .logout()
+                .logoutSuccessUrl("/")
                 .and()
                 .httpBasic();
         http.cors().and().csrf().disable();
@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     UserService userService;
 
     @Bean
-    PasswordEncoder passwordEncoder() {
+    static PasswordEncoder passwordEncoder() {
         if (passwordEncoder == null) {
             passwordEncoder = new BCryptPasswordEncoder();
         }
@@ -49,9 +49,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new UserDetailsService() {
             @Override
             public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-                LudopiaUser ludopiaUser = userService.getUserByUsername(username);
-                if(ludopiaUser != null){
-                    return User.builder().username(ludopiaUser.getUsername()).password(ludopiaUser.getPassword()).authorities("ROLE_USER").build();
+                CredentialUser credUser = userService.getAuthentificationUserByUsername(username);
+                if(credUser != null){
+                    return credUser;
                 }
                 throw new BadCredentialsException("No such user");
             }

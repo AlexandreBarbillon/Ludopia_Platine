@@ -1,18 +1,40 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-        <a class="navbar-brand" href="/">Ludopia</a>
-        <button class="btn btn-secondary" type="button">Associations</button>
-        <form class="form-inline">
-            <input class="form-control" type="search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Rechercher</button>
+        <a class="navbar-brand" href="/">
+            <img th:src="@{/images/Logo_Ludopia.png}" class="logo" alt="Logo Ludopia">
+        </a>
+        <a th:href="@{/association/map}" class="btn btn-secondary" type="button">
+        Associations
+        </a>
+        <form class="form-inline" action="/search" method="GET" >
+            <input class="form-control" type="search" name="searchString" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit" >Rechercher</button>
         </form>
-        <a href="../login">
-            <button class="btn btn-light" type="button">Se connecter</button>
-        </a>
 
-        <a href="../registration">
-            <button class="btn btn-primary" type="button">S'inscrire</button>
-        </a>
+
+        <div sec:authorize="!isAnonymous()">
+            <a th:href="@{/user/} + ${{loggedUser.id}}">
+
+                <img width="50px" height="50px" th:src="${loggedUser.imageLink != ''} ? (${loggedUser.imageLink} ? ${loggedUser.imageLink} : false)  : '/images/infos/sample_etu.jpg'" alt="avatar"/>
+                <span th:text="${{loggedUser.username}}"></span>
+            </a>
+            <a th:href="@{/logout}" class="btn btn-light" type="button">
+                Se déconnecter
+            </a>
+        </div>
+
+        <div sec:authorize="isAnonymous()">
+            <a th:href="@{/login}" class="btn btn-light" type="button">
+                Se connecter
+            </a>
+
+
+            <a th:href="@{/user/create}" class="btn btn-primary btn-custom" type="button">
+                S'inscrire
+            </a>
+        </div>
+
+
 
     </div>
 </nav>
