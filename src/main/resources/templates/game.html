@@ -50,7 +50,7 @@
         <div>
             <div class="game-asso" th:each="asso : ${assos}">
                 <img th:src="${{asso.imageLink}}" style="max-width: 200px; max-height:200px"/>
-                <p class="title-game-asso" th:text="${{asso.name}}"></p>
+                <a class="title-game-asso" th:href="@{/association/}+${{asso.id}}" th:text="${{asso.name}}"></a>
             </div>
         </div>
         <div sec:authorize="!isAnonymous()" id="newOpinion">
