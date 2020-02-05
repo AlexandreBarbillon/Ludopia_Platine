@@ -22,8 +22,16 @@ function generateList(assoList){
     assoList.forEach((element) => {
         let div = document.createElement("div");
         let name = document.createElement("a");
+        let nameText = document.createElement("span");
+        var img = new Image();
+        img.src = element.imageLink;
+        img.className = "imgAssoList";
+
+        nameText.innerText = element.name;
+        nameText.className = "textAssoList";
         name.setAttribute("href","/association/"+element.id);
-        name.innerText = element.name;
+        name.appendChild(img);
+        name.appendChild(nameText);
         div.appendChild(name);
         list.appendChild(div);
     });
