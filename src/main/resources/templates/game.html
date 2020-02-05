@@ -42,8 +42,10 @@
         <h4 class="title-game-second rounded-lg">Les associations qui possèdent le jeu</h4>
 
         <div>
-            <img />
-            <p></p>
+            <div class="game-asso" th:each="asso : ${assos}">
+                <img th:src="${{asso.imageLink}}" style="max-width: 200px; max-height:200px"/>
+                <a class="title-game-asso" th:href="@{/association/}+${{asso.id}}" th:text="${{asso.name}}"></a>
+            </div>
         </div>
         <div sec:authorize="!isAnonymous()" id="newOpinion">
         <form method="POST" th:action="@{/opinion/create/}+${{oneGame.id}}">
