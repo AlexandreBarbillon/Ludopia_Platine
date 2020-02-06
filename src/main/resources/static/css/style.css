@@ -21,6 +21,10 @@ body {
     background-color: #8db9bf;
 }
 
+.h5_footer {
+    text-align: center;
+}
+
 .fa-facebook, .fa-wordpress {
     color: black;
 }
