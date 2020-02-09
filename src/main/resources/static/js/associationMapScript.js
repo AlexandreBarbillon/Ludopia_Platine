@@ -27,8 +27,12 @@ function generateList(assoList){
         img.src = element.imageLink;
         img.className = "imgAssoList";
 
+        name.className = "linkAsso"
+
         nameText.innerText = element.name;
         nameText.className = "textAssoList";
+
+        div.className = "assoDiv";
         name.setAttribute("href","/association/"+element.id);
         name.appendChild(img);
         name.appendChild(nameText);
