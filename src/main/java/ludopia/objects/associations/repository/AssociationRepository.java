@@ -3,6 +3,7 @@ package ludopia.objects.associations.repository;
 import ludopia.objects.associations.Association;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,7 +25,7 @@ public interface AssociationRepository extends CrudRepository<Association, Integ
      * @return une liste des associations comprenant ce jeu
      */
     @Query("FROM Association as asso JOIN GameList as list ON asso.possessedGamesList = list.id WHERE :gameId MEMBER OF list.games")
-    List<Association> findAssoHavingTheGame(int gameId);
+    List<Association> findAssoHavingTheGame(@Param("gameId") int gameId);
 
     /**
      * Récupère les associations dont l'utilisateur donnée en paramètre est l'administrateur

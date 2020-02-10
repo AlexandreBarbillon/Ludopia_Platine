@@ -1,5 +1,7 @@
 package ludopia.controller;
 
+import ludopia.objects.associations.Association;
+import ludopia.objects.associations.service.AssociationService;
 import ludopia.objects.games.Game;
 import ludopia.objects.games.service.GameService;
 import ludopia.objects.opinion.Opinion;
@@ -9,6 +11,7 @@ import ludopia.objects.users.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,6 +30,9 @@ public class GameController {
         this.opinionService = opinionService;
         this.userService = userService;
     }
+
+    @Autowired
+    AssociationService assoService;
 
     /**
      * Affiche le formulaire de création d'un jeu
@@ -55,6 +61,7 @@ public class GameController {
      */
     @GetMapping("/game/{id}")
     public ModelAndView displayGame(@PathVariable("id") int id) {
+        var loggedUser = userService.getCurrentUser();
         ModelAndView mv = new ModelAndView("game");
         List<Opinion> opinions = opinionService.getAllOpinionFromGame(id);
         List<OpinionUser> opinionUsers = new ArrayList<>();
@@ -78,6 +85,15 @@ public class GameController {
         }
         mv.addObject("stars", list);
         mv.addObject("starsEmpty", list2);
+        mv.addObject("assos", assoService.findAssoHavingTheGame(id));
+        if (loggedUser != null) {
+            List<Association> assosUser;
+            assosUser = assoService.findAssoFromUser(loggedUser.getId());
+            mv.addObject("assosUser", assosUser);
+        }
+
+
+
         return mv;
     }
 

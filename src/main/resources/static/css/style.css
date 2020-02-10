@@ -168,6 +168,7 @@ body {
 /* One Game page */
 .one-game-info {
     background-color: #B4DFE5;
+    height: 400px;
 }
 
 .game-image {
@@ -196,6 +197,15 @@ body {
     padding: 6px;
 }
 
+.game-asso {
+    display: inline-block;
+    width: 300px;
+}
+
+.title-game-asso {
+    font-weight: bold;
+    text-align: center;
+}
 /* Form page registration */
 .formRegistration {
     width: 50%;
@@ -369,24 +379,28 @@ body {
     margin-bottom: 10px;
 }
 
-#newOpinion form > div {
-  display: grid;
-  grid-template-columns: 50px 400px;
+.note-radio {
+    opacity: 0;
+    width: 0;
+    height: 0;
 }
 
-#newOpinion label {
-    grid-column: 1;
-    margin-bottom: 10px;
+.change-to-pointer {
+    cursor: pointer;
 }
 
-#newOpinion input {
-    grid-column: 2;
-    margin-bottom: 10px;
+/*Infos*/
+.otherInfos {
+    position: relative;
+    top: 200px;
+    left: -330px;
 }
 
-#newOpinion textarea {
-    grid-column: 2;
-    margin-bottom: 10px;
+#selectAsso {
+    display: inline-block;
+    width: auto;
 }
 
-
+#submitAsso {
+    display: inline-block;
+}
