@@ -12,7 +12,9 @@ function initMap() {
 function generateMarkers(assoList){
     assoList.forEach((element) => {
         let latLng = new L.LatLng(element["latitude"], element["longitude"]);
-        new L.marker(latLng).addTo(mymap)
+        let marker = new L.marker(latLng).addTo(mymap);
+        marker.bindPopup("<b>"+element["name"]+"</b>");
+        marker
     });
 
 }
