@@ -239,6 +239,10 @@ body {
     height: 200px;
 }
 
+.subtitle {
+    font-size: 9px;
+}
+
 .submitAsso:hover {
     color: #ffaf0f;
 }
@@ -246,6 +250,19 @@ body {
 #addGame {
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+#addGameTitle {
+    text-align: center;
+}
+
+#addGameToMine {
+    margin-left: 2px;
+    margin-top: 20px;
+}
+
+.game-card {
+    padding: 20px;
 }
 
 /* Form page registration */
