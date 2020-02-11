@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+    <head th:replace="~{layout/header}"></head>
+    <body>
+    <div th:replace="~{layout/navbar}"></div>
+
+    <div class="container">
+
+        <div id="user" th:if="${user} != null">
+            <div id="user-main">
+                <img id="user-image" th:src="${user.imageLink != ''} ? (${user.imageLink} ? ${user.imageLink} : false)  : '/images/infos/sample_etu.jpg'" th:alt="${{user.username}}"/>
+                <div>
+                    <h1 id="user-username" class="title-home" th:text="${{user.username}}"></h1>
+                    <p id="user-description" class="content" th:text="${{user.description}}"></p>
+                </div>
+            </div>
+
+
+            <div class="title-home" id="user-listes-jeux">
+                <h2>Ses listes de jeux</h2>
+                <div th:each="game : ${games}">
+                    <div class="card">
+                        <img th:src="${{game.imageLink}}" style="width:200px; text-align:center" class="card-img-top img-thumbnail" alt="game.name">
+                        <div class="card-body">
+                            <a th:href="@{/game/}+${{game.id}}"<h5 class="card-text" th:text="${{game.name}}"></h5></div></a>
+                        </div>
+                    </div>
+                </div>
+                <p th:if="${#lists.isEmpty(games)}">Cet utilisateur ne possède aucune jeu.</p>
+            </div>
+        </div>
+        <div th:unless="${user} != null">
+            <p>Cet utilisateur n'existe pas.</p>
+        </div>
+
+    </div>
+
+    <div th:replace="~{layout/footer}"></div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </body>
+</html>

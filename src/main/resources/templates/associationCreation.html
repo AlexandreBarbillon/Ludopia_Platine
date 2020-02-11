@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{layout/headerMap}"></head>
+
+<body>
+<div th:replace="~{layout/navbar}"></div>
+<div class="container">
+    <h1 class="h1Form">Créer une association</h1>
+
+    <form method="POST" name="game" action="/association/create" class="formAsso">
+        <div class="form-group">
+            <label for="formNameAsso">Nom</label>
+            <input type="text" id="formNameAsso" name ="name" autofocus="true" placeholder="Nom" class="form-control" required/>
+        </div>
+        <div class="form-group">
+            <label for="formLogoAsso">Lien vers le logo</label>
+            <input type="text" id="formLogoAsso" name ="imageLink" placeholder="Logo" class="form-control" required/>
+        </div>
+        <div class="form-group">
+            <label for="formDescAsso">Description</label>
+            <textarea id="formDescAsso" name="description" class="form-control" rows="3" required>
+            </textarea>
+        </div>
+        <div class="form-group">
+            <label for="formAddressAsso">Description</label>
+            <textarea id="formAddressAsso" name="address" class="form-control" rows="2" required>
+            </textarea>
+        </div>
+        <div class="form-group">
+            <label>Localisation</label>
+            <div>
+            <input id="longitude" type="hidden" name="longitude" required/>
+            <input id="latitude" type="hidden" name="latitude" required/>
+            <div id="map" style="width:100%; cursor: pointer;"></div>
+            </div>
+        </div>
+        <div class="form-submit">
+            <button type="submit" class="btn btn-primary btn-custom">Valider</button>
+        </div>
+    </form>
+
+</div>
+<div th:replace="~{layout/footer}"></div>
+</body>
+<script src="/js/associationCreationScript.js"></script>
+
+</html>

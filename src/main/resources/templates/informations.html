@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{layout/header}"></head>
+
+<body>
+<div th:replace="~{layout/navbar}"></div>
+<div class="container">
+    <div id="intro">
+        <h1 class="title-home">Qui sommes-nous ?</h1>
+        <div class="content">
+            <img  src="images/infos/univ-lille.jpg" alt="Infos"/>
+            <p>
+                Nous sommes trois étudiants de Master E-Services à l'Université de Lille.<br/>
+                Dans le cadre de nos études, nous avons eu l'opportunité d'élaborer une<br/>
+                application Web, et c'est là qu'a été créé Ludopia !
+            </p>
+        </div>
+
+    </div>
+    <div id="etudiants" class="title-home">
+        <div class="content">
+            <div class="etudiant">
+                <img  src="images/infos/sample_etu.jpg" alt="Etudiant" width="100px" height="100px"/>
+                <p>Alexandre Barbillon</p>
+            </div>
+            <div class="etudiant">
+                <img  src="images/infos/sample_etu.jpg" alt="Etudiant" width="100px" height="100px"/>
+                <p>Estelle Héripret</p>
+            </div>
+            <div class="etudiant">
+                <img  src="images/infos/sample_etu.jpg" alt="Etudiant" width="100px" height="100px"/>
+                <p>Pierre Patte</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div th:replace="~{layout/footer}"></div>
+</body>
+</html>
