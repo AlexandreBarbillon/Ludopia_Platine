@@ -56,7 +56,7 @@
 
 
         <div sec:authorize="!isAnonymous()" id="newOpinion">
-            <h2 class="title-home">Soumettre votre avis :</h2>
+            <h4 class="title-home rounded-lg">Soumettre votre avis :</h4>
 
             <form id="newOpinionForm" name="newOpinionForm" method="POST" th:action="@{/opinion/create/}+${{oneGame.id}}">
                 <div>
@@ -80,11 +80,11 @@
 
 
         <div id="opinionList">
-        <h2 class="title-home">Avis :</h2>
+        <h4 class="title-home rounded-lg">Avis :</h4>
         <div class="opinion" th:each="opinion : ${opinions}">
             <div>
 
-                <a th:href="@{/user/} + ${{opinion.userId}}">
+                <a th:href="@{/user/} + ${{opinion.userId}}" class="linkOpinion">
                     <img width="50px" height="50px" th:src="${opinion.avatarLink != ''} ? (${opinion.avatarLink} ? ${opinion.avatarLink} : false)  : '/images/infos/sample_etu.jpg'" alt="Avatar"/>
                     <p th:text="${{opinion.username}}"></p>
                 </a>

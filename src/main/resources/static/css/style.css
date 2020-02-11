@@ -89,6 +89,8 @@ body {
 
 .title-home {
     background-color: #B4DFE5;
+    padding: 6px;
+    font-weight: bold;
 }
 
 #latest {
@@ -376,7 +378,8 @@ body {
 }
 
 #newOpinion {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    margin-top: 20px;
 }
 
 .note-radio {
@@ -387,6 +390,21 @@ body {
 
 .change-to-pointer {
     cursor: pointer;
+}
+
+#opinionList {
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.linkOpinion, .linkOpinion:visited {
+    color: black;
+    font-weight: bold;
+}
+
+.linkOpinion:hover  {
+    text-decoration: none;
+    color: #ffaf0f;
 }
 
 /*Infos*/
