@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head th:replace="~{layout/header}"></head>
     <body>
     <div th:replace="~{layout/navbar}"></div>
@@ -22,7 +22,7 @@
                     <div class="card">
                         <img th:src="${{game.imageLink}}" style="width:200px; text-align:center" class="card-img-top img-thumbnail" alt="game.name">
                         <div class="card-body">
-                            <a th:href="@{/game/}+${{game.id}}"<h5 class="card-text" th:text="${{game.name}}"></h5></div></a>
+                            <a th:href="@{/game/}+${{game.id}}"><h5 class="card-text" th:text="${{game.name}}"></h5></a>
                         </div>
                     </div>
                 </div>

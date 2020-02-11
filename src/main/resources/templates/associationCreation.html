@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{layout/headerMap}"></head>
 
 <body>
@@ -10,24 +10,23 @@
     <form method="POST" name="game" action="/association/create" class="formAsso">
         <div class="form-group">
             <label for="formNameAsso">Nom</label>
-            <input type="text" id="formNameAsso" name ="name" autofocus="true" placeholder="Nom" class="form-control" required/>
+            <input type="text" id="formNameAsso" name ="name" autofocus="true" placeholder="Nom de l'association" class="form-control" required/>
         </div>
         <div class="form-group">
             <label for="formLogoAsso">Lien vers le logo</label>
-            <input type="text" id="formLogoAsso" name ="imageLink" placeholder="Logo" class="form-control" required/>
+            <input type="text" id="formLogoAsso" name ="imageLink" placeholder="Lien vers l'image du logo" class="form-control" required/>
         </div>
         <div class="form-group">
             <label for="formDescAsso">Description</label>
-            <textarea id="formDescAsso" name="description" class="form-control" rows="3" required>
-            </textarea>
+            <textarea id="formDescAsso" name="description" placeholder="Description de l'association" class="form-control" rows="3" required></textarea>
         </div>
         <div class="form-group">
-            <label for="formAddressAsso">Description</label>
-            <textarea id="formAddressAsso" name="address" class="form-control" rows="2" required>
-            </textarea>
+            <label for="formAddressAsso">Adresse</label>
+            <input id="formAddressAsso" placeholder="Adresse physique de l'association" name="address" class="form-control" required/>
         </div>
         <div class="form-group">
             <label>Localisation</label>
+            <p class="subtitle">Cliquez à l'emplacement de votre association, vous pouvez zoomer si nécessaire</p>
             <div>
             <input id="longitude" type="hidden" name="longitude" required/>
             <input id="latitude" type="hidden" name="latitude" required/>

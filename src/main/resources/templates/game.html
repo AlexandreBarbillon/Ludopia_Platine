@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{layout/header}"></head>
 
@@ -31,7 +31,7 @@
                 <a class="btn btn-custom" th:text="'Retirer ce jeu de mes jeux'" th:href="@{/list/removeFromUser/}+${{oneGame.id}}"></a>
             </div>
             <div th:if="not ${{isGameInUserList}}" sec:authorize="!isAnonymous()" class="otherInfos float-left">
-                <a class="btn btn-custom" th:text="'Ajouter ce jeu à mes jeux'" th:href="@{/list/addToUser/}+${{oneGame.id}}"></a>
+                <a id="addGameToMine" class="btn btn-custom" th:text="'Ajouter ce jeu à mes jeux'" th:href="@{/list/addToUser/}+${{oneGame.id}}"></a>
             </div>
             <div th:if="${not #lists.isEmpty(assosUser)}" sec:authorize="!isAnonymous()" class="otherInfos float-left">
                 <form method="post" action="/list/addToAsso" class="form-inline">
@@ -98,7 +98,7 @@
             <form id="newOpinionForm" name="newOpinionForm" method="POST" th:action="@{/opinion/create/}+${{oneGame.id}}">
                 <div>
                     <div class="form-group">
-                        <label>Note :    </label>
+                        <label>Note :</label>
                         <label class="far fa-star change-to-pointer"><input class="note-radio" type="radio" name="noteStr" value="1"></label>
                         <label class="far fa-star change-to-pointer"><input class="note-radio" type="radio" name="noteStr" value="2"></label>
                         <label class="far fa-star change-to-pointer"><input class="note-radio" type="radio" name="noteStr" value="3"></label>
@@ -107,7 +107,7 @@
                     </div>
                     <div class="form-group">
                         <label for="form-avis">Avis</label>
-                        <textarea id="form-avis" name="message" class="form-control" rows="3" required></textarea>
+                        <textarea id="form-avis" name="message" class="form-control" placeholder="Laissez-nous votre avis sur ce jeu..." rows="3" required></textarea>
                     </div>
                 </div>
                 <button form="newOpinionForm" class="btn btn-primary btn-custom" type="submit" name="submit">Laisser un avis</button>

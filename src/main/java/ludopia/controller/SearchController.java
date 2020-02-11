@@ -2,6 +2,7 @@ package ludopia.controller;
 
 import ludopia.objects.games.Game;
 import ludopia.objects.games.service.GameService;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,9 +27,9 @@ public class SearchController {
      * @return un modelAndView contenant les jeux récupérés
      */
     @GetMapping("/search")
-    public ModelAndView displaySearchResult(@RequestParam String searchString){
+    public ModelAndView displaySearchResult(@Param("searchString") String searchString){
         List<Game> games;
-        if(searchString.isEmpty()){
+        if(searchString == null || searchString.isEmpty()){
             games = gameService.getGamesSortByDate();
         }
         else{

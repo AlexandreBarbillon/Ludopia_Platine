@@ -6,18 +6,16 @@
         <a th:href="@{/association/map}" class="btn btn-secondary" type="button">
         Associations
         </a>
+        <a class="btn btn-custom" th:href="@{/search}">Voir tous les Jeux</a>
         <form class="form-inline" action="/search" method="GET" >
-            <input class="form-control" type="search" name="searchString" aria-label="Search">
+            <input class="form-control" type="search" name="searchString" placeholder="Rechercher un jeu..." aria-label="Search">
             <button class="btn btn-outline-success" type="submit" >Rechercher</button>
         </form>
 
 
         <div sec:authorize="!isAnonymous()">
-            <a th:href="@{/user/} + ${{loggedUser.id}}">
-
-                <img width="50px" height="50px" th:src="${loggedUser.imageLink != ''} ? (${loggedUser.imageLink} ? ${loggedUser.imageLink} : false)  : '/images/infos/sample_etu.jpg'" alt="avatar"/>
-                <span th:text="${{loggedUser.username}}"></span>
-            </a>
+            <img class="img_thumbnail" width="50px" height="50px" th:src="${loggedUser.imageLink != ''} ? (${loggedUser.imageLink} ? ${loggedUser.imageLink} : false)  : '/images/infos/sample_etu.jpg'" alt="avatar"/>
+            <a th:href="@{/user/} + ${{loggedUser.id}}" th:text="${{loggedUser.username}}"></a>
             <a th:href="@{/logout}" class="btn btn-light" type="button">
                 Se déconnecter
             </a>
