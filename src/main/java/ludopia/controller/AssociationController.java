@@ -4,6 +4,8 @@ import ludopia.objects.associations.Association;
 import ludopia.objects.associations.service.AssociationService;
 import ludopia.objects.games.Game;
 import ludopia.objects.games.service.GameService;
+import ludopia.objects.users.LudopiaUser;
+import ludopia.objects.users.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,10 +28,12 @@ public class AssociationController {
     AssociationService associationService;
     private final
     GameService gameService;
-
-    public AssociationController(AssociationService associationService, GameService gameService) {
+    private final
+    UserService userService;
+    public AssociationController(AssociationService associationService, GameService gameService, UserService userService) {
         this.associationService = associationService;
         this.gameService = gameService;
+        this.userService = userService;
     }
 
     /**
@@ -64,6 +68,11 @@ public class AssociationController {
         if (asso!= null) {
             gameList = gameService.unwrapGameList(asso.getPossessedGamesList());
         }
+        boolean isAdmin = false;
+        LudopiaUser currentUser = this.userService.getCurrentUser();
+        if(currentUser != null)
+            isAdmin = currentUser.getId() == asso.getAdmin();
+        mv.addObject("isAdmin",isAdmin);
         mv.addObject("asso",asso);
         mv.addObject("gameList",gameList);
         return mv;
