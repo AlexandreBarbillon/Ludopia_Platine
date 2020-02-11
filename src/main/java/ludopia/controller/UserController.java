@@ -72,6 +72,9 @@ public class UserController {
             mav = new ModelAndView("user");
         }
         LudopiaUser user = userService.getUserById(userId);
+        if (user==null) {
+            System.out.println(userId);
+        }
 
         List<Game> games = gameService.unwrapGameList(user.getGameList());
         
