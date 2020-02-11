@@ -76,4 +76,10 @@ public class AssociationController {
     public String displayAssoMap(){
         return "assoMap";
     }
+
+    @GetMapping("/association/deleteAsso/{id}")
+    public String removeAsso(@PathVariable int id){
+        associationService.deleteAsso(id);
+        return "redirect:/";
+    }
 }
