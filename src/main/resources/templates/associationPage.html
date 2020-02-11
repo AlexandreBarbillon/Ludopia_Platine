@@ -7,7 +7,7 @@
 
 <div class="container">
     <div id="asso" th:if="${asso} != null">
-        <div class="mt-4 mb-4 pt-4 pb-4 overflow-auto one-game-info rounded-lg">
+        <div class="mt-4 mb-4 pt-4 pb-4 overflow-auto rounded-lg">
 
             <div class="float-left game-image mr-5 ml-5 p-3">
                 <img class="img-fluid" th:src="${{asso.imageLink}}" th:alt="${{asso.name}}"/>
@@ -44,7 +44,10 @@
             maxZoom: 19,
             attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
         }).addTo(mymap);
+
         marker = new L.marker(latLng).addTo(mymap);
+        marker.bindPopup("<b>"+[[${{asso.name}}]]+"</b><br>8 rue du jeu 59000 Lille");
+
     }
 
     window.addEventListener("load",initMap);

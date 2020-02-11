@@ -88,6 +88,7 @@ public class GameController {
         }
         mv.addObject("stars", list);
         mv.addObject("starsEmpty", list2);
+
         mv.addObject("assos", assoService.findAssoHavingTheGame(id));
         if (loggedUser != null) {
             List<Association> assosUser;
