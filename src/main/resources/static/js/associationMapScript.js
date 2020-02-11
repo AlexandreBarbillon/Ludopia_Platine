@@ -11,7 +11,13 @@ function initMap() {
 function generateMarkers(assoList){
     assoList.forEach((element) => {
         let latLng = new L.LatLng(element["latitude"], element["longitude"]);
-        new L.marker(latLng).addTo(mymap)
+        let marker = new L.marker(latLng).addTo(mymap);
+        marker.bindPopup("<p class='card' style='height:100%'>" +
+                         "" +
+                         "<div class='card-body'>" +
+                         "<a class='card-title' href='/association/"+element["id"]+"'><h5>"+element['name']+"</h5></a>" +
+                         "<p class='card-text'>"+element['description']+"</p>" +
+        "</div></div>")
     });
 
 }
