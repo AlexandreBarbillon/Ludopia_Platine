@@ -25,7 +25,7 @@ public class Association {
     @Column @NonNull
     private
     String name;
-    @Column
+    @Column(length=2000)
     private
     String description;
     @Column

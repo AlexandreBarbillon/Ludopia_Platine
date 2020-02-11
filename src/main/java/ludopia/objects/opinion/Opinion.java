@@ -23,7 +23,7 @@ public class Opinion {
     private int userId;
     @Column
     private int note;
-    @Column
+    @Column(length=2000)
     private String message;
 
     public Opinion(){
