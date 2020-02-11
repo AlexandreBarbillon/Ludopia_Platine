@@ -252,6 +252,19 @@ body {
     margin-bottom: 10px;
 }
 
+#addGameTitle {
+    text-align: center;
+}
+
+#addGameToMine {
+    margin-left: 2px;
+    margin-top: 20px;
+}
+
+.game-card {
+    padding: 20px;
+}
+
 /* Form page registration */
 .formRegistration {
     width: 50%;
