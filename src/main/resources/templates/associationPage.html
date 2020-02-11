@@ -15,15 +15,16 @@
             <h1 th:text="${{asso.name}}"></h1>
             <div th:text="${{asso.description}}"></div>
             <div id="map"></div>
-        </div>
-        <div th:each="game : ${gameList}" id="gameInAsso">
-            <div class="inline-block">
-                <div class="pictureGame">
-                    <img class="" src="${{game.imageLink}}" alt="${{game.name}}"/>
+            <div th:each="game : ${gameList}" id="gameInAsso">
+                <div class="inline-block">
+                    <div class="pictureGame">
+                        <img class="" th:src="${{game.imageLink}}" th:alt="${{game.name}}"/>
+                    </div>
+                    <span th:text="${{game.name}}"></span>
                 </div>
-                <span th:text="${{game.name}}"></span>
             </div>
         </div>
+
     </div>
     <div th:unless="${asso} != null">
         Cette association n'existe pas.
@@ -45,6 +46,6 @@
         marker = new L.marker(latLng).addTo(mymap);
     }
 
-
+    window.addEventListener("load",initMap);
 </script>
 </html>

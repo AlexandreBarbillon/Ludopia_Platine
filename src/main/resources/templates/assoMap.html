@@ -5,9 +5,13 @@
 <body>
 <div th:replace="~{layout/navbar}"></div>
 <div class="container">
+    <a th:if="${gameName != '' && gameId != null}" class="btn btn-custom" th:text="'retourner à la page '+${gameName}" th:href="@{/game/}+${gameId}"></a>
+    <div th:if="${gameId == null}">Carte des associations</div>
+    <div th:if="${gameName != '' && gameId != null}" th:text="'Carte des associations possédant le jeu '+${gameName}"></div>
+    <div th:if="${gameName == ''}">Ce jeu n'existe pas</div>
     <div class="assoContenu">
-    <div id="map"></div>
-    <div id="sidebarAsso">
+        <div id="map"></div>
+        <div id="sidebarAsso">
         <div id="list">
         </div>
     </div>
@@ -21,5 +25,11 @@
 </div>
 <div th:replace="~{layout/footer}"></div>
 </body>
+<script th:inline="javascript">
+    function initAsso(){
+        let id = [[${gameId}]];
+        getAssos(id);
+    }
+</script>
 <script src="/js/associationMapScript.js"></script>
 </html>

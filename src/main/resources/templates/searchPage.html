@@ -15,6 +15,7 @@
                     <div class="card-body">
                         <h5 class="card-title" th:text="${{game.name}}"></h5>
                         <p class="card-text"th:text="${{game.description}}"></p>
+                        <a class="btn btn-primary btn-custom" th:href="@{/game/}+${{game.id}}">Voir la page du jeu</a>
                     </div>
                 </div>
         </div>

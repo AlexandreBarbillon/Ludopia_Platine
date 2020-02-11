@@ -26,14 +26,17 @@ public class OpinionController {
     /**
      * Permet de créer un opinion
      * @param gameId l'id du jeu
-     * @param note la note donnée
+     * @param noteStr la note donnée
      * @param message le message écrit
      * @return une redirection vers la page du jeu
      */
     @PostMapping("/opinion/create/{gameId}")
-    public String addOpinion(@PathVariable int gameId, int note, String message){
+    public String addOpinion(@PathVariable int gameId, String noteStr, String message){
+        int note;
+        if (noteStr == null) note = 0;
+        else note = Integer.parseInt(noteStr);
         LudopiaUser potentialUser = userService.getCurrentUser();
-        if (potentialUser != null && note > 0 && note < 5){
+        if (potentialUser != null && note > 0 && note <= 5){
             int userId = potentialUser.getId();
             Opinion opinion = opinionService.createOpinion(userId,gameId,note,message);
             if(opinion != null){

@@ -168,6 +168,7 @@ body {
 /* One Game page */
 .one-game-info {
     background-color: #B4DFE5;
+    height: 400px;
 }
 
 .game-image {
@@ -196,6 +197,15 @@ body {
     padding: 6px;
 }
 
+.game-asso {
+    display: inline-block;
+    width: 300px;
+}
+
+.title-game-asso {
+    font-weight: bold;
+    text-align: center;
+}
 /* Form page registration */
 .formRegistration {
     width: 50%;
@@ -347,4 +357,50 @@ body {
 
 .textAssoList:hover {
     color: black;
+}
+
+/* Opinions */
+.opinion {
+    margin-left: 10px;
+    padding-bottom: 10px;
+}
+
+.opinion > div > p {
+    border-left: 1px dotted;
+    margin-left: 10px;
+    padding-left: 10px;
+}
+
+.opinion a > * {
+    display: inline-block;
+}
+
+#newOpinion {
+    margin-bottom: 10px;
+}
+
+.note-radio {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.change-to-pointer {
+    cursor: pointer;
+}
+
+/*Infos*/
+.otherInfos {
+    position: relative;
+    top: 200px;
+    left: -330px;
+}
+
+#selectAsso {
+    display: inline-block;
+    width: auto;
+}
+
+#submitAsso {
+    display: inline-block;
 }
