@@ -83,7 +83,7 @@ public class ListController {
     public String removeGameFromUser(@PathVariable int id, @Param("redirect") String redirect){
         if(gameService.getGameById(id) != null)
             userService.removeFromUserList(id);
-        if(!redirect.equals("")){
+        if(redirect != null && !redirect.equals("")){
             return "redirect:"+redirect;
         }
         return "redirect:/game/"+id;
