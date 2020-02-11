@@ -6,7 +6,6 @@ function initMap() {
         maxZoom: 19,
         attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
     }).addTo(mymap);
-    getAssos();
 }
 
 function generateMarkers(assoList){
@@ -37,17 +36,26 @@ function generateList(assoList){
     });
 }
 
-function getAssos(){
+function getAssos(gameId){
+    let address = "/api/assoList/";
+    if(gameId != null){
+       address = "/api/assoList/"+gameId;
+    }
     let request = new XMLHttpRequest();
     request.addEventListener("readystatechange", () =>{
         if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
-            let assos = JSON.parse(request.responseText)
+            let assos = JSON.parse(request.responseText);
             generateMarkers(assos);
             generateList(assos);
         }
     });
-    request.open("GET","/api/assoList");
+    request.open("GET",address);
     request.send();
 }
 
-window.addEventListener("load",initMap);
+function initPage(){
+    initMap();
+    initAsso(); //MUST BE DECLARED IN HTML
+}
+
+window.addEventListener("load",initPage);
