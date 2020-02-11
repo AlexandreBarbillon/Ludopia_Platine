@@ -24,7 +24,6 @@
                     <span th:each="star : ${starsEmpty}">
                         <i class="far fa-star"></i>
                     </span>
-
             </div>
 
             <p class="game-description" th:text="${{oneGame.description}}"></p>
@@ -32,7 +31,7 @@
                 <a class="btn btn-custom" th:text="'Retirer ce jeu de mes jeux'" th:href="@{/list/removeFromUser/}+${{oneGame.id}}"></a>
             </div>
             <div th:if="not ${{isGameInUserList}}" sec:authorize="!isAnonymous()" class="otherInfos float-left">
-                <a class="btn btn-custom" th:text="'Ajouter ce jeu à mes jeux'" th:href="@{/list/removeFromUser/}+${{oneGame.id}}"></a>
+                <a class="btn btn-custom" th:text="'Ajouter ce jeu à mes jeux'" th:href="@{/list/addToUser/}+${{oneGame.id}}"></a>
             </div>
             <div th:if="${not #lists.isEmpty(assosUser)}" sec:authorize="!isAnonymous()" class="otherInfos float-left">
                 <form method="post" action="/list/addToAsso">
