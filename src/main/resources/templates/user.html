@@ -18,10 +18,15 @@
 
             <div class="title-home" id="user-listes-jeux">
                 <h2>Ses listes de jeux</h2>
-                <div th:each="list : ${lists}">
-                    <p th:if="${list} != null" th:text="${{list.title}}"></p>
+                <div th:each="game : ${games}">
+                    <div class="card">
+                        <img th:src="${{game.imageLink}}" style="width:200px; text-align:center" class="card-img-top img-thumbnail" alt="game.name">
+                        <div class="card-body">
+                            <a th:href="@{/game/}+${{game.id}}"<h5 class="card-text" th:text="${{game.name}}"></h5></div></a>
+                        </div>
+                    </div>
                 </div>
-                <p th:if="${#lists.isEmpty(list)}">Cet utilisateur ne possède aucune liste de jeu.</p>
+                <p th:if="${#lists.isEmpty(games)}">Cet utilisateur ne possède aucune jeu.</p>
             </div>
         </div>
         <div th:unless="${user} != null">

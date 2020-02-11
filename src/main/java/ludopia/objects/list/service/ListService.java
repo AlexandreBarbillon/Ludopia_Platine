@@ -34,5 +34,6 @@ public interface ListService {
      */
     boolean addGameToList(int listId,int gameId) throws GameAlreadyInListException;
     boolean removeGameToList(int listId, int gameId);
+    boolean gameInList(int listId, int gameId);
     GameList createList(GameList gameList);
 }

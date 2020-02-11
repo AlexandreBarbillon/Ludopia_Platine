@@ -45,4 +45,7 @@ public interface UserService {
      */
     LudopiaUser getCurrentUser();
     void updateUser(LudopiaUser user);
+
+    boolean addToUserList(int gameId);
+    boolean removeFromUserList(int gameId);
 }
