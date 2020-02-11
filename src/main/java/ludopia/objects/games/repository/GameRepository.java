@@ -4,6 +4,7 @@ import ludopia.objects.games.Game;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
@@ -32,5 +33,5 @@ public interface GameRepository extends CrudRepository<Game, String> {
      * @return une liste de jeux répondant à la recherche
      */
     @Query("FROM Game WHERE UPPER(name) LIKE UPPER(:search)")
-    List<Game> searchGames(String search);
+    List<Game> searchGames(@Param("search") String search);
 }

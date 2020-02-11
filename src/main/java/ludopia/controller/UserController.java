@@ -3,6 +3,7 @@ package ludopia.controller;
 import ludopia.objects.associations.Association;
 import ludopia.objects.associations.service.AssociationService;
 import ludopia.objects.games.Game;
+import ludopia.objects.games.service.GameService;
 import ludopia.objects.list.GameList;
 import ludopia.objects.list.OwnerType;
 import ludopia.objects.list.exceptions.GameAlreadyInListException;
@@ -28,10 +29,11 @@ public class UserController {
 
     private final UserService userService;
     private final ListService listService;
-
-    public UserController(UserService userService, ListService listService) {
+    private final GameService gameService;
+    public UserController(UserService userService, ListService listService, GameService gameService) {
         this.userService = userService;
         this.listService = listService;
+        this.gameService = gameService;
     }
 
     /**
@@ -71,15 +73,10 @@ public class UserController {
         }
         LudopiaUser user = userService.getUserById(userId);
 
-        List<GameList> lists = new ArrayList<>();
-        if (user!=null) {
-            for (int i : user.getLists()) {
-                lists.add(listService.getListById(i));
-            }
-        }
+        List<Game> games = gameService.unwrapGameList(user.getGameList());
         
         mav.addObject("user", user);
-        mav.addObject("lists", lists);
+        mav.addObject("games", games);
 
         return mav;
     }

@@ -37,4 +37,5 @@ public interface AssociationService {
      * @return la liste des associations d'un utilisateur
      */
     List<Association> findAssoFromUser(int userId);
+    void deleteAsso(int assoId);
 }

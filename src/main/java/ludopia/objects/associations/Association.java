@@ -25,9 +25,12 @@ public class Association {
     @Column @NonNull
     private
     String name;
-    @Column
+    @Column(length=2000)
     private
     String description;
+    @Column
+    private
+    String address;
     @Column @NonNull
     private
     double latitude;
@@ -85,6 +88,14 @@ public class Association {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public double getLatitude() {

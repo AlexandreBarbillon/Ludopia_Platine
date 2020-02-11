@@ -4,6 +4,7 @@ import ludopia.objects.associations.Association;
 import ludopia.objects.associations.service.AssociationService;
 import ludopia.objects.games.Game;
 import ludopia.objects.games.service.GameService;
+import ludopia.objects.list.service.ListService;
 import ludopia.objects.opinion.Opinion;
 import ludopia.objects.opinion.service.OpinionService;
 import ludopia.objects.users.LudopiaUser;
@@ -25,6 +26,7 @@ public class GameController {
     private GameService gameService;
     private OpinionService opinionService;
     private UserService userService;
+    @Autowired private ListService listService;
     public GameController(GameService gameService, OpinionService opinionService, UserService userService) {
         this.gameService = gameService;
         this.opinionService = opinionService;
@@ -73,6 +75,7 @@ public class GameController {
         int avg;
         if (opinions.size() != 0) avg = sum/opinions.size();
         else avg = 0;
+
         mv.addObject("opinions", opinionUsers);
         mv.addObject("oneGame", gameService.getGameById(id));
         var list = new ArrayList<>();
@@ -85,11 +88,13 @@ public class GameController {
         }
         mv.addObject("stars", list);
         mv.addObject("starsEmpty", list2);
+
         mv.addObject("assos", assoService.findAssoHavingTheGame(id));
         if (loggedUser != null) {
             List<Association> assosUser;
             assosUser = assoService.findAssoFromUser(loggedUser.getId());
             mv.addObject("assosUser", assosUser);
+            mv.addObject("isGameInUserList", listService.gameInList(loggedUser.getGameList(), id));
         }
 
 

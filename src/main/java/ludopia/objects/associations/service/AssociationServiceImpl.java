@@ -58,4 +58,10 @@ public class AssociationServiceImpl implements AssociationService {
     public List<Association> findAssoFromUser(int userId) {
         return associationRepo.findAssociationsByAdmin(userId);
     }
+
+    @Override
+    public void deleteAsso(int assoId) {
+        Association asso = this.getAssoById(assoId);
+        associationRepo.delete(asso);
+    }
 }

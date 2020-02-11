@@ -6,13 +6,18 @@ function initMap() {
         maxZoom: 19,
         attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
     }).addTo(mymap);
-    getAssos();
 }
 
 function generateMarkers(assoList){
     assoList.forEach((element) => {
         let latLng = new L.LatLng(element["latitude"], element["longitude"]);
-        new L.marker(latLng).addTo(mymap)
+        let marker = new L.marker(latLng).addTo(mymap);
+        marker.bindPopup("<p class='card' style='height:100%'>" +
+                         "" +
+                         "<div class='card-body'>" +
+                         "<a class='card-title' href='/association/"+element["id"]+"'><h5>"+element['name']+"</h5></a>" +
+                         "<p class='card-text'>"+element['address']+"</p>" +
+        "</div></div>")
     });
 
 }
@@ -27,8 +32,12 @@ function generateList(assoList){
         img.src = element.imageLink;
         img.className = "imgAssoList";
 
+        name.className = "linkAsso"
+
         nameText.innerText = element.name;
         nameText.className = "textAssoList";
+
+        div.className = "assoDiv";
         name.setAttribute("href","/association/"+element.id);
         name.appendChild(img);
         name.appendChild(nameText);
@@ -37,17 +46,26 @@ function generateList(assoList){
     });
 }
 
-function getAssos(){
+function getAssos(gameId){
+    let address = "/api/assoList/";
+    if(gameId != null){
+       address = "/api/assoList/"+gameId;
+    }
     let request = new XMLHttpRequest();
     request.addEventListener("readystatechange", () =>{
         if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
-            let assos = JSON.parse(request.responseText)
+            let assos = JSON.parse(request.responseText);
             generateMarkers(assos);
             generateList(assos);
         }
     });
-    request.open("GET","/api/assoList");
+    request.open("GET",address);
     request.send();
 }
 
-window.addEventListener("load",initMap);
+function initPage(){
+    initMap();
+    initAsso(); //MUST BE DECLARED IN HTML
+}
+
+window.addEventListener("load",initPage);
