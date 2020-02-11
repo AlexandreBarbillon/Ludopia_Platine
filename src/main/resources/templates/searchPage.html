@@ -5,7 +5,9 @@
 <body>
 <div th:replace="~{layout/navbar}"></div>
     <div class="container">
-        <a href="/game/create"><button class="button">Ajouter un jeu</button></a>
+        <a th:href="@{/game/create}">
+            <button id="addGame"  class="btn btn-primary btn-custom">Ajouter un jeu</button>
+        </a>
         <div th:each="game : ${searchResult}" class="card">
             <div class="row no-gutters">
                 <div class="col-md-4">
