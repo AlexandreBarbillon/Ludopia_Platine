@@ -5,6 +5,7 @@ import ludopia.objects.associations.service.AssociationService;
 import ludopia.objects.games.Game;
 import ludopia.objects.games.service.GameService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,8 +33,8 @@ public class ApiController {
         return this.assoService.getAll();
     }
 
-    /*@GetMapping("/searchGame")
-    public Iterable<Game> searchGames(String search){
-        return this.gameService.searchGame(search);
-    }*/
+    @GetMapping("/assoList/{id}")
+    public Iterable<Association> getAssoWithGame(@PathVariable int id){
+        return this.assoService.findAssoHavingTheGame(id);
+    }
 }

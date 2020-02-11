@@ -90,14 +90,28 @@
 
         <div sec:authorize="!isAnonymous()" id="newOpinion">
             <h2 class="title-home">Soumettre votre avis :</h2>
-            <form method="POST" th:action="@{/opinion/create/}+${{oneGame.id}}">
-                <label>Note :</label>
-                <input type="number" name="note"/>
-                <label>Avis</label>
-                <input name="message"/>
-                <input type="submit" name="submit"/>
+
+            <form id="newOpinionForm" name="newOpinionForm" method="POST" th:action="@{/opinion/create/}+${{oneGame.id}}">
+                <div>
+                    <div class="form-group">
+                        <label>Note :    </label>
+                        <label class="far fa-star change-to-pointer"><input class="note-radio" type="radio" name="noteStr" value="1"></label>
+                        <label class="far fa-star change-to-pointer"><input class="note-radio" type="radio" name="noteStr" value="2"></label>
+                        <label class="far fa-star change-to-pointer"><input class="note-radio" type="radio" name="noteStr" value="3"></label>
+                        <label class="far fa-star change-to-pointer"><input class="note-radio" type="radio" name="noteStr" value="4"></label>
+                        <label class="far fa-star change-to-pointer"><input class="note-radio" type="radio" name="noteStr" value="5"></label>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-avis">Avis</label>
+                        <textarea id="form-avis" name="message" class="form-control" rows="3" required></textarea>
+                    </div>
+                </div>
+                <button form="newOpinionForm" class="btn btn-primary btn-custom" type="submit" name="submit">Laisser un avis</button>
             </form>
+
         </div>
+
+
         <div id="opinionList">
         <h2 class="title-home">Avis :</h2>
         <div class="opinion" th:each="opinion : ${opinions}">
@@ -122,4 +136,27 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
+
+<script>
+    var radio_buttons = document.getElementsByClassName("change-to-pointer");
+    console.log(radio_buttons);
+    for (const button of radio_buttons) {
+        var pos = 0;
+        button.onclick = function () {
+            for (var i=0; i<radio_buttons.length; i++) {
+                if (radio_buttons[i].isEqualNode(button)) {
+                    pos = i;
+                }
+            }
+            for (var i=0; i<radio_buttons.length; i++) {
+                if (i<=pos) {
+                    radio_buttons[i].className = "fas fa-star change-to-pointer"
+                } else {
+                    radio_buttons[i].className = "far fa-star change-to-pointer"
+                }
+            }
+        }
+    }
+</script>
+
 </html>

@@ -435,6 +435,21 @@ body {
     display: inline-block;
 }
 
+#newOpinion {
+    margin-bottom: 10px;
+}
+
+.note-radio {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.change-to-pointer {
+    cursor: pointer;
+}
+
+/*Infos*/
 .otherInfos {
     position: relative;
     top: 120px;
