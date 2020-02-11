@@ -21,7 +21,7 @@ public class Game {
     int id;
     @Column
     String name;
-    @Column
+    @Column(length=2000)
     String description;
     @Column
     String imageLink;
