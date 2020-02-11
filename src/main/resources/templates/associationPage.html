@@ -13,6 +13,7 @@
                 <img class="img-fluid" th:src="${{asso.imageLink}}" th:alt="${{asso.name}}"/>
             </div>
             <h1 th:text="${{asso.name}}"></h1>
+            <div th:text="${{asso.address}}"></div>
             <div th:text="${{asso.description}}"></div>
             <div id="map"></div>
             <div th:each="game : ${gameList}" id="gameInAsso">
