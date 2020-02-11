@@ -5,25 +5,27 @@
 <body>
 <div th:replace="~{layout/navbar}"></div>
 <div class="container">
-    <h1>Ajouter un jeu</h1>
+    <h1 class="h1Form">Ajouter un jeu</h1>
 
-    <form method="POST" name="game" action="/game/create">
-        <label>Nom</label>
-        <input type="text" name ="name" autofocus="true" placeholder="Nom" required/>
-
-        <br>
-        <label>Description du jeu</label>
-        <input type="text" name="description" placeholder="Description" required/>
-
-        <br>
-        <label>Game Picture</label>
-        <input type="text" name="imageLink" placeholder="Lien vers l'image" required/>
-        <!--<label>Vérification du mot de passe</label>
-        <input type="password" placeholder="Vérification du mot de passe" required/>-->
-        <br>
-        <button type="submit">Valider</button>
-
+    <form id="formGame" method="POST" name="game" action="/game/create" class="formAsso">
+        <div class="form-group">
+            <label for="formNameGame">Nom du jeu</label>
+            <input id="formNameGame" type="text" name ="name" class="form-control" autofocus="true" placeholder="Nom" required/>
+        </div>
+        <div class="form-group">
+            <label for="formDescGame">Description du jeu</label>
+            <textarea id="formDescGame" name="description" class="form-control" placeholder="Description" rows="3" required>
+            </textarea>
+        </div>
+        <div class="form-group">
+            <label for="formImgGame">Image du jeu</label>
+            <input id="formImgGame" type="text" name="imageLink" class="form-control" placeholder="Lien vers l'image" required/>
+        </div>
+        <div class="form-submit">
+            <button type="submit" class="btn btn-primary btn-custom">Valider</button>
+        </div>
     </form>
+
 </div>
 <div th:replace="~{layout/footer}"></div>
 </body>

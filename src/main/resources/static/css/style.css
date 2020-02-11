@@ -243,6 +243,11 @@ body {
     color: #ffaf0f;
 }
 
+#addGame {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 /* Form page registration */
 .formRegistration {
     width: 50%;
