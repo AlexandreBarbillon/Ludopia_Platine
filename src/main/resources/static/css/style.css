@@ -175,7 +175,6 @@ body {
 /* One Game page */
 .one-game-info {
     background-color: #B4DFE5;
-    height: 460px;
 }
 
 .game-image {
@@ -184,7 +183,6 @@ body {
 }
 
 .game-description {
-    max-width: 80%;
     overflow: hidden;
     word-wrap: break-word;
     padding-right: 20px;

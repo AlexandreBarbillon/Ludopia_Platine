@@ -7,33 +7,34 @@
 <div th:replace="~{layout/navbar}"></div>
 
 <div class="container">
-    <div id="jeu" th:if="${oneGame} != null">
-        <div class="mt-4 mb-4 pt-4 pb-4 overflow-auto one-game-info rounded-lg">
-
-            <div class="float-left game-image mr-5 ml-5 p-3">
+    <div id="jeu" class="row col-12 mt-4 mb-4 pt-4 pb-4 one-game-info rounded-lg" th:if="${oneGame} != null">
+        <div class="row col-12">
+            <div class="col-4 float-left game-image mr-5 ml-5 p-3">
                 <img class="img-fluid" th:src="${{oneGame.imageLink}}" th:alt="${{oneGame.name}}"/>
             </div>
-            <h2 th:text="${{oneGame.name}}"></h2>
+            <div class="col-6">
+                <h2 th:text="${{oneGame.name}}"></h2>
+                <div class="game-stars">
 
-            <div class="game-stars">
+                        <span th:each="star : ${stars}">
+                            <i class="fas fa-star"></i>
+                        </span>
 
-                    <span th:each="star : ${stars}">
-                        <i class="fas fa-star"></i>
-                    </span>
+                        <span th:each="star : ${starsEmpty}">
+                            <i class="far fa-star"></i>
+                        </span>
+                </div>
 
-                    <span th:each="star : ${starsEmpty}">
-                        <i class="far fa-star"></i>
-                    </span>
+                <p class="game-description" th:text="${{oneGame.description}}"></p>
             </div>
-
-            <p class="game-description" th:text="${{oneGame.description}}"></p>
-            <div th:if="${{isGameInUserList}}" sec:authorize="!isAnonymous()" class="otherInfos float-left">
-                <a class="btn btn-custom" th:text="'Retirer ce jeu de mes jeux'" th:href="@{/list/removeFromUser/}+${{oneGame.id}}"></a>
-            </div>
-            <div th:if="not ${{isGameInUserList}}" sec:authorize="!isAnonymous()" class="otherInfos float-left">
-                <a class="btn btn-custom" th:text="'Ajouter ce jeu à mes jeux'" th:href="@{/list/addToUser/}+${{oneGame.id}}"></a>
-            </div>
-            <div th:if="${not #lists.isEmpty(assosUser)}" sec:authorize="!isAnonymous()" class="otherInfos float-left">
+        </div>
+        <div class="row col-12" th:if="${{isGameInUserList}}" sec:authorize="!isAnonymous()">
+            <a id="addGameToMine" class="btn btn-custom" th:text="'Retirer ce jeu de mes jeux'" th:href="@{/list/removeFromUser/}+${{oneGame.id}}"></a>
+        </div>
+        <div class="row col-12" th:if="not ${{isGameInUserList}}" sec:authorize="!isAnonymous()">
+            <a id="addGameToMine" class="btn btn-custom" th:text="'Ajouter ce jeu à mes jeux'" th:href="@{/list/addToUser/}+${{oneGame.id}}"></a>
+        </div>
+            <div class="row col-12" th:if="${not #lists.isEmpty(assosUser)}" sec:authorize="!isAnonymous()">
                 <form method="post" action="/list/addToAsso" class="form-inline">
                     <div class="form-group">
                         <input type="hidden" name="gameId" th:value="${{oneGame.id}}">
@@ -50,8 +51,8 @@
             </div>
         </div>
 
-        <h4 class="title-game-second rounded-lg">Les associations qui possèdent le jeu</h4>
-        <div class="game-assos" th:if="${!assos.empty}">
+        <h4 class="row col-12 title-game-second rounded-lg">Les associations qui possèdent le jeu</h4>
+        <div class="row col-12 game-assos" th:if="${!assos.empty}">
             <div class="game-asso">
                 <div class="div-img">
                     <a th:href="@{/association/}+${{assos[0].id}}">
@@ -93,32 +94,34 @@
 
 
         <div sec:authorize="!isAnonymous()" id="newOpinion">
-            <h2 class="title-home">Soumettre votre avis :</h2>
+            <h2 class="row col-12 title-home">Soumettre votre avis :</h2>
 
-            <form id="newOpinionForm" name="newOpinionForm" method="POST" th:action="@{/opinion/create/}+${{oneGame.id}}">
+            <form class="" id="newOpinionForm" name="newOpinionForm" method="POST" th:action="@{/opinion/create/}+${{oneGame.id}}">
                 <div>
-                    <div class="form-group">
-                        <label>Note :    </label>
+                    <div class="row form-group">
+                        <label class="col-1">Note :</label>
+                        <div class="col-6">
                         <label class="far fa-star change-to-pointer"><input class="note-radio" type="radio" name="noteStr" value="1"></label>
                         <label class="far fa-star change-to-pointer"><input class="note-radio" type="radio" name="noteStr" value="2"></label>
                         <label class="far fa-star change-to-pointer"><input class="note-radio" type="radio" name="noteStr" value="3"></label>
                         <label class="far fa-star change-to-pointer"><input class="note-radio" type="radio" name="noteStr" value="4"></label>
                         <label class="far fa-star change-to-pointer"><input class="note-radio" type="radio" name="noteStr" value="5"></label>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="form-avis">Avis</label>
-                        <textarea id="form-avis" name="message" class="form-control" rows="3" required></textarea>
+                    <div class="row col-12 form-group">
+                        <label class="row col-1">Avis :</label>
+                        <textarea id="form-avis" name="message" class="row col-6 form-control" placeholder="Laissez-nous votre avis sur ce jeu..." rows="3" required></textarea>
                     </div>
                 </div>
-                <button form="newOpinionForm" class="btn btn-primary btn-custom" type="submit" name="submit">Laisser un avis</button>
+                <button form="newOpinionForm" class="row btn btn-primary btn-custom" type="submit" name="submit">Laisser un avis</button>
             </form>
 
         </div>
 
 
-        <div id="opinionList">
-        <h2 class="title-home">Avis :</h2>
-        <div class="opinion" th:each="opinion : ${opinions}">
+        <div id="row col-12 opinionList">
+        <h2 class="row col-12 title-home">Avis :</h2>
+        <div class="row col-12 opinion" th:each="opinion : ${opinions}">
             <div>
 
                 <a th:href="@{/user/} + ${{opinion.userId}}">
