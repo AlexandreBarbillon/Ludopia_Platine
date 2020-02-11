@@ -22,7 +22,9 @@ public class LudopiaUser implements Serializable {
     @Column
     private String description;
     @ElementCollection
-    private Set<Integer> lists;
+    private Set<Integer> lists; //UNUSED
+    @Column
+    private Integer gameList;
     @ElementCollection
     private Set<Integer> associations;
     @ElementCollection
@@ -38,6 +40,7 @@ public class LudopiaUser implements Serializable {
     public LudopiaUser(String username, String password) {
         this.username = username;
         this.setPassword(password);
+        this.gameList = -1;
     }
 
     public LudopiaUser(){
@@ -45,6 +48,7 @@ public class LudopiaUser implements Serializable {
         this.lists = new HashSet<>();
         this.associations = new HashSet<>();
         this.friends = new HashSet<>();
+        this.gameList = -1;
     }
 
     public String getUsername() {
@@ -83,24 +87,19 @@ public class LudopiaUser implements Serializable {
         return lists;
     }
 
-    public void addList(int list) {
-        this.lists.add(list);
+    public int getGameList() {
+        if(gameList == null){
+            return -1;
+        }
+        return gameList;
     }
 
-    public void removeList(int list) {
-        this.lists.remove(list);
+    public void setGameList(int gameList) {
+        this.gameList = gameList;
     }
 
     public Set<Integer> getAssociations() {
         return associations;
-    }
-
-    public void addAssociation(int association) {
-        this.associations.add(association);
-    }
-
-    public void removeAssociation(int association) {
-        this.associations.remove(association);
     }
 
     public Set<Integer> getFriends() {

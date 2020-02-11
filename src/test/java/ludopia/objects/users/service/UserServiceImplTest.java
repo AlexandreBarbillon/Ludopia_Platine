@@ -1,5 +1,6 @@
 package ludopia.objects.users.service;
 
+import ludopia.objects.list.service.ListService;
 import ludopia.objects.users.CredentialUser;
 import ludopia.objects.users.LudopiaUser;
 import ludopia.objects.users.repository.CredentialUserRepository;
@@ -19,7 +20,10 @@ public class UserServiceImplTest {
     UserRepository userRepo;
     @Autowired
     CredentialUserRepository credUserRepo;
+    @Autowired
     UserServiceImpl userService;
+    @Autowired
+    ListService listService;
     @Before
     public void before(){
 
@@ -27,7 +31,7 @@ public class UserServiceImplTest {
 
     @BeforeEach
     public void beforeTest(){
-        userService = new UserServiceImpl(userRepo,credUserRepo);
+        userService = new UserServiceImpl(userRepo,credUserRepo,listService);
         userRepo.deleteAll();
     }
     @Test

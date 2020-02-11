@@ -100,7 +100,7 @@ public class GameList implements Serializable {
     }
 
     public void removeGameFromList(int gameId){
-        this.games.remove(gameId);
+        this.games.remove((Integer) gameId);
     }
 
     @Override

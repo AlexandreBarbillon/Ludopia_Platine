@@ -28,8 +28,13 @@
             </div>
 
             <p class="game-description" th:text="${{oneGame.description}}"></p>
-
-            <div sec:authorize="!isAnonymous()" class="otherInfos float-left">
+            <div th:if="${{isGameInUserList}}" sec:authorize="!isAnonymous()" class="otherInfos float-left">
+                <a class="btn btn-custom" th:text="'Retirer ce jeu de mes jeux'" th:href="@{/list/removeFromUser/}+${{oneGame.id}}"></a>
+            </div>
+            <div th:if="not ${{isGameInUserList}}" sec:authorize="!isAnonymous()" class="otherInfos float-left">
+                <a class="btn btn-custom" th:text="'Ajouter ce jeu à mes jeux'" th:href="@{/list/removeFromUser/}+${{oneGame.id}}"></a>
+            </div>
+            <div th:if="${not #lists.isEmpty(assosUser)}" sec:authorize="!isAnonymous()" class="otherInfos float-left">
                 <form method="post" action="/list/addToAsso">
                     <div class="form-group">
                         <input type="hidden" name="gameId" th:value="${{oneGame.id}}">
