@@ -6,6 +6,7 @@ import ludopia.objects.games.Game;
 import ludopia.objects.games.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -81,5 +82,21 @@ public class AssociationController {
     public String removeAsso(@PathVariable int id){
         associationService.deleteAsso(id);
         return "redirect:/";
+    }
+
+    @GetMapping("/association/map/{id}")
+    public ModelAndView displayAssoMapWithGame(@PathVariable Integer id){
+        ModelAndView mav = new ModelAndView("assoMap");
+        Game game = gameService.getGameById(id);
+        if(game == null){
+            mav.addObject("gameName","");
+            mav.addObject("gameId", -1);
+            return mav;
+        }
+        else{
+            mav.addObject("gameName",game.getName());
+            mav.addObject("gameId", id);
+            return mav;
+        }
     }
 }
