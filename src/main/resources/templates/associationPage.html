@@ -16,12 +16,15 @@
             <div th:text="${{asso.address}}"></div>
             <div th:text="${{asso.description}}"></div>
             <div id="map"></div>
-            <div th:each="game : ${gameList}" id="gameInAsso">
-                <div class="card">
-                    <img th:src="${{game.imageLink}}" style="width:200px; text-align:center" class="card-img-top img-thumbnail" alt="game.name">
-                    <div class="card-body">
-                        <a th:href="@{/game/}+${{game.id}}"><h5 class="card-text" th:text="${{game.name}}"></h5></a>
-                        <a th:if="${{isAdmin}}" th:href="@{/list/removeFromAsso/}+${{asso.id}}+@{/}+${{game.id}}+@{?redirect=/association/}+${{asso.id}}" class="btn btn-custom">retirer le jeu de la liste</a>
+            <div class="title-home" id="user-listes-jeux">
+                <h2>Nos Jeux</h2>
+                <div th:each="game : ${gameList}">
+                    <div class="card">
+                        <img th:src="${{game.imageLink}}" style="width:200px; text-align:center" class="card-img-top img-thumbnail" alt="game.name">
+                        <div class="card-body">
+                            <a th:href="@{/game/}+${{game.id}}"><h5 class="card-text" th:text="${{game.name}}"></h5></a>
+                            <a th:if="${{isAdmin}}" th:href="@{/list/removeFromAsso/}+${{asso.id}}+@{/}+${{game.id}}+@{?redirect=/association/}+${{asso.id}}" class="btn btn-custom">retirer le jeu de la liste</a>
+                        </div>
                     </div>
                 </div>
             </div>
