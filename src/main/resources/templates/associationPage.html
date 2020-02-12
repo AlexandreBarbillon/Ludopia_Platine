@@ -46,7 +46,12 @@
         }).addTo(mymap);
 
         marker = new L.marker(latLng).addTo(mymap);
-        marker.bindPopup("<b>"+[[${{asso.name}}]]+"</b><br>8 rue du jeu 59000 Lille");
+        marker.bindPopup("<p class='card' style='height:100%'>" +
+            "" +
+            "<div class='card-body'>" +
+            "<h5>"+[[${{asso.name}}]]+"</h5>" +
+            "<p class='card-text'>"+[[${{asso.address}}]]+"</p>" +
+            "</div></p>");
 
     }
 
