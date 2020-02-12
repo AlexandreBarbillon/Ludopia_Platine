@@ -122,14 +122,26 @@
         <div id="row col-12 opinionList">
         <h2 class="row col-12 title-home">Avis :</h2>
         <div class="row col-12 opinion" th:each="opinion : ${opinions}">
-            <div>
+            <div class="row col-12">
 
-                <a th:href="@{/user/} + ${{opinion.userId}}">
-                    <img width="50px" height="50px" th:src="${opinion.avatarLink != ''} ? (${opinion.avatarLink} ? ${opinion.avatarLink} : false)  : '/images/infos/sample_etu.jpg'" alt="Avatar"/>
-                    <p th:text="${{opinion.username}}"></p>
-                </a>
+                <div class="row col-12">
+                    <div>
+                        <img width="50px" height="50px" th:src="${opinion.avatarLink != ''} ? (${opinion.avatarLink} ? ${opinion.avatarLink} : false)  : '/images/infos/sample_etu.jpg'" alt="Avatar"/>
+                    </div>
+                    <a class="ml-1 col-1" th:href="@{/user/} + ${{opinion.userId}}" th:text="${{opinion.username}}"></a>
+                    <div class="col-3 game-stars">
+
+                        <span th:each="i : ${#numbers.sequence( 1, opinion.note)}">
+                            <i class="fas fa-star"></i>
+                        </span>
+
+                        <span th:if="${opinion.note < 5}" th:each="i : ${#numbers.sequence( opinion.note, 4)}">
+                            <i class="far fa-star"></i>
+                        </span>
+                    </div>
+                </div>
                 <br/>
-                <p th:text="${{opinion.message}}"></p>
+                <p class="row col-12" th:text="${{opinion.message}}"></p>
             </div>
          </div>
         <div th:unless="${oneGame} != null">
