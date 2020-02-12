@@ -18,7 +18,7 @@ function generateMarkers(assoList){
                          "<div class='card-body'>" +
                          "<a class='card-title' href='/association/"+element["id"]+"'><h5>"+element['name']+"</h5></a>" +
                          "<p class='card-text'>"+element['address']+"</p>" +
-        "</div></div>")
+        "</div></p>")
     });
 
 }
