@@ -7,7 +7,6 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -26,14 +25,11 @@ public class CredentialUser extends User {
     private String username;
     @Column
     private String password;
-    @ElementCollection
-    private Collection<SimpleGrantedAuthority> authorities;
     public CredentialUser(String username, String password, int userId) {
         super(username, password, Collections.singleton(new SimpleGrantedAuthority("ROLE_USER")));
         this.userId = userId;
         this.username = username;
         this.password = password;
-        this.authorities = authorities;
     }
 
     public CredentialUser(){
@@ -66,7 +62,4 @@ public class CredentialUser extends User {
         this.password = password;
     }
 
-    public void setAuthorities(Collection<SimpleGrantedAuthority> authorities) {
-        this.authorities = authorities;
-    }
 }

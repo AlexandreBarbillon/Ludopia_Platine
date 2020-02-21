@@ -1,16 +1,15 @@
 /*Base*/
 body {
     font-family: Arial, Helvetica, sans-serif;
+    display : table;
+    width: 100%;
 }
 
 html, body {
 	height: 100%;
 	margin: 0; padding: 0;
 }
-body {
-	display : table;
-	width: 100%;
-}
+
 .my-container {
     margin-bottom: 3%;
 }

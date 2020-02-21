@@ -5,11 +5,8 @@ import ludopia.objects.opinion.service.OpinionService;
 import ludopia.objects.users.LudopiaUser;
 import ludopia.objects.users.service.UserService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Controller servant a afficher tout ce qui est relatif aux opinions
