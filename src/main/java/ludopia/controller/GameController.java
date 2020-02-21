@@ -7,12 +7,10 @@ import ludopia.objects.games.service.GameService;
 import ludopia.objects.list.service.ListService;
 import ludopia.objects.opinion.Opinion;
 import ludopia.objects.opinion.service.OpinionService;
-import ludopia.objects.users.LudopiaUser;
 import ludopia.objects.users.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -73,7 +71,7 @@ public class GameController {
             sum+=opinion.getNote();
         }
         int avg;
-        if (opinions.size() != 0) avg = sum/opinions.size();
+        if (!opinions.isEmpty()) avg = sum/opinions.size();
         else avg = 0;
 
         mv.addObject("opinions", opinionUsers);

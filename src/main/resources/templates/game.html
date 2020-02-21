@@ -132,11 +132,11 @@
                     <div class="col-3 game-stars">
 
                         <span th:each="i : ${#numbers.sequence( 1, opinion.note)}">
-                            <i class="fas fa-star"></i>
+                            <em class="fas fa-star"></em>
                         </span>
 
                         <span th:if="${opinion.note < 5}" th:each="i : ${#numbers.sequence( opinion.note, 4)}">
-                            <i class="far fa-star"></i>
+                            <em class="far fa-star"></em>
                         </span>
                     </div>
                 </div>

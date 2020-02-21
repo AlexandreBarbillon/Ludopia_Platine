@@ -1,4 +1,3 @@
-var marker;
 var mymap;
 function initMap() {
     mymap = L.map('map').setView(new L.LatLng(47.754,2.219), 6);
@@ -6,7 +5,7 @@ function initMap() {
         maxZoom: 19,
         attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
     }).addTo(mymap);
-    var searchControl = new L.esri.Geocoding.Geosearch({useMapBounds:false}).addTo(mymap);
+    new L.esri.Geocoding.Geosearch({useMapBounds:false}).addTo(mymap);
 }
 
 function generateMarkers(assoList){

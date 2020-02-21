@@ -8,7 +8,6 @@ import ludopia.objects.list.exceptions.GameAlreadyInListException;
 import ludopia.objects.list.service.ListService;
 import ludopia.objects.users.LudopiaUser;
 import ludopia.objects.users.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,7 +34,6 @@ public class ListController {
 
     @PostMapping("/list/addToAsso")
     public String addGameToAsso(Integer assoId, Integer gameId){
-        System.out.println("asso : "+assoId+" | "+"game : "+gameId);
         LudopiaUser user = userService.getCurrentUser();
         Association asso = assoService.getAssoById(assoId);
         Game game = gameService.getGameById(gameId);
@@ -44,9 +42,7 @@ public class ListController {
             if (userId == asso.getAdmin()) {
                 try {
                     listService.addGameToList(asso.getPossessedGamesList(), gameId);
-                } catch (GameAlreadyInListException e) {
-
-                }
+                } catch (GameAlreadyInListException ignored){}
 
             }
         }
