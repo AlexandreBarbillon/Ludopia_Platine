@@ -2,7 +2,6 @@ package ludopia.controller;
 
 import ludopia.objects.games.Game;
 import ludopia.objects.games.service.GameService;
-import ludopia.objects.list.service.ListService;
 import ludopia.objects.users.LudopiaUser;
 import ludopia.objects.users.service.UserService;
 import org.springframework.stereotype.Controller;
