@@ -32,7 +32,7 @@ function generateList(assoList){
         img.src = element.imageLink;
         img.className = "imgAssoList";
 
-        name.className = "linkAsso"
+        name.className = "linkAsso";
 
         nameText.innerText = element.name;
         nameText.className = "textAssoList";

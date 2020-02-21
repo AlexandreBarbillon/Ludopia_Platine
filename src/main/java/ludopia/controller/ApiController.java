@@ -2,7 +2,6 @@ package ludopia.controller;
 
 import ludopia.objects.associations.Association;
 import ludopia.objects.associations.service.AssociationService;
-import ludopia.objects.games.service.GameService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 public class ApiController {
     private AssociationService assoService;
-    public ApiController(AssociationService assoService, GameService gameService){
+    public ApiController(AssociationService assoService){
         this.assoService = assoService;
     }
 
