@@ -37,5 +37,5 @@ public interface OpinionService {
      * @param gameId l'identifiant du jeu
      * @return true si l'avis existe, false sinon
      */
-    boolean IsUserAlreadyHaveAnOpinionOnGame(int userId, int gameId);
+    boolean isUserAlreadyHaveAnOpinionOnGame(int userId, int gameId);
 }

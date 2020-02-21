@@ -99,6 +99,11 @@ public class Game {
     }
 
     @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
     public String toString() {
         return "["+this.getId()+"] "+this.getName();
     }

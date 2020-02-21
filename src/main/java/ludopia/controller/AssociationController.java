@@ -6,9 +6,7 @@ import ludopia.objects.games.Game;
 import ludopia.objects.games.service.GameService;
 import ludopia.objects.users.LudopiaUser;
 import ludopia.objects.users.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,7 +48,6 @@ public class AssociationController {
      */
     @PostMapping("/association/create")
     public String createNewAssociation(Association asso) {
-        ModelAndView mv = new ModelAndView("associationCreation");
         Association createdAsso = associationService.createAssociation(asso);
         return "redirect:/association/"+createdAsso.getId();
     }
@@ -70,7 +67,7 @@ public class AssociationController {
         }
         boolean isAdmin = false;
         LudopiaUser currentUser = this.userService.getCurrentUser();
-        if(currentUser != null)
+        if(currentUser != null && asso != null)
             isAdmin = currentUser.getId() == asso.getAdmin();
         mv.addObject("isAdmin",isAdmin);
         mv.addObject("asso",asso);
@@ -87,11 +84,11 @@ public class AssociationController {
         return "assoMap";
     }
 
-    @GetMapping("/association/deleteAsso/{id}")
+    /**@GetMapping("/association/deleteAsso/{id}")
     public String removeAsso(@PathVariable int id){
         associationService.deleteAsso(id);
         return "redirect:/";
-    }
+    }*/
 
     @GetMapping("/association/map/{id}")
     public ModelAndView displayAssoMapWithGame(@PathVariable Integer id){

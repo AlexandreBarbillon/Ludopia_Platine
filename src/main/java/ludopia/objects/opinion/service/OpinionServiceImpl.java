@@ -2,7 +2,6 @@ package ludopia.objects.opinion.service;
 
 import ludopia.objects.opinion.Opinion;
 import ludopia.objects.opinion.repository.OpinionRepository;
-import ludopia.objects.users.service.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -40,7 +39,7 @@ public class OpinionServiceImpl implements OpinionService {
     }
 
     @Override
-    public boolean IsUserAlreadyHaveAnOpinionOnGame(int userId, int gameId) {
+    public boolean isUserAlreadyHaveAnOpinionOnGame(int userId, int gameId) {
         Opinion opinion = opinionRepo.findOpinionByUserIdAndGameId(userId,gameId).orElse(null);
         return opinion!=null;
     }

@@ -1,25 +1,14 @@
 package ludopia.controller;
 
-import ludopia.objects.associations.Association;
-import ludopia.objects.associations.service.AssociationService;
 import ludopia.objects.games.Game;
 import ludopia.objects.games.service.GameService;
-import ludopia.objects.list.GameList;
-import ludopia.objects.list.OwnerType;
-import ludopia.objects.list.exceptions.GameAlreadyInListException;
-import ludopia.objects.list.service.ListService;
 import ludopia.objects.users.LudopiaUser;
 import ludopia.objects.users.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.websocket.server.PathParam;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Contrôle ce qui est relatif à l'utilisateur
@@ -28,11 +17,9 @@ import java.util.Set;
 public class UserController {
 
     private final UserService userService;
-    private final ListService listService;
     private final GameService gameService;
-    public UserController(UserService userService, ListService listService, GameService gameService) {
+    public UserController(UserService userService, GameService gameService) {
         this.userService = userService;
-        this.listService = listService;
         this.gameService = gameService;
     }
 
@@ -72,11 +59,9 @@ public class UserController {
             mav = new ModelAndView("user");
         }
         LudopiaUser user = userService.getUserById(userId);
-        if (user==null) {
-            System.out.println(userId);
-        }
-
-        List<Game> games = gameService.unwrapGameList(user.getGameList());
+        List<Game> games = null;
+        if(user != null)
+            games = gameService.unwrapGameList(user.getGameList());
         
         mav.addObject("user", user);
         mav.addObject("games", games);
