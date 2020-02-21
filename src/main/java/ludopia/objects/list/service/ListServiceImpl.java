@@ -59,6 +59,14 @@ public class ListServiceImpl implements ListService {
     }
 
     @Override
+    public boolean gameInList(int listId, int gameId) {
+        if(listId == -1){
+            return false;
+        }
+        else return this.getListById(listId).getGames().contains(gameId);
+    }
+
+    @Override
     public GameList createList(GameList gameList) {
         return this.listRepo.save(gameList);
     }

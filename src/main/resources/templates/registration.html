@@ -1,27 +1,33 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{layout/header}"></head>
 
 <body>
 <div th:replace="~{layout/navbar}"></div>
 
         <div class="container">
-            <h1>Bienvenue sur Ludopia</h1>
+            <h1 class="h1Form">Bienvenue sur Ludopia !</h1>
 
-            <form method="POST" name="userForm" action="/registration">
-                <label>Nom</label>
-                <input type="text" name="username" autofocus="true" placeholder="Nom" required/>
 
-                <br>
-                <label>Mot de passe</label>
-                <input type="password" name="password" placeholder="Mot de passe" required/>
-
-                <br>
+            <form method="POST" name="userForm" action="/user/create" class="formRegistration">
+                <div id="alert-box" th:if="${userForm.username != null}">
+                    <p>Cet utilisateur existe déjà</p>
+                </div>
+                <div class="form-group">
+                    <label for="inputUsernameRegist">Nom d'utilisateur</label>
+                    <input type="text" id ="inputUsernameRegist" name="username" autofocus="true" placeholder="Nom d'utilisateur" class="form-control" required/>
+                </div>
+                <div class="form-group">
+                    <label for="inputPasswordRegist">Mot de passe</label>
+                    <input type="password" id="inputPasswordRegist" name="password" placeholder="Mot de passe" class="form-control" required/>
+                </div>
                 <!--<label>Vérification du mot de passe</label>
                 <input type="password" placeholder="Vérification du mot de passe" required/>-->
 
-                <br>
-                <button type="submit">Valider</button>
+                <div class="form-submit">
+                    <button type="submit" class="btn btn-primary btn-custom">S'inscrire</button>
+                    <a class="linkForm" th:href="@{/login}">Déjà un compte ?</a>
+                </div>
 
             </form>
 

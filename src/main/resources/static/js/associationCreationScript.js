@@ -6,6 +6,7 @@ function initMap() {
         maxZoom: 19,
         attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
     }).addTo(mymap);
+    var searchControl = new L.esri.Geocoding.Geosearch({useMapBounds:false}).addTo(mymap);
     mymap.addEventListener("click", addMarker);
 }
 function addMarker(e) {

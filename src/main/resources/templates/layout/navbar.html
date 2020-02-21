@@ -3,20 +3,36 @@
         <a class="navbar-brand" href="/">
             <img th:src="@{/images/Logo_Ludopia.png}" class="logo" alt="Logo Ludopia">
         </a>
-        <a th:href="@{/association/map}">
-        <button class="btn btn-secondary" type="button">Associations</button>
+        <a th:href="@{/association/map}" class="btn btn-secondary" type="button">
+        Associations
         </a>
+        <a class="btn btn-custom" th:href="@{/search}">Voir tous les Jeux</a>
         <form class="form-inline" action="/search" method="GET" >
-            <input class="form-control" type="search" name="searchString" aria-label="Search">
+            <input class="form-control" type="search" name="searchString" placeholder="Rechercher un jeu..." aria-label="Search">
             <button class="btn btn-outline-success" type="submit" >Rechercher</button>
         </form>
-        <a th:href="@{/login}">
-            <button class="btn btn-light" type="button">Se connecter</button>
-        </a>
 
-        <a th:href="@{/registration}">
-            <button class="btn btn-primary btn-custom" type="button">S'inscrire</button>
-        </a>
+
+        <div sec:authorize="!isAnonymous()">
+            <img class="img_thumbnail" width="50px" height="50px" th:src="${loggedUser.imageLink != ''} ? (${loggedUser.imageLink} ? ${loggedUser.imageLink} : false)  : '/images/infos/sample_etu.jpg'" alt="avatar"/>
+            <a th:href="@{/user/} + ${{loggedUser.id}}" th:text="${{loggedUser.username}}"></a>
+            <a th:href="@{/logout}" class="btn btn-light" type="button">
+                Se déconnecter
+            </a>
+        </div>
+
+        <div sec:authorize="isAnonymous()">
+            <a th:href="@{/login}" class="btn btn-light" type="button">
+                Se connecter
+            </a>
+
+
+            <a th:href="@{/user/create}" class="btn btn-primary btn-custom" type="button">
+                S'inscrire
+            </a>
+        </div>
+
+
 
     </div>
 </nav>

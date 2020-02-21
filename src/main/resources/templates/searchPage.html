@@ -1,20 +1,27 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{layout/header}"></head>
 
 <body>
 <div th:replace="~{layout/navbar}"></div>
     <div class="container">
-        <a href="/game/create"><button class="button">Ajouter un jeu</button></a>
-        <div th:each="game : ${searchResult}" class="col-12 col-md align-items-center justify-content-center">
-            <a th:href="@{/game/} + ${{game.id}}">
-                <div class="pictureGame">
-                    <img class="d-block" th:src="${{game.imageLink}}" alt="Jeu"/>
+        <p id="addGameTitle">Vous ne trouvez pas votre jeu ?
+            <a th:href="@{/game/create}">
+                <button id="addGame"  class="btn btn-primary btn-custom">Ajoutez-le</button>
+            </a>
+        </p>
+        <div th:each="game : ${searchResult}" class="card title-home game-card">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img th:src="${{game.imageLink}}" style="width:200px" class="card-img">
                 </div>
-            </a>
-            <a class="title-game-link" th:href="@{/game/} + ${{game.id}}">
-                <p class="title-game" th:text="${{game.name}}"></p>
-            </a>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${{game.name}}"></h5>
+                        <p class="card-text"th:text="${{game.description}}"></p>
+                        <a class="btn btn-primary btn-custom" th:href="@{/game/}+${{game.id}}">Voir la page du jeu</a>
+                    </div>
+                </div>
         </div>
     </div>
 </div>

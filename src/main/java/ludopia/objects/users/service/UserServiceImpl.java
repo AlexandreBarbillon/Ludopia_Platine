@@ -1,9 +1,14 @@
 package ludopia.objects.users.service;
 
+import ludopia.objects.list.GameList;
+import ludopia.objects.list.OwnerType;
+import ludopia.objects.list.exceptions.GameAlreadyInListException;
+import ludopia.objects.list.service.ListService;
 import ludopia.objects.users.CredentialUser;
 import ludopia.objects.users.LudopiaUser;
 import ludopia.objects.users.repository.CredentialUserRepository;
 import ludopia.objects.users.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,9 +24,11 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
     private UserRepository userRepo;
     private CredentialUserRepository credUserRepo;
-    public UserServiceImpl(UserRepository userRepo, CredentialUserRepository credUserRepo) {
+    private final ListService listService;
+    public UserServiceImpl(UserRepository userRepo, CredentialUserRepository credUserRepo, ListService listService) {
         this.userRepo = userRepo;
         this.credUserRepo = credUserRepo;
+        this.listService = listService;
     }
 
     /**
@@ -56,8 +63,11 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public LudopiaUser createUser(LudopiaUser ludopiaUser, String password) {
+        if (getUserByUsername(ludopiaUser.getUsername()) != null) {
+            return null;
+        }
         LudopiaUser savedUser = userRepo.save(ludopiaUser);
-        CredentialUser user = new CredentialUser(ludopiaUser.getUsername(),password, Collections.singleton(new SimpleGrantedAuthority("ROLE_USER")), savedUser.getId());
+        CredentialUser user = new CredentialUser(ludopiaUser.getUsername(),password, savedUser.getId());
         credUserRepo.save(user);
         return savedUser;
     }
@@ -70,11 +80,11 @@ public class UserServiceImpl implements UserService {
 
     /**
      * Remove the user found in database
-     * @param username the username of the user
+     * @param id the username of the user
      */
     @Override
-    public void removeUser(String username) {
-        userRepo.deleteById(username);
+    public void removeUser(int id) {
+        userRepo.deleteById(id);
     }
 
     @Override
@@ -88,5 +98,38 @@ public class UserServiceImpl implements UserService {
         else{
             return null;
         }
+    }
+
+    @Override
+    public void updateUser(LudopiaUser user) {
+        userRepo.save(user);
+    }
+
+    @Override
+    public boolean addToUserList(int gameId) {
+        LudopiaUser ludopiaUser = getCurrentUser();
+        if(ludopiaUser != null){
+            if(ludopiaUser.getGameList() == -1){
+                ludopiaUser.setGameList(listService.createList(new GameList(ludopiaUser.getId(), OwnerType.USER, "","")).getId());
+                this.updateUser(ludopiaUser);
+            }
+            try{
+                listService.addGameToList(ludopiaUser.getGameList(),gameId);
+                return true;
+            } catch (GameAlreadyInListException e) {
+                return false;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean removeFromUserList(int gameId) {
+        LudopiaUser ludopiaUser = getCurrentUser();
+        if(ludopiaUser != null && ludopiaUser.getGameList() != -1) {
+            listService.removeGameToList(ludopiaUser.getGameList(), gameId);
+            return true;
+        }
+        return false;
     }
 }

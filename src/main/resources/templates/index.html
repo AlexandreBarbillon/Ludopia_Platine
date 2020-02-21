@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head th:replace="~{layout/header}"></head>
 
     <body>
         <div th:replace="~{layout/navbar}"></div>
 
-        <div class="container">
+        <div class="my-container container">
             <!--<h1 class="title-home">Jeux les mieux notés</h1>
             <div id="best_rated">
             </div>-->
@@ -19,7 +20,8 @@
                                 <div th:each="game : ${gamesFirst}" class="col-12 col-md align-items-center justify-content-center">
                                     <a th:href="@{/game/} + ${{game.id}}">
                                         <div class="pictureGame">
-                                         <img class="d-block" th:src="${{game.image_link}}" alt="Jeu"/>
+                                         <!--/*@thymesVar id="imageLink" type="ludopia.objects.games.Game"*/-->
+                                         <img class="d-block img_thumbnail" th:src="${{game.imageLink}}" th:alt="${{game.name}}"/>
                                         </div>
                                     </a>
                                     <a class="title-game-link" th:href="@{/game/}+ ${{game.id}}">
@@ -33,7 +35,7 @@
                                 <div th:each="game : ${gamesSecond}" class="col-12 col-md align-items-center justify-content-center">
                                     <a th:href="@{/game/} + ${{game.id}}">
                                         <div class="pictureGame">
-                                            <img class="d-block" th:src="${{game.image_link}}" alt="Jeu"/>
+                                            <img class="d-block img_thumbnail" th:src="${{game.imageLink}}" th:alt="${{game.name}}"/>
                                         </div>
                                     </a>
                                     <a class="title-game-link" th:href="@{/game/} + ${{game.id}}">
@@ -47,7 +49,7 @@
                                 <div th:each="game : ${gamesThird}" class="col-12 col-md align-items-center justify-content-center">
                                     <a th:href="@{/game/} + ${{game.id}}">
                                         <div class="pictureGame">
-                                            <img class="d-block" th:src="${{game.image_link}}" alt="Jeu"/>
+                                            <img class="d-block img_thumbnail" th:src="${{game.imageLink}}" th:alt="${{game.name}}"/>
                                         </div>
                                     </a>
                                     <a class="title-game-link" th:href="@{/game/} + ${{game.id}}">
